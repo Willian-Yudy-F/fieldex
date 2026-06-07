@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FielDex — gotta learn 'em all</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0f14; --panel:#121821; --text:#e9ecef; --muted:#6c757d;
+    --c-probability:#00d4ff; --c-math:#ef476f; --c-logic:#06d6a0;
+    --c-history:#ffb703; --c-geography:#8ecae6; --c-data:#c77dff;
+    --c-corinthians:#ffffff; --c-default:#adb5bd;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:
+      radial-gradient(1200px 600px at 80% -10%, #14202e 0%, transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, #1a1420 0%, transparent 55%),
+      var(--bg);
+    color:var(--text); font-family:'Sora',sans-serif; min-height:100vh;
+    padding:48px 24px 80px;
+  }
+  .wrap{max-width:1100px;margin:0 auto}
+  header{margin-bottom:40px;position:relative}
+  .logo{font-size:clamp(40px,7vw,72px);font-weight:800;letter-spacing:-2px;line-height:1}
+  .logo span{color:var(--c-probability)}
+  .tagline{font-family:'Space Mono',monospace;color:var(--muted);margin-top:8px;font-size:14px}
+  .counter{
+    position:absolute;top:0;right:0;text-align:right;font-family:'Space Mono',monospace;
+  }
+  .counter .num{font-size:42px;font-weight:700;color:var(--c-history);line-height:1}
+  .counter .lbl{font-size:11px;color:var(--muted);letter-spacing:1px}
+
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+  .filter{
+    font-family:'Space Mono',monospace;font-size:12px;padding:7px 14px;border-radius:20px;
+    border:1px solid #2a313c;background:transparent;color:var(--muted);cursor:pointer;
+    transition:all .2s;
+  }
+  .filter:hover{border-color:var(--text);color:var(--text)}
+  .filter.active{background:var(--text);color:var(--bg);border-color:var(--text);font-weight:700}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+  .card{
+    background:var(--panel);border-radius:18px;padding:22px;border:2px solid var(--ct);
+    position:relative;overflow:hidden;cursor:pointer;
+    transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s;
+    animation:rise .5s backwards;
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  .card::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(420px 180px at 80% -20%,var(--ct),transparent 70%);
+    opacity:.12;pointer-events:none;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px -16px var(--ct)}
+  .crow{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+  .dexno{font-family:'Space Mono',monospace;font-weight:700;font-size:20px;color:var(--ct)}
+  .type{
+    font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1px;
+    background:var(--ct);color:var(--bg);padding:4px 12px;border-radius:14px;
+  }
+  .ctitle{font-size:21px;font-weight:800;line-height:1.15;margin-bottom:10px}
+  .rarity{font-family:'Space Mono',monospace;font-size:13px;color:var(--rc);margin-bottom:14px;letter-spacing:2px}
+  .cfact{font-size:14px;line-height:1.55;color:#ced4da}
+  .ctags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+  .tag{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);border:1px solid #2a313c;padding:3px 9px;border-radius:10px}
+
+  /* modal */
+  .modal{position:fixed;inset:0;background:rgba(5,7,10,.82);display:none;align-items:center;
+    justify-content:center;padding:24px;z-index:50;backdrop-filter:blur(4px)}
+  .modal.open{display:flex}
+  .sheet{background:var(--panel);border:2px solid var(--ct);border-radius:20px;max-width:520px;
+    width:100%;padding:34px;position:relative;animation:rise .35s}
+  .sheet .why{background:var(--bg);border-radius:12px;padding:16px;margin-top:18px}
+  .sheet .why h4{font-family:'Space Mono',monospace;font-size:11px;color:var(--ct);letter-spacing:1px;margin-bottom:8px}
+  .sheet .why p{font-size:14px;line-height:1.6;color:#ced4da}
+  .close{position:absolute;top:16px;right:20px;font-size:26px;color:var(--muted);cursor:pointer;background:none;border:none}
+  .meta{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);margin-top:18px}
+  footer{text-align:center;margin-top:60px;font-family:'Space Mono',monospace;font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">Fiel<span>Dex</span></div>
+    <div class="tagline">// gotta learn 'em all — daily knowledge, captured</div>
+    <div class="counter"><div class="num" id="count">0</div><div class="lbl">CAPTURED</div></div>
+  </header>
+
+  <div class="filters" id="filters"></div>
+  <div class="grid" id="grid"></div>
+
+  <footer>built with python + a lot of curiosity · since 1910 🦅</footer>
+</div>
+
+<div class="modal" id="modal">
+  <div class="sheet" id="sheet"></div>
+</div>
+
+<script>
+const TYPE_COLORS = {
+  probability:'--c-probability', math:'--c-math', logic:'--c-logic',
+  history:'--c-history', geography:'--c-geography', data:'--c-data',
+  corinthians:'--c-corinthians'
+};
+const RARITY = {
+  common:['COMMON','#adb5bd',1], uncommon:['UNCOMMON','#06d6a0',2],
+  rare:['RARE','#00d4ff',3], epic:['EPIC','#c77dff',4], legendary:['LEGENDARY','#ffb703',5]
+};
+const cssVar = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const typeColor = cat => cssVar(TYPE_COLORS[cat] || '--c-default');
+let DATA = [], activeFilter = 'all';
+
+async function load(){
+  try{
+    const res = await fetch('fieldex.json');
+    const json = await res.json();
+    DATA = json.entries.sort((a,b)=>b.id-a.id);
+  }catch(e){
+    // fallback sample so the page still renders if opened directly
+    DATA = [{id:1,date:'2026-06-07',category:'probability',rarity:'rare',
+      title:'The Birthday Paradox',fact:'In a room of 23 people there is a 50% chance two share a birthday.',
+      why:'We compare every pair of people, not each person to a fixed date.',tags:['statistics']}];
+  }
+  render();
+}
+
+function buildFilters(){
+  const cats = ['all', ...new Set(DATA.map(d=>d.category))];
+  const box = document.getElementById('filters');
+  box.innerHTML = cats.map(c=>
+    `<button class="filter ${c===activeFilter?'active':''}" data-c="${c}">${c.toUpperCase()}</button>`
+  ).join('');
+  box.querySelectorAll('.filter').forEach(b=>b.onclick=()=>{
+    activeFilter=b.dataset.c; render();
+  });
+}
+
+function render(){
+  buildFilters();
+  document.getElementById('count').textContent = DATA.length;
+  const grid = document.getElementById('grid');
+  const list = DATA.filter(d=>activeFilter==='all'||d.category===activeFilter);
+  grid.innerHTML = list.map((d,i)=>{
+    const col = typeColor(d.category);
+    const [rl,rc,rstars] = RARITY[d.rarity]||RARITY.common;
+    const stars = '★'.repeat(rstars)+'☆'.repeat(5-rstars);
+    const tags = (d.tags||[]).map(t=>`<span class="tag">#${t}</span>`).join('');
+    return `<div class="card" style="--ct:${col};--rc:${rc};animation-delay:${i*40}ms" data-id="${d.id}">
+      <div class="crow"><span class="dexno">#${String(d.id).padStart(3,'0')}</span>
+      <span class="type">${d.category}</span></div>
+      <div class="ctitle">${d.title}</div>
+      <div class="rarity">${stars} <span style="font-size:10px">${rl}</span></div>
+      <div class="cfact">${d.fact}</div>
+      <div class="ctags">${tags}</div>
+    </div>`;
+  }).join('');
+  grid.querySelectorAll('.card').forEach(c=>c.onclick=()=>openModal(+c.dataset.id));
+}
+
+function openModal(id){
+  const d = DATA.find(x=>x.id===id);
+  const col = typeColor(d.category);
+  const [rl,rc,rstars] = RARITY[d.rarity]||RARITY.common;
+  const stars = '★'.repeat(rstars)+'☆'.repeat(5-rstars);
+  document.getElementById('sheet').style.setProperty('--ct',col);
+  document.getElementById('sheet').innerHTML = `
+    <button class="close" onclick="closeModal()">×</button>
+    <div class="crow"><span class="dexno" style="color:${col}">#${String(d.id).padStart(3,'0')}</span>
+    <span class="type" style="background:${col}">${d.category}</span></div>
+    <div class="ctitle" style="font-size:26px">${d.title}</div>
+    <div class="rarity" style="color:${rc}">${stars} ${rl}</div>
+    <p style="font-size:15px;line-height:1.6">${d.fact}</p>
+    <div class="why"><h4 style="color:${col}">WHY IT MATTERS</h4><p>${d.why}</p></div>
+    <div class="meta">captured ${d.date}</div>`;
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')closeModal()};
+
+load();
+</script>
+</body>
+</html>

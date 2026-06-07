@@ -1,0 +1,10 @@
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# local previews (not part of the dex)
+preview.png
+preview_server.png
+*.pid

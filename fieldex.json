@@ -1,0 +1,47 @@
+{
+  "trainer": "your_name",
+  "started": "2026-06-07",
+  "entries": [
+    {
+      "id": 1,
+      "date": "2026-06-07",
+      "category": "probability",
+      "rarity": "rare",
+      "title": "The Birthday Paradox",
+      "fact": "In a room of just 23 people, there's a 50% chance two of them share a birthday. With 70 people, it jumps to 99.9%.",
+      "why": "Because we compare every PAIR of people, not each person to one fixed date. 23 people make 253 pairs.",
+      "tags": [
+        "statistics",
+        "counterintuitive"
+      ]
+    },
+    {
+      "id": 2,
+      "date": "2026-06-08",
+      "category": "history",
+      "rarity": "uncommon",
+      "title": "The Corinthians' Birth Year",
+      "fact": "Sport Club Corinthians Paulista was founded on September 1, 1910, by a group of railway workers in the Bom Retiro neighborhood of Sao Paulo.",
+      "why": "They named the club after the English amateur team Corinthian FC, which was touring Brazil at the time.",
+      "tags": [
+        "corinthians",
+        "football",
+        "brazil"
+      ]
+    },
+    {
+      "id": 3,
+      "date": "2026-06-09",
+      "category": "geography",
+      "rarity": "common",
+      "title": "Sydney Sits at 33 South",
+      "fact": "Sydney lies at roughly 33.87 S, 151.21 E placing it on a similar latitude band as Cape Town, Buenos Aires and Santiago.",
+      "why": "Cities on the same latitude share daylight patterns and seasons, which is why these southern hubs feel climatically alike.",
+      "tags": [
+        "maps",
+        "cities",
+        "southern-hemisphere"
+      ]
+    }
+  ]
+}

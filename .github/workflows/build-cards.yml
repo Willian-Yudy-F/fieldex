@@ -1,0 +1,38 @@
+name: Build FielDex cards
+
+# Regenerates all cards whenever the dex changes, then commits them back.
+# This keeps cards/ always in sync with fieldex.json.
+
+on:
+  push:
+    paths:
+      - "fieldex.json"
+      - "generate_card.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-cards:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install matplotlib
+
+      - name: Generate all cards
+        run: python generate_card.py --all
+
+      - name: Commit updated cards
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add cards/
+          git diff --staged --quiet || git commit -m "chore: rebuild dex cards"
+          git push
