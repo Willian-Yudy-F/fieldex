@@ -100,12 +100,36 @@
   .ctags{display:flex;flex-wrap:wrap;gap:6px;margin-top:15px}
   .tag{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft);border:1px solid var(--line);padding:2px 8px}
 
-  /* LOCKED CARD */
-  .card.locked{cursor:default;background:repeating-linear-gradient(45deg,var(--paper),var(--paper) 10px,var(--paper-2) 10px,var(--paper-2) 20px)}
-  .card.locked .lock-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;min-height:140px;text-align:center}
-  .card.locked .lock-ico{font-size:34px;margin-bottom:10px;opacity:.5}
-  .card.locked .lock-no{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:20px;color:var(--ink-soft)}
-  .card.locked .lock-txt{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);margin-top:6px;opacity:.7}
+  /* LOCKED CARD — shows name, hides fact */
+  .card.locked{cursor:pointer}
+  .card.locked.leaguelocked{cursor:not-allowed;opacity:.55;background:repeating-linear-gradient(45deg,var(--paper),var(--paper) 10px,var(--paper-2) 10px,var(--paper-2) 20px)}
+  .card.locked .ctitle{opacity:.85}
+  .card.locked.leaguelocked .ctitle{opacity:.5}
+  .locked-body{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:18px 0 6px;border-top:1px dashed var(--line);margin-top:6px}
+  .lock-ico{font-size:30px}
+  .lock-txt{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);text-align:center}
+  .card.locked.playable:hover{background:var(--paper-2)}
+  .card.locked.playable:hover .lock-ico{transform:scale(1.15);transition:transform .2s}
+
+  /* LEAGUE TRACK */
+  .league-track{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;padding:18px 20px 6px}
+  .league{display:flex;flex-direction:column;align-items:center;gap:3px;padding:0 18px;position:relative;opacity:.4;min-width:84px}
+  .league.open{opacity:1}
+  .league.done{opacity:1}
+  .league-ico{font-size:26px;filter:grayscale(1)}
+  .league.open .league-ico,.league.done .league-ico{filter:none}
+  .league.done .league-ico{transform:scale(1.05)}
+  .league-name{font-family:'Shippori Mincho',serif;font-weight:800;font-size:13px;text-align:center;line-height:1.1}
+  .league-prog{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft)}
+  .league.done .league-prog{color:var(--lc);font-weight:700}
+  .league-arrow{position:absolute;right:-7px;top:18px;font-family:'JetBrains Mono',monospace;color:var(--ink-soft);opacity:.5}
+  .league-hint{padding:6px 20px 18px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-soft)}
+  .league-hint b{color:var(--ink)}
+
+  /* CHALLENGE in modal */
+  .challenge-tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:var(--ct);margin-top:8px;font-weight:700}
+  .capture-banner{background:var(--ct);color:var(--paper);font-family:'JetBrains Mono',monospace;font-weight:700;
+    text-align:center;padding:8px;margin:-8px -8px 16px;letter-spacing:1px;animation:pop .4s}
 
   .empty{padding:50px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--ink-soft);grid-column:1/-1;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink)}
 
@@ -235,45 +259,45 @@ const cssVar=v=>getComputedStyle(document.documentElement).getPropertyValue(v).t
 const typeColor=c=>cssVar(TYPE_COLORS[c]||'--c-default');
 let DATA=[],PROG=loadProgress(),activeFilter='all',searchTerm='',previewAll=false;
 
-/* ============ DAILY: deterministic by date ============ */
-function todayKey(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
-function seedFromDate(){const d=new Date();return d.getFullYear()*1000+(d.getMonth()+1)*40+d.getDate();}
+/* ============ PER-CARD PUZZLES + LEAGUES ============ */
 function rng(seed){let s=seed%2147483647;if(s<=0)s+=2147483646;return()=>(s=s*16807%2147483647)/2147483647;}
 
-// generate a logic/math puzzle deterministically for today
-function makePuzzle(){
-  const r=rng(seedFromDate());const kind=Math.floor(r()*4);
-  if(kind===0){ // arithmetic sequence: next term
-    const start=2+Math.floor(r()*6),step=2+Math.floor(r()*5);
+// each card has its OWN puzzle, deterministic from its id (always the same puzzle for that card)
+function makePuzzleForCard(id){
+  const r=rng(id*7919+13);const kind=Math.floor(r()*4);
+  if(kind===0){const start=2+Math.floor(r()*6),step=2+Math.floor(r()*5);
     const seq=[start,start+step,start+2*step,start+3*step];
-    const ans=start+4*step;
-    return puzzle(`What comes next?  ${seq.join(', ')}, __`,ans,r);
-  }
-  if(kind===1){ // odd one out (multiples)
-    const base=2+Math.floor(r()*4);const set=[base*2,base*3,base*4,base*5+1];
-    return puzzle(`Which number does NOT belong?  ${set.join(', ')}`,base*5+1,r,true);
-  }
-  if(kind===2){ // simple logic: if-then
-    const a=3+Math.floor(r()*5),b=2+Math.floor(r()*4);
-    return puzzle(`If ${a} owls + ${b} owls share 1 branch each, how many branches?`,a+b,r);
-  }
-  // doubling pattern
+    return puzzle(`What comes next?  ${seq.join(', ')}, __`,start+4*step,r);}
+  if(kind===1){const base=2+Math.floor(r()*4);const set=[base*2,base*3,base*4,base*5+1];
+    return puzzle(`Which number does NOT belong?  ${set.join(', ')}`,base*5+1,r);}
+  if(kind===2){const a=3+Math.floor(r()*5),b=2+Math.floor(r()*4);
+    return puzzle(`${a} owls and ${b} owls each take 1 branch. How many branches?`,a+b,r);}
   const start=1+Math.floor(r()*4);const seq=[start,start*2,start*4,start*8];
   return puzzle(`Double each time. What comes next?  ${seq.join(', ')}, __`,start*16,r);
 }
-function puzzle(q,answer,r,exact){
-  // build 4 options including the answer
+function puzzle(q,answer,r){
   const opts=new Set([answer]);
   while(opts.size<4){const delta=(Math.floor(r()*7)-3);const cand=answer+(delta===0?5:delta*(1+Math.floor(r()*3)));if(cand>0&&cand!==answer)opts.add(cand);}
   const arr=[...opts];for(let i=arr.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}
   return{q,answer,options:arr};
 }
-// which card does today unlock? map day -> a still-locked card (lowest id first)
-function todaysCardId(){
-  const locked=DATA.filter(d=>!PROG.unlocked.includes(d.id)).sort((a,b)=>a.id-b.id);
-  if(locked.length===0)return null;
-  return locked[0].id;
+
+// LEAGUES: cards grouped by category, ordered. A league unlocks when the previous is fully collected.
+function leagueOrder(){
+  // order leagues by the lowest card id in each category (stable, follows your dex order)
+  const byCat={};DATA.forEach(d=>{(byCat[d.category]=byCat[d.category]||[]).push(d);});
+  return Object.keys(byCat).sort((a,b)=>Math.min(...byCat[a].map(d=>d.id))-Math.min(...byCat[b].map(d=>d.id)));
 }
+function leagueCards(cat){return DATA.filter(d=>d.category===cat);}
+function leagueComplete(cat){const cards=leagueCards(cat);return cards.length>0&&cards.every(d=>PROG.unlocked.includes(d.id));}
+// a league is "open" if it's the first, or the previous league is complete
+function leagueOpen(cat){
+  const order=leagueOrder();const i=order.indexOf(cat);
+  if(i<=0)return true;
+  return leagueComplete(order[i-1]);
+}
+// can this specific card be attempted? its league must be open
+function cardPlayable(d){return leagueOpen(d.category);}
 
 /* ============ VIZ — rich, per-category visuals ============ */
 // helper: deterministic jitter from a string (so each card looks consistent)
@@ -395,61 +419,74 @@ function renderStats(){
   document.getElementById('streak').textContent=String(PROG.streak||0).padStart(2,'0');
 }
 
-/* ============ DAILY UI ============ */
+/* ============ LEAGUE PROGRESS BANNER ============ */
 function renderDaily(){
   const el=document.getElementById('daily');
-  const solvedToday=PROG.lastSolved===todayKey();
-  const cardId=todaysCardId();
-  if(cardId===null){
-    el.innerHTML=`<div class="daily-head"><span class="t">⚡ Daily Challenge</span><span class="d">${todayKey()}</span></div><div class="daily-done"><div class="big">Dex complete! 🦅</div><div class="reveal">You've unlocked every card. Lendário.</div></div>`;
+  const order=leagueOrder();
+  const allDone=order.every(c=>leagueComplete(c));
+  if(allDone){
+    el.innerHTML=`<div class="daily-head"><span class="t">🏆 Champion</span><span class="d">${todayKey()}</span></div>
+      <div class="daily-done"><div class="big">Dex complete! 🦅</div><div class="reveal">You cleared every league. Lendário.</div></div>`;
     return;
   }
-  if(solvedToday){
-    const card=DATA.find(d=>d.id===PROG.unlocked[PROG.unlocked.length-1])||DATA.find(d=>d.id===cardId);
-    el.innerHTML=`<div class="daily-head"><span class="t">⚡ Daily Challenge</span><span class="d">${todayKey()}</span></div><div class="daily-done"><div class="big">Solved for today ✓</div><div class="reveal">Come back tomorrow for the next capture.</div><div class="sun-stamp">STREAK ${PROG.streak} 🔥</div></div>`;
-    return;
-  }
-  const pz=makePuzzle();
-  el.innerHTML=`<div class="daily-head"><span class="t">⚡ Daily Challenge</span><span class="d">${todayKey()}</span></div>
-    <div class="daily-body"><div class="q">${pz.q}</div><div class="opts" id="opts">
-    ${pz.options.map(o=>`<button class="opt" data-v="${o}">${o}</button>`).join('')}</div></div>`;
-  el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>answer(+b.dataset.v,pz.answer,b));
+  // build the league track
+  const track=order.map((cat,i)=>{
+    const cards=leagueCards(cat);const got=cards.filter(d=>PROG.unlocked.includes(d.id)).length;
+    const open=leagueOpen(cat);const done=leagueComplete(cat);const b=BADGES[cat]||{name:cat,ico:'⭐',color:'#1c1a17'};
+    const state=done?'done':(open?'open':'locked');
+    return `<div class="league ${state}" style="--lc:${b.color}">
+      <div class="league-ico">${done?b.ico:(open?b.ico:'🔒')}</div>
+      <div class="league-name">${b.name}</div>
+      <div class="league-prog">${got}/${cards.length}</div>
+      ${i<order.length-1?'<div class="league-arrow">→</div>':''}
+    </div>`;
+  }).join('');
+  // find current open league
+  const current=order.find(c=>leagueOpen(c)&&!leagueComplete(c));
+  const b=current?(BADGES[current]||{name:current}):null;
+  el.innerHTML=`<div class="daily-head"><span class="t">⚡ League Progression</span><span class="d">streak ${PROG.streak||0} 🔥</span></div>
+    <div class="league-track">${track}</div>
+    ${current?`<div class="league-hint">Now playing: <b>${b.name}</b> — tap an unlocked card below to take its challenge.</div>`:''}`;
 }
-function answer(val,correct,btn){
-  if(val===correct){
-    btn.classList.add('correct');
-    document.querySelectorAll('.opt').forEach(o=>o.disabled=true);
-    const cardId=todaysCardId();
-    setTimeout(()=>unlock(cardId),550);
-  }else{
-    btn.classList.add('wrong');btn.disabled=true;
-  }
+
+/* ============ CHALLENGE FLOW (per card) ============ */
+let pendingCard=null;
+function startChallenge(id){
+  const d=DATA.find(x=>x.id===id);if(!d)return;
+  if(!cardPlayable(d)){return;} // league locked
+  if(PROG.unlocked.includes(id)){openModal(id);return;} // already have it -> just view
+  pendingCard=id;
+  const pz=makePuzzleForCard(id);const col=typeColor(d.category);
+  const sheet=document.getElementById('sheet');sheet.style.setProperty('--ct',col);
+  sheet.innerHTML=`<button class="close" onclick="closeModal()">×</button>
+    <div class="crow"><span class="idx">No.${String(d.id).padStart(3,'0')}</span><span class="type" style="background:${col}">${d.category}</span></div>
+    <h2 class="ctitle" style="font-size:26px">${d.title}</h2>
+    <div class="challenge-tag">🔒 solve to capture this card</div>
+    <div class="q" style="margin-top:16px">${pz.q}</div>
+    <div class="opts" id="copts">${pz.options.map(o=>`<button class="opt" data-v="${o}">${o}</button>`).join('')}</div>`;
+  sheet.querySelectorAll('.opt').forEach(btn=>btn.onclick=()=>{
+    if(+btn.dataset.v===pz.answer){
+      btn.classList.add('correct');sheet.querySelectorAll('.opt').forEach(o=>o.disabled=true);
+      setTimeout(()=>capture(id),550);
+    }else{btn.classList.add('wrong');btn.disabled=true;}
+  });
+  document.getElementById('modal').classList.add('open');
 }
-function unlock(cardId){
-  if(!PROG.unlocked.includes(cardId))PROG.unlocked.push(cardId);
-  // streak logic
-  const t=todayKey();
-  PROG.streak=(PROG.streak||0)+1;
-  PROG.lastSolved=t;
+function capture(id){
+  if(!PROG.unlocked.includes(id))PROG.unlocked.push(id);
+  PROG.streak=(PROG.streak||0)+1;PROG.lastSolved=todayKey();
   saveProgress(PROG);
-  const card=DATA.find(d=>d.id===cardId);
-  renderStats();renderBadges();render();
-  // celebratory reveal in the daily box
-  const el=document.getElementById('daily');
-  el.innerHTML=`<div class="daily-head"><span class="t">⚡ Daily Challenge</span><span class="d">${todayKey()}</span></div>
-    <div class="daily-done"><div class="big">Card unlocked! 🎉</div>
-    <div class="reveal">No.${String(card.id).padStart(3,'0')} · ${card.title}</div>
-    <div class="sun-stamp">STREAK ${PROG.streak} 🔥</div></div>`;
-  setTimeout(()=>openModal(cardId),400);
+  renderStats();renderBadges();renderDaily();render();
+  openModal(id,true); // reveal the captured card
 }
 
 /* ============ BADGES ============ */
 function renderBadges(){
-  const byCat={};DATA.forEach(d=>{(byCat[d.category]=byCat[d.category]||[]).push(d.id);});
+  const order=leagueOrder();
   const box=document.getElementById('badges');
-  box.innerHTML=Object.keys(byCat).sort().map(cat=>{
-    const ids=byCat[cat];const got=ids.filter(id=>PROG.unlocked.includes(id)).length;
-    const earned=got===ids.length;const b=BADGES[cat]||{name:cat,ico:'⭐',color:'#1c1a17'};
+  box.innerHTML=order.map(cat=>{
+    const ids=leagueCards(cat).map(d=>d.id);const got=ids.filter(id=>PROG.unlocked.includes(id)).length;
+    const earned=got===ids.length&&ids.length>0;const b=BADGES[cat]||{name:cat,ico:'⭐',color:'#1c1a17'};
     return `<div class="badge ${earned?'earned':''}" style="--bc:${b.color}">
       <span class="ico">${b.ico}</span>
       <span class="txt"><span class="name">${b.name}</span><span class="prog">${cat} · ${got}/${ids.length}</span></span></div>`;
@@ -468,14 +505,22 @@ function buildFilters(){
 }
 function cardHTML(d,i){
   const unlocked=PROG.unlocked.includes(d.id)||previewAll;const col=typeColor(d.category);
-  if(!unlocked){
-    return `<article class="card locked" style="--ct:${col};animation-delay:${i*40}ms">
-      <div class="lock-inner"><div class="lock-ico">🔒</div><div class="lock-no">No.${String(d.id).padStart(3,'0')}</div>
-      <div class="lock-txt">solve a daily challenge to unlock</div></div></article>`;
-  }
   const[rl,rc,rs]=RARITY[d.rarity]||RARITY.common;const stars='●'.repeat(rs)+'○'.repeat(5-rs);
+  const kana=KANA[d.category]||'';
+  if(!unlocked){
+    const playable=cardPlayable(d);
+    return `<article class="card locked ${playable?'playable':'leaguelocked'}" style="--ct:${col};--rc:${rc};animation-delay:${i*40}ms" data-id="${d.id}">
+      <span class="card-kana">${kana}</span>
+      <div class="crow"><span class="idx">No.${String(d.id).padStart(3,'0')}</span><span class="type">${d.category}</span></div>
+      <h2 class="ctitle">${d.title}</h2>
+      <div class="rar">${stars}<span class="l">${rl}</span></div>
+      <div class="locked-body">
+        <div class="lock-ico">${playable?'🎯':'🔒'}</div>
+        <div class="lock-txt">${playable?'tap to take the challenge':'finish the previous league first'}</div>
+      </div></article>`;
+  }
   const tags=(d.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('');
-  const viz=buildViz(d,col);const kana=KANA[d.category]||'';
+  const viz=buildViz(d,col);
   return `<article class="card" style="--ct:${col};--rc:${rc};animation-delay:${i*40}ms" data-id="${d.id}">
     <span class="card-kana">${kana}</span>
     <div class="crow"><span class="idx">No.${String(d.id).padStart(3,'0')}</span><span class="type">${d.category}</span></div>
@@ -489,13 +534,20 @@ function render(){
   let list=DATA.filter(d=>activeFilter==='all'||d.category===activeFilter);
   if(searchTerm){const q=searchTerm.toLowerCase();list=list.filter(d=>(PROG.unlocked.includes(d.id)||previewAll)&&(d.title+d.fact+d.why+(d.tags||[]).join(' ')).toLowerCase().includes(q));}
   grid.innerHTML=list.length?list.map((d,i)=>cardHTML(d,i)).join(''):'<div class="empty">no captures match.</div>';
-  grid.querySelectorAll('.card:not(.locked)').forEach(c=>c.onclick=()=>openModal(+c.dataset.id));
+  // unlocked cards -> open modal; playable locked cards -> start challenge
+  grid.querySelectorAll('.card').forEach(c=>{
+    const id=+c.dataset.id;
+    if(c.classList.contains('leaguelocked'))return;
+    if(c.classList.contains('playable')&&!previewAll){c.onclick=()=>startChallenge(id);}
+    else{c.onclick=()=>openModal(id);}
+  });
 }
-function openModal(id){
+function openModal(id,celebrate){
   const d=DATA.find(x=>x.id===id);if(!d||(!PROG.unlocked.includes(id)&&!previewAll))return;
   const col=typeColor(d.category);const[rl,rc,rs]=RARITY[d.rarity]||RARITY.common;const stars='●'.repeat(rs)+'○'.repeat(5-rs);
   const viz=buildViz(d,col);const sheet=document.getElementById('sheet');sheet.style.setProperty('--ct',col);
   sheet.innerHTML=`<button class="close" onclick="closeModal()">×</button>
+    ${celebrate?'<div class="capture-banner">🎉 Card captured!</div>':''}
     <div class="crow"><span class="idx">No.${String(d.id).padStart(3,'0')}</span><span class="type" style="background:${col}">${d.category}</span></div>
     <h2 class="ctitle" style="font-size:30px">${d.title}</h2><div class="rar" style="color:${rc}">${stars}<span class="l">${rl}</span></div>
     ${viz?`<div class="viz">${viz}</div>`:''}<p style="font-size:15px;line-height:1.65;font-weight:500">${d.fact}</p>
