@@ -61,6 +61,7 @@ Then preview the gallery locally:
 ```bash
 python -m http.server 8000
 # open http://localhost:8000
+Link: willian-yudy-f.github.io
 ```
 
 ## Roadmap
