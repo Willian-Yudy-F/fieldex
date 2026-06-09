@@ -42,6 +42,22 @@
         "cities",
         "southern-hemisphere"
       ]
+    },
+    {
+      "id": 4,
+      "date": "2026-06-09",
+      "category": "history",
+      "rarity": "rare",
+      "title": "O Verdadeiro Nome do Hino",
+      "fact": "O hino do Corinthians não se chama \"Hino\" — seu nome oficial é \"Campeão dos Campeões\", composto em 1952. A letra é de Lauro D'Ávila e a melodia do maestro Edmundo Russomanno.",
+      "why": "A canção só virou hino oficial em 1955, por um acordo verbal entre o compositor e o presidente Alfredo Trindade.",
+      "tags": [
+        "Tags: corinthians",
+        "musica",
+        "historiacorinthians",
+        "musica",
+        "historia"
+      ]
     }
   ]
 }
