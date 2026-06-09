@@ -13,7 +13,10 @@
       "tags": [
         "statistics",
         "counterintuitive"
-      ]
+      ],
+      "viz": {
+        "type": "birthday"
+      }
     },
     {
       "id": 2,
@@ -27,7 +30,11 @@
         "corinthians",
         "football",
         "brazil"
-      ]
+      ],
+      "viz": {
+        "type": "timeline",
+        "value": 1910
+      }
     },
     {
       "id": 3,
@@ -41,23 +48,65 @@
         "maps",
         "cities",
         "southern-hemisphere"
-      ]
+      ],
+      "viz": {
+        "type": "latitude",
+        "value": 33.87
+      }
     },
     {
       "id": 4,
       "date": "2026-06-09",
-      "category": "history",
-      "rarity": "rare",
-      "title": "O Verdadeiro Nome do Hino",
-      "fact": "O hino do Corinthians não se chama \"Hino\" — seu nome oficial é \"Campeão dos Campeões\", composto em 1952. A letra é de Lauro D'Ávila e a melodia do maestro Edmundo Russomanno.",
-      "why": "A canção só virou hino oficial em 1955, por um acordo verbal entre o compositor e o presidente Alfredo Trindade.",
+      "category": "corinthians",
+      "rarity": "epic",
+      "title": "The Hymn Had Two Authors",
+      "fact": "The Corinthians anthem \"Campeao dos Campeoes\" is usually credited to radio host Lauro DAvila, but he only wrote the words. The melody came from maestro Edmundo Russomanno around 1952.",
+      "why": "DAvila was not a musician. The marching tune the whole stadium sings was written by a trained clarinetist and bandleader whose name most fans never learn.",
       "tags": [
-        "Tags: corinthians",
-        "musica",
-        "historiacorinthians",
-        "musica",
-        "historia"
-      ]
+        "corinthians",
+        "music",
+        "history"
+      ],
+      "viz": {
+        "type": "timeline",
+        "value": 1952
+      }
+    },
+    {
+      "id": 5,
+      "date": "2026-06-10",
+      "category": "geography",
+      "rarity": "uncommon",
+      "title": "The Atlantic Is Growing",
+      "fact": "The Atlantic Ocean widens by about 4 cm every year as tectonic plates drift apart, roughly the speed your fingernails grow.",
+      "why": "Mid-ocean ridges constantly create new seafloor, slowly pushing the Americas away from Europe and Africa.",
+      "tags": [
+        "oceans",
+        "geology",
+        "tectonics"
+      ],
+      "viz": {
+        "type": "latitude",
+        "value": 0
+      }
+    },
+    {
+      "id": 6,
+      "date": "2026-06-11",
+      "category": "corinthians",
+      "rarity": "legendary",
+      "title": "The Invasion of 1976",
+      "fact": "In 1976, around 70,000 Corinthians fans traveled to Rio de Janeiro for a semifinal, an exodus that became known as the Invasion of Maracana.",
+      "why": "After a 22-year title drought, the trip turned into a cultural milestone of Brazilian football fandom, win or lose.",
+      "tags": [
+        "corinthians",
+        "fans",
+        "1976"
+      ],
+      "viz": {
+        "type": "timeline",
+        "value": 1976
+      }
     }
   ]
 }

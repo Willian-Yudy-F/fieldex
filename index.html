@@ -4,125 +4,128 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FielDex — gotta learn 'em all</title>
-<meta name="description" content="A daily knowledge dex — one fact, puzzle, or curiosity captured every day.">
+<meta name="description" content="A daily knowledge dex. Solve the daily puzzle, unlock a card, collect them all.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Shippori+Mincho:wght@600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#ece4d3; --paper-2:#e3d9c4; --ink:#1c1a17; --ink-soft:#4a463d;
-    --sun:#e8502c; --sun-deep:#c43d1d; --gold:#d99a2b; --teal:#2c7a6b;
-    --blue:#2f5d8a; --line:#c9bda3;
-    --c-probability:#2f5d8a; --c-math:#c0392b; --c-logic:#2c7a6b;
-    --c-history:#d99a2b; --c-geography:#3a7d8c; --c-data:#7d5ba6;
-    --c-corinthians:#1c1a17; --c-default:#8a8270;
+    --paper:#ece4d3;--paper-2:#e3d9c4;--ink:#1c1a17;--ink-soft:#4a463d;
+    --sun:#e8502c;--sun-deep:#c43d1d;--gold:#d99a2b;--line:#c9bda3;
+    --c-probability:#2f5d8a;--c-math:#c0392b;--c-logic:#2c7a6b;
+    --c-history:#d99a2b;--c-geography:#3a7d8c;--c-data:#7d5ba6;
+    --c-corinthians:#1c1a17;--c-default:#8a8270;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{
-    background:var(--paper); color:var(--ink);
-    font-family:'Zen Kaku Gothic New',sans-serif; min-height:100vh;
-    padding:0 0 80px; -webkit-font-smoothing:antialiased; overflow-x:hidden;
-    position:relative;
-  }
-  /* paper grain */
-  body::before{
-    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
-  }
+  body{background:var(--paper);color:var(--ink);font-family:'Zen Kaku Gothic New',sans-serif;
+    min-height:100vh;padding:0 0 80px;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E")}
   .wrap{max-width:1180px;margin:0 auto;padding:0 28px;position:relative;z-index:1}
 
-  /* ===== HERO ===== */
-  .hero{position:relative;padding:54px 0 30px;border-bottom:3px solid var(--ink);margin-bottom:6px;overflow:hidden}
-  .sun{position:absolute;top:24px;right:-40px;width:240px;height:240px;border-radius:50%;
-       background:var(--sun);z-index:0;opacity:.92}
-  .kana{position:absolute;top:40px;right:210px;writing-mode:vertical-rl;font-family:'Shippori Mincho',serif;
-        font-weight:800;font-size:46px;letter-spacing:6px;color:var(--ink);opacity:.16;z-index:0;user-select:none}
+  /* HERO */
+  .hero{position:relative;padding:48px 0 26px;border-bottom:3px solid var(--ink);overflow:hidden}
+  .sun{position:absolute;top:22px;right:-40px;width:220px;height:220px;border-radius:50%;background:var(--sun);opacity:.92;z-index:0}
+  .kana{position:absolute;top:36px;right:196px;writing-mode:vertical-rl;font-family:'Shippori Mincho',serif;
+    font-weight:800;font-size:42px;letter-spacing:6px;color:var(--ink);opacity:.16;z-index:0;user-select:none}
   .hero-inner{position:relative;z-index:2}
-  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:5px;text-transform:uppercase;
-           color:var(--sun-deep);font-weight:700;margin-bottom:10px}
-  .logo{font-family:'Shippori Mincho',serif;font-weight:800;font-size:clamp(52px,9vw,104px);line-height:.86;
-        letter-spacing:-2px;color:var(--ink)}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:5px;text-transform:uppercase;color:var(--sun-deep);font-weight:700;margin-bottom:10px}
+  .logo{font-family:'Shippori Mincho',serif;font-weight:800;font-size:clamp(48px,8vw,92px);line-height:.88;letter-spacing:-2px}
   .logo em{font-style:normal;color:var(--sun)}
-  .sub{margin-top:16px;max-width:440px;font-size:15px;line-height:1.6;color:var(--ink-soft);font-weight:500}
-  .specsheet{font-family:'JetBrains Mono',monospace;font-size:11px;
-             color:var(--ink-soft);opacity:0;margin-top:18px;letter-spacing:.5px;min-height:14px}
-  .stats{display:flex;gap:0;margin-top:26px;border:2px solid var(--ink);width:fit-content;background:var(--paper)}
-  .stat{padding:12px 22px;border-right:2px solid var(--ink)}
+  .sub{margin-top:14px;max-width:440px;font-size:15px;line-height:1.6;color:var(--ink-soft);font-weight:500}
+  .stats{display:flex;margin-top:22px;border:2px solid var(--ink);width:fit-content;background:var(--paper)}
+  .stat{padding:11px 20px;border-right:2px solid var(--ink)}
   .stat:last-child{border-right:none}
-  .stat .n{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:28px;line-height:1;color:var(--ink)}
+  .stat .n{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:26px;line-height:1}
   .stat .l{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);margin-top:4px}
 
-  /* ===== CONTROLS ===== */
-  .controls{display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding:22px 0;
-            border-bottom:1px solid var(--line);margin-bottom:26px}
-  .search{position:relative;flex:1;min-width:200px;max-width:320px}
-  .search input{width:100%;background:transparent;border:none;border-bottom:2px solid var(--ink);
-    padding:9px 4px 9px 26px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink);outline:none}
+  /* DAILY CHALLENGE */
+  .daily{border:3px solid var(--ink);margin:26px 0;background:var(--paper);position:relative;overflow:hidden}
+  .daily-head{background:var(--ink);color:var(--paper);padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
+  .daily-head .t{font-family:'JetBrains Mono',monospace;font-weight:700;letter-spacing:2px;font-size:13px;text-transform:uppercase}
+  .daily-head .d{font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.7}
+  .daily-body{padding:24px 20px}
+  .q{font-family:'Shippori Mincho',serif;font-weight:800;font-size:21px;line-height:1.3;margin-bottom:18px}
+  .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+  .opt{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;padding:14px;border:2px solid var(--ink);
+    background:var(--paper);cursor:pointer;transition:all .15s;text-align:center}
+  .opt:hover{background:var(--ink);color:var(--paper)}
+  .opt.correct{background:var(--c-logic);border-color:var(--c-logic);color:#fff;animation:pop .4s}
+  .opt.wrong{background:var(--c-math);border-color:var(--c-math);color:#fff;animation:shake .4s}
+  @keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  .daily-done{padding:28px 20px;text-align:center}
+  .daily-done .big{font-family:'Shippori Mincho',serif;font-weight:800;font-size:24px;margin-bottom:8px}
+  .daily-done .reveal{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink-soft)}
+  .daily-done .sun-stamp{display:inline-block;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:12px;
+    border:2px solid var(--sun);color:var(--sun-deep);padding:6px 16px;font-weight:700;letter-spacing:1px}
+
+  /* BADGES */
+  .badges{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 6px}
+  .badge{display:flex;align-items:center;gap:10px;border:2px solid var(--line);padding:10px 16px;background:var(--paper);opacity:.4;transition:all .3s}
+  .badge.earned{opacity:1;border-color:var(--bc,var(--ink));box-shadow:3px 3px 0 var(--bc,var(--ink))}
+  .badge .ico{font-size:22px}
+  .badge .txt .name{font-family:'Shippori Mincho',serif;font-weight:800;font-size:15px}
+  .badge .txt .prog{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft)}
+
+  /* CONTROLS */
+  .controls{display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding:20px 0;border-bottom:1px solid var(--line);margin-bottom:26px}
+  .search{position:relative;flex:1;min-width:200px;max-width:300px}
+  .search input{width:100%;background:transparent;border:none;border-bottom:2px solid var(--ink);padding:9px 4px 9px 26px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink);outline:none}
   .search input::placeholder{color:var(--ink-soft);opacity:.6}
   .search svg{position:absolute;left:0;top:50%;transform:translateY(-50%);width:16px;height:16px;stroke:var(--ink)}
   .filters{display:flex;flex-wrap:wrap;gap:7px}
-  .filter{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1px;
-    padding:6px 13px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;
-    text-transform:uppercase;transition:all .15s}
-  .filter:hover{background:var(--ink);color:var(--paper)}
-  .filter.active{background:var(--ink);color:var(--paper)}
+  .filter{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 13px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;text-transform:uppercase;transition:all .15s}
+  .filter:hover,.filter.active{background:var(--ink);color:var(--paper)}
   .filter .c{opacity:.55;margin-left:5px}
-  .random{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1px;
-    padding:7px 16px;border:1.5px solid var(--sun);background:var(--sun);color:var(--paper);cursor:pointer;
-    text-transform:uppercase;transition:all .15s}
-  .random:hover{background:var(--sun-deep);border-color:var(--sun-deep)}
+  .reset{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft);background:none;border:1px solid var(--line);padding:6px 12px;cursor:pointer}
+  .reset:hover{border-color:var(--ink);color:var(--ink)}
 
-  /* ===== GRID ===== */
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:0;
-        border-top:2px solid var(--ink);border-left:2px solid var(--ink)}
-  .card{position:relative;background:var(--paper);border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);
-    padding:24px;cursor:pointer;overflow:hidden;transition:background .2s;animation:rise .5s both}
+  /* GRID */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:0;border-top:2px solid var(--ink);border-left:2px solid var(--ink)}
+  .card{position:relative;background:var(--paper);border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:24px;cursor:pointer;overflow:hidden;transition:background .2s;animation:rise .5s both;min-height:180px}
   @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
   .card:hover{background:var(--paper-2)}
-  .card:hover .idx{color:var(--ct)}
-  .card-kana{position:absolute;top:-6px;right:10px;writing-mode:vertical-rl;font-family:'Shippori Mincho',serif;
-    font-weight:800;font-size:30px;color:var(--ct);opacity:.13;user-select:none;letter-spacing:2px}
+  .card-kana{position:absolute;top:-6px;right:10px;writing-mode:vertical-rl;font-family:'Shippori Mincho',serif;font-weight:800;font-size:30px;color:var(--ct);opacity:.13;user-select:none;letter-spacing:2px}
   .crow{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
-  .idx{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;color:var(--ink-soft);transition:color .2s}
-  .type{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
-    color:var(--paper);background:var(--ct);padding:3px 9px}
-  .ctitle{font-family:'Shippori Mincho',serif;font-weight:800;font-size:24px;line-height:1.12;margin:8px 0 8px;letter-spacing:-.3px}
+  .idx{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;color:var(--ink-soft)}
+  .type{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--paper);background:var(--ct);padding:3px 9px}
+  .ctitle{font-family:'Shippori Mincho',serif;font-weight:800;font-size:23px;line-height:1.12;margin:8px 0 8px}
   .rar{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:var(--rc);margin-bottom:14px;display:flex;gap:7px;align-items:center}
   .rar .l{font-size:9px;opacity:.8}
-  .viz{height:88px;margin:0 0 14px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:6px 0}
+  .viz{height:80px;margin:0 0 14px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:6px 0}
   .viz svg{width:100%;height:100%;display:block}
-  .cfact{font-size:14px;line-height:1.55;color:var(--ink);font-weight:500}
+  .cfact{font-size:14px;line-height:1.55;font-weight:500}
   .ctags{display:flex;flex-wrap:wrap;gap:6px;margin-top:15px}
   .tag{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft);border:1px solid var(--line);padding:2px 8px}
-  .empty{padding:60px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--ink-soft);grid-column:1/-1;
-    border-right:2px solid var(--ink);border-bottom:2px solid var(--ink)}
 
-  /* ===== MODAL ===== */
-  .modal{position:fixed;inset:0;background:rgba(20,18,15,.72);display:flex;align-items:center;justify-content:center;
-    padding:24px;z-index:50;opacity:0;visibility:hidden;transition:.25s}
+  /* LOCKED CARD */
+  .card.locked{cursor:default;background:repeating-linear-gradient(45deg,var(--paper),var(--paper) 10px,var(--paper-2) 10px,var(--paper-2) 20px)}
+  .card.locked .lock-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;min-height:140px;text-align:center}
+  .card.locked .lock-ico{font-size:34px;margin-bottom:10px;opacity:.5}
+  .card.locked .lock-no{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:20px;color:var(--ink-soft)}
+  .card.locked .lock-txt{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);margin-top:6px;opacity:.7}
+
+  .empty{padding:50px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--ink-soft);grid-column:1/-1;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+
+  /* MODAL */
+  .modal{position:fixed;inset:0;background:rgba(20,18,15,.72);display:flex;align-items:center;justify-content:center;padding:24px;z-index:50;opacity:0;visibility:hidden;transition:.25s}
   .modal.open{opacity:1;visibility:visible}
-  .sheet{background:var(--paper);border:3px solid var(--ink);max-width:560px;width:100%;padding:34px;position:relative;
-    max-height:88vh;overflow-y:auto;transform:translateY(14px);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+  .sheet{background:var(--paper);border:3px solid var(--ink);max-width:560px;width:100%;padding:34px;position:relative;max-height:88vh;overflow-y:auto;transform:translateY(14px);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
   .modal.open .sheet{transform:none}
   .sheet::before{content:"";position:absolute;top:0;left:0;right:0;height:8px;background:var(--ct)}
-  .close{position:absolute;top:16px;right:18px;width:30px;height:30px;border:1.5px solid var(--ink);background:transparent;
-    cursor:pointer;font-size:18px;line-height:1;color:var(--ink)}
+  .close{position:absolute;top:16px;right:18px;width:30px;height:30px;border:1.5px solid var(--ink);background:transparent;cursor:pointer;font-size:18px;line-height:1;color:var(--ink)}
   .close:hover{background:var(--ink);color:var(--paper)}
   .sheet .viz{height:150px}
   .sheet .why{border-left:4px solid var(--ct);padding:4px 0 4px 16px;margin-top:18px}
   .sheet .why h4{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--ink-soft);margin-bottom:7px}
-  .sheet .why p{font-size:14px;line-height:1.6;color:var(--ink)}
+  .sheet .why p{font-size:14px;line-height:1.6}
   .meta{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);margin-top:20px;padding-top:14px;border-top:1px solid var(--line)}
 
   footer{text-align:center;margin-top:48px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);letter-spacing:1px}
 
-  @media(max-width:560px){
-    .grid{grid-template-columns:1fr}
-    .sun{width:160px;height:160px;right:-30px}
-    .kana{display:none}
-    .random{margin-left:0}
-  }
+  @media(max-width:560px){.grid{grid-template-columns:1fr}.sun{width:150px;height:150px;right:-30px}.kana{display:none}.reset{margin-left:0}}
 </style>
 </head>
 <body>
@@ -133,23 +136,23 @@
     <div class="hero-inner">
       <div class="eyebrow">No. A-1910 · daily knowledge index</div>
       <h1 class="logo">Fiel<em>Dex</em></h1>
-      <p class="sub">Gotta learn 'em all. One fact, puzzle, or curiosity captured every day — math, history, geography, and the world's quiet wonders.</p>
+      <p class="sub">Solve the daily puzzle. Unlock a card. Collect them all and earn your titles.</p>
       <div class="stats">
-        <div class="stat"><div class="n" id="count">0</div><div class="l">Captured</div></div>
-        <div class="stat"><div class="n" id="types">0</div><div class="l">Types</div></div>
-        <div class="stat"><div class="n" id="streak">1</div><div class="l">Since 1910</div></div>
+        <div class="stat"><div class="n" id="unlocked">0</div><div class="l">Unlocked</div></div>
+        <div class="stat"><div class="n" id="total">0</div><div class="l">Total</div></div>
+        <div class="stat"><div class="n" id="streak">0</div><div class="l">Streak</div></div>
       </div>
-      <div class="specsheet" id="spec"></div>
     </div>
   </header>
 
+  <section class="daily" id="daily"></section>
+
+  <div class="badges" id="badges"></div>
+
   <div class="controls">
-    <div class="search">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-      <input id="search" type="text" placeholder="search the dex" autocomplete="off">
-    </div>
+    <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input id="search" type="text" placeholder="search the dex" autocomplete="off"></div>
     <div class="filters" id="filters"></div>
-    <button class="random" id="randomBtn">⚡ random</button>
+    <button class="reset" id="resetBtn">reset progress</button>
   </div>
 
   <div class="grid" id="grid"></div>
@@ -160,54 +163,156 @@
 <div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
 
 <script>
+/* ============ STORAGE (safe wrapper) ============ */
+const SAVE_KEY='fieldex_progress_v1';
+const mem={}; // fallback if localStorage unavailable
+function loadProgress(){
+  try{const raw=localStorage.getItem(SAVE_KEY);return raw?JSON.parse(raw):defaultProgress();}
+  catch(e){return mem[SAVE_KEY]||defaultProgress();}
+}
+function saveProgress(p){
+  try{localStorage.setItem(SAVE_KEY,JSON.stringify(p));}
+  catch(e){mem[SAVE_KEY]=p;}
+}
+function defaultProgress(){return{unlocked:[],lastSolved:null,streak:0};}
+
+/* ============ CONFIG ============ */
 const TYPE_COLORS={probability:'--c-probability',math:'--c-math',logic:'--c-logic',history:'--c-history',geography:'--c-geography',data:'--c-data',corinthians:'--c-corinthians'};
 const KANA={probability:'確率',math:'数学',logic:'論理',history:'歴史',geography:'地理',data:'情報',corinthians:'球団'};
 const RARITY={common:['COMMON','#8a8270',1],uncommon:['UNCOMMON','#2c7a6b',2],rare:['RARE','#2f5d8a',3],epic:['EPIC','#7d5ba6',4],legendary:['LEGENDARY','#d99a2b',5]};
+const BADGES={
+  corinthians:{name:'Gavião da Fiel',ico:'🦅',color:'#1c1a17'},
+  geography:{name:'Explorer',ico:'🧭',color:'#3a7d8c'},
+  history:{name:'Chronicler',ico:'📜',color:'#d99a2b'},
+  probability:{name:'Oddsmaker',ico:'🎲',color:'#2f5d8a'},
+  math:{name:'Calculator',ico:'➗',color:'#c0392b'},
+  logic:{name:'Logician',ico:'🧩',color:'#2c7a6b'},
+  data:{name:'Analyst',ico:'📊',color:'#7d5ba6'},
+};
 const cssVar=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const typeColor=c=>cssVar(TYPE_COLORS[c]||'--c-default');
-let DATA=[],activeFilter='all',searchTerm='';
+let DATA=[],PROG=loadProgress(),activeFilter='all',searchTerm='';
 
-function vizBirthday(color){
-  const W=300,H=120,pad=6;let pts=[];
-  for(let n=1;n<=60;n++){const p=1-Math.exp(-n*(n-1)/730);pts.push([pad+(n/60)*(W-2*pad),H-pad-p*(H-2*pad)]);}
-  const d='M'+pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' L');
-  const x=pad+(23/60)*(W-2*pad),y=H-pad-0.5*(H-2*pad);
-  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><line x1="${x}" y1="${pad}" x2="${x}" y2="${H-pad}" stroke="${color}" stroke-dasharray="3 3" opacity=".45"/><path d="${d}" fill="none" stroke="${color}" stroke-width="2.5"/><circle cx="${x}" cy="${y}" r="4" fill="${color}"/></svg>`;
+/* ============ DAILY: deterministic by date ============ */
+function todayKey(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function seedFromDate(){const d=new Date();return d.getFullYear()*1000+(d.getMonth()+1)*40+d.getDate();}
+function rng(seed){let s=seed%2147483647;if(s<=0)s+=2147483646;return()=>(s=s*16807%2147483647)/2147483647;}
+
+// generate a logic/math puzzle deterministically for today
+function makePuzzle(){
+  const r=rng(seedFromDate());const kind=Math.floor(r()*4);
+  if(kind===0){ // arithmetic sequence: next term
+    const start=2+Math.floor(r()*6),step=2+Math.floor(r()*5);
+    const seq=[start,start+step,start+2*step,start+3*step];
+    const ans=start+4*step;
+    return puzzle(`What comes next?  ${seq.join(', ')}, __`,ans,r);
+  }
+  if(kind===1){ // odd one out (multiples)
+    const base=2+Math.floor(r()*4);const set=[base*2,base*3,base*4,base*5+1];
+    return puzzle(`Which number does NOT belong?  ${set.join(', ')}`,base*5+1,r,true);
+  }
+  if(kind===2){ // simple logic: if-then
+    const a=3+Math.floor(r()*5),b=2+Math.floor(r()*4);
+    return puzzle(`If ${a} owls + ${b} owls share 1 branch each, how many branches?`,a+b,r);
+  }
+  // doubling pattern
+  const start=1+Math.floor(r()*4);const seq=[start,start*2,start*4,start*8];
+  return puzzle(`Double each time. What comes next?  ${seq.join(', ')}, __`,start*16,r);
 }
-function vizLatitude(color,lat){
-  const W=300,H=120,cx=W/2,cy=H/2,r=44,y=cy-(lat/90)*r;
-  return `<svg viewBox="0 0 ${W} ${H}"><circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${color}" stroke-width="1.5" opacity=".4"/><ellipse cx="${cx}" cy="${cy}" rx="${r}" ry="15" fill="none" stroke="${color}" stroke-width="1" opacity=".3"/><line x1="${cx-r}" y1="${cy}" x2="${cx+r}" y2="${cy}" stroke="${color}" stroke-width="1" opacity=".3"/><line x1="${cx-r+5}" y1="${y}" x2="${cx+r-5}" y2="${y}" stroke="${color}" stroke-width="2.5"/><circle cx="${cx}" cy="${y}" r="4" fill="${color}"/><text x="${cx+r+6}" y="${y+4}" fill="${color}" font-family="monospace" font-size="11">${lat}°S</text></svg>`;
+function puzzle(q,answer,r,exact){
+  // build 4 options including the answer
+  const opts=new Set([answer]);
+  while(opts.size<4){const delta=(Math.floor(r()*7)-3);const cand=answer+(delta===0?5:delta*(1+Math.floor(r()*3)));if(cand>0&&cand!==answer)opts.add(cand);}
+  const arr=[...opts];for(let i=arr.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}
+  return{q,answer,options:arr};
 }
-function vizTimeline(color,year){
-  const W=300,H=120,pad=22,y=H/2,x=pad+((year-1850)/(2025-1850))*(W-2*pad);
-  return `<svg viewBox="0 0 ${W} ${H}"><line x1="${pad}" y1="${y}" x2="${W-pad}" y2="${y}" stroke="${color}" stroke-width="1.5" opacity=".4"/><text x="${pad}" y="${y+20}" fill="${color}" font-family="monospace" font-size="10" opacity=".6">1850</text><text x="${W-pad}" y="${y+20}" fill="${color}" font-family="monospace" font-size="10" opacity=".6" text-anchor="end">2025</text><circle cx="${x}" cy="${y}" r="6" fill="${color}"/><circle cx="${x}" cy="${y}" r="11" fill="none" stroke="${color}" stroke-width="1.5" opacity=".5"/><text x="${x}" y="${y-14}" fill="${color}" font-family="monospace" font-size="13" font-weight="bold" text-anchor="middle">${year}</text></svg>`;
-}
-function buildViz(d,color){
-  const v=d.viz||{};
-  if(v.type==='birthday')return vizBirthday(color);
-  if(v.type==='latitude')return vizLatitude(color,v.value);
-  if(v.type==='timeline')return vizTimeline(color,v.value);
-  if(d.category==='probability')return vizBirthday(color);
-  if(d.category==='geography')return vizLatitude(color,33);
-  if(d.category==='history'){const m=(d.fact.match(/\b(18|19|20)\d\d\b/)||[])[0];if(m)return vizTimeline(color,+m);}
-  return '';
+// which card does today unlock? map day -> a still-locked card (lowest id first)
+function todaysCardId(){
+  const locked=DATA.filter(d=>!PROG.unlocked.includes(d.id)).sort((a,b)=>a.id-b.id);
+  if(locked.length===0)return null;
+  return locked[0].id;
 }
 
+/* ============ VIZ ============ */
+function vizBirthday(c){const W=300,H=120,p=6;let pts=[];for(let n=1;n<=60;n++){const v=1-Math.exp(-n*(n-1)/730);pts.push([p+(n/60)*(W-2*p),H-p-v*(H-2*p)]);}const d='M'+pts.map(q=>q[0].toFixed(1)+','+q[1].toFixed(1)).join(' L');const x=p+(23/60)*(W-2*p),y=H-p-0.5*(H-2*p);return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><line x1="${x}" y1="${p}" x2="${x}" y2="${H-p}" stroke="${c}" stroke-dasharray="3 3" opacity=".45"/><path d="${d}" fill="none" stroke="${c}" stroke-width="2.5"/><circle cx="${x}" cy="${y}" r="4" fill="${c}"/></svg>`;}
+function vizLatitude(c,lat){const W=300,H=120,cx=W/2,cy=H/2,r=42,y=cy-(lat/90)*r;return `<svg viewBox="0 0 ${W} ${H}"><circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${c}" stroke-width="1.5" opacity=".4"/><ellipse cx="${cx}" cy="${cy}" rx="${r}" ry="15" fill="none" stroke="${c}" stroke-width="1" opacity=".3"/><line x1="${cx-r}" y1="${cy}" x2="${cx+r}" y2="${cy}" stroke="${c}" stroke-width="1" opacity=".3"/><line x1="${cx-r+5}" y1="${y}" x2="${cx+r-5}" y2="${y}" stroke="${c}" stroke-width="2.5"/><circle cx="${cx}" cy="${y}" r="4" fill="${c}"/></svg>`;}
+function vizTimeline(c,year){const W=300,H=120,p=22,y=H/2,x=p+((year-1850)/(2025-1850))*(W-2*p);return `<svg viewBox="0 0 ${W} ${H}"><line x1="${p}" y1="${y}" x2="${W-p}" y2="${y}" stroke="${c}" stroke-width="1.5" opacity=".4"/><text x="${p}" y="${y+20}" fill="${c}" font-family="monospace" font-size="10" opacity=".6">1850</text><text x="${W-p}" y="${y+20}" fill="${c}" font-family="monospace" font-size="10" opacity=".6" text-anchor="end">2025</text><circle cx="${x}" cy="${y}" r="6" fill="${c}"/><circle cx="${x}" cy="${y}" r="11" fill="none" stroke="${c}" stroke-width="1.5" opacity=".5"/><text x="${x}" y="${y-14}" fill="${c}" font-family="monospace" font-size="13" font-weight="bold" text-anchor="middle">${year}</text></svg>`;}
+function buildViz(d,c){const v=d.viz||{};if(v.type==='birthday')return vizBirthday(c);if(v.type==='latitude')return vizLatitude(c,v.value);if(v.type==='timeline')return vizTimeline(c,v.value);if(d.category==='probability')return vizBirthday(c);if(d.category==='geography')return vizLatitude(c,33);if(d.category==='history'){const m=(d.fact.match(/\b(18|19|20)\d\d\b/)||[])[0];if(m)return vizTimeline(c,+m);}return '';}
+
+/* ============ INIT ============ */
 async function load(){
   try{DATA=(await (await fetch('fieldex.json',{cache:'no-store'})).json()).entries.sort((a,b)=>b.id-a.id);}
   catch(e){DATA=[{id:1,date:'2026-06-07',category:'probability',rarity:'rare',title:'The Birthday Paradox',fact:'In a room of 23 people there is a 50% chance two share a birthday.',why:'We compare every pair, not each person to a fixed date.',tags:['statistics'],viz:{type:'birthday'}}];}
-  animateCount('count',DATA.length);
-  animateCount('types',new Set(DATA.map(d=>d.category)).size);
-  typeSpec();render();
+  renderDaily();renderBadges();renderStats();render();
 }
-function animateCount(id,t){const el=document.getElementById(id);let n=0;const s=Math.max(1,Math.ceil(t/18));const iv=setInterval(()=>{n=Math.min(t,n+s);el.textContent=String(n).padStart(2,'0');if(n>=t)clearInterval(iv)},32);}
-function typeSpec(){
-  const el=document.getElementById('spec');
-  const txt='DEX-SPEC // entries:'+DATA.length+' // fmt:1080² // py+svg';
-  let i=0;el.style.opacity='.7';
-  const iv=setInterval(()=>{el.textContent=txt.slice(0,i++);if(i>txt.length)clearInterval(iv)},22);
+function renderStats(){
+  document.getElementById('unlocked').textContent=String(PROG.unlocked.length).padStart(2,'0');
+  document.getElementById('total').textContent=String(DATA.length).padStart(2,'0');
+  document.getElementById('streak').textContent=String(PROG.streak||0).padStart(2,'0');
 }
 
+/* ============ DAILY UI ============ */
+function renderDaily(){
+  const el=document.getElementById('daily');
+  const solvedToday=PROG.lastSolved===todayKey();
+  const cardId=todaysCardId();
+  if(cardId===null){
+    el.innerHTML=`<div class="daily-head"><span class="t">⚡ Daily Challenge</span><span class="d">${todayKey()}</span></div><div class="daily-done"><div class="big">Dex complete! 🦅</div><div class="reveal">You've unlocked every card. Lendário.</div></div>`;
+    return;
+  }
+  if(solvedToday){
+    const card=DATA.find(d=>d.id===PROG.unlocked[PROG.unlocked.length-1])||DATA.find(d=>d.id===cardId);
+    el.innerHTML=`<div class="daily-head"><span class="t">⚡ Daily Challenge</span><span class="d">${todayKey()}</span></div><div class="daily-done"><div class="big">Solved for today ✓</div><div class="reveal">Come back tomorrow for the next capture.</div><div class="sun-stamp">STREAK ${PROG.streak} 🔥</div></div>`;
+    return;
+  }
+  const pz=makePuzzle();
+  el.innerHTML=`<div class="daily-head"><span class="t">⚡ Daily Challenge</span><span class="d">${todayKey()}</span></div>
+    <div class="daily-body"><div class="q">${pz.q}</div><div class="opts" id="opts">
+    ${pz.options.map(o=>`<button class="opt" data-v="${o}">${o}</button>`).join('')}</div></div>`;
+  el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>answer(+b.dataset.v,pz.answer,b));
+}
+function answer(val,correct,btn){
+  if(val===correct){
+    btn.classList.add('correct');
+    document.querySelectorAll('.opt').forEach(o=>o.disabled=true);
+    const cardId=todaysCardId();
+    setTimeout(()=>unlock(cardId),550);
+  }else{
+    btn.classList.add('wrong');btn.disabled=true;
+  }
+}
+function unlock(cardId){
+  if(!PROG.unlocked.includes(cardId))PROG.unlocked.push(cardId);
+  // streak logic
+  const t=todayKey();
+  PROG.streak=(PROG.streak||0)+1;
+  PROG.lastSolved=t;
+  saveProgress(PROG);
+  const card=DATA.find(d=>d.id===cardId);
+  renderStats();renderBadges();render();
+  // celebratory reveal in the daily box
+  const el=document.getElementById('daily');
+  el.innerHTML=`<div class="daily-head"><span class="t">⚡ Daily Challenge</span><span class="d">${todayKey()}</span></div>
+    <div class="daily-done"><div class="big">Card unlocked! 🎉</div>
+    <div class="reveal">No.${String(card.id).padStart(3,'0')} · ${card.title}</div>
+    <div class="sun-stamp">STREAK ${PROG.streak} 🔥</div></div>`;
+  setTimeout(()=>openModal(cardId),400);
+}
+
+/* ============ BADGES ============ */
+function renderBadges(){
+  const byCat={};DATA.forEach(d=>{(byCat[d.category]=byCat[d.category]||[]).push(d.id);});
+  const box=document.getElementById('badges');
+  box.innerHTML=Object.keys(byCat).sort().map(cat=>{
+    const ids=byCat[cat];const got=ids.filter(id=>PROG.unlocked.includes(id)).length;
+    const earned=got===ids.length;const b=BADGES[cat]||{name:cat,ico:'⭐',color:'#1c1a17'};
+    return `<div class="badge ${earned?'earned':''}" style="--bc:${b.color}">
+      <span class="ico">${b.ico}</span>
+      <span class="txt"><span class="name">${b.name}</span><span class="prog">${cat} · ${got}/${ids.length}</span></span></div>`;
+  }).join('');
+}
+
+/* ============ GRID ============ */
 function buildFilters(){
   const c={};DATA.forEach(d=>c[d.category]=(c[d.category]||0)+1);
   const cats=['all',...Object.keys(c).sort()];
@@ -218,39 +323,38 @@ function buildFilters(){
   document.querySelectorAll('.filter').forEach(b=>b.onclick=()=>{activeFilter=b.dataset.c;render()});
 }
 function cardHTML(d,i){
-  const col=typeColor(d.category);const[rl,rc,rs]=RARITY[d.rarity]||RARITY.common;
-  const stars='●'.repeat(rs)+'○'.repeat(5-rs);
+  const unlocked=PROG.unlocked.includes(d.id);const col=typeColor(d.category);
+  if(!unlocked){
+    return `<article class="card locked" style="--ct:${col};animation-delay:${i*40}ms">
+      <div class="lock-inner"><div class="lock-ico">🔒</div><div class="lock-no">No.${String(d.id).padStart(3,'0')}</div>
+      <div class="lock-txt">solve a daily challenge to unlock</div></div></article>`;
+  }
+  const[rl,rc,rs]=RARITY[d.rarity]||RARITY.common;const stars='●'.repeat(rs)+'○'.repeat(5-rs);
   const tags=(d.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('');
   const viz=buildViz(d,col);const kana=KANA[d.category]||'';
-  return `<article class="card" style="--ct:${col};--rc:${rc};animation-delay:${i*50}ms" data-id="${d.id}">
+  return `<article class="card" style="--ct:${col};--rc:${rc};animation-delay:${i*40}ms" data-id="${d.id}">
     <span class="card-kana">${kana}</span>
     <div class="crow"><span class="idx">No.${String(d.id).padStart(3,'0')}</span><span class="type">${d.category}</span></div>
-    <h2 class="ctitle">${d.title}</h2>
-    <div class="rar">${stars}<span class="l">${rl}</span></div>
-    ${viz?`<div class="viz">${viz}</div>`:''}
-    <p class="cfact">${d.fact}</p>
-    <div class="ctags">${tags}</div>
+    <h2 class="ctitle">${d.title}</h2><div class="rar">${stars}<span class="l">${rl}</span></div>
+    ${viz?`<div class="viz">${viz}</div>`:''}<p class="cfact">${d.fact}</p><div class="ctags">${tags}</div>
   </article>`;
 }
 function render(){
   buildFilters();
   const grid=document.getElementById('grid');
   let list=DATA.filter(d=>activeFilter==='all'||d.category===activeFilter);
-  if(searchTerm){const q=searchTerm.toLowerCase();list=list.filter(d=>(d.title+d.fact+d.why+(d.tags||[]).join(' ')).toLowerCase().includes(q));}
-  grid.innerHTML=list.length?list.map((d,i)=>cardHTML(d,i)).join(''):'<div class="empty">no captures match that search.</div>';
-  grid.querySelectorAll('.card').forEach(c=>c.onclick=()=>openModal(+c.dataset.id));
+  if(searchTerm){const q=searchTerm.toLowerCase();list=list.filter(d=>PROG.unlocked.includes(d.id)&&(d.title+d.fact+d.why+(d.tags||[]).join(' ')).toLowerCase().includes(q));}
+  grid.innerHTML=list.length?list.map((d,i)=>cardHTML(d,i)).join(''):'<div class="empty">no captures match.</div>';
+  grid.querySelectorAll('.card:not(.locked)').forEach(c=>c.onclick=()=>openModal(+c.dataset.id));
 }
 function openModal(id){
-  const d=DATA.find(x=>x.id===id);const col=typeColor(d.category);
-  const[rl,rc,rs]=RARITY[d.rarity]||RARITY.common;const stars='●'.repeat(rs)+'○'.repeat(5-rs);
-  const viz=buildViz(d,col);const sheet=document.getElementById('sheet');
-  sheet.style.setProperty('--ct',col);
+  const d=DATA.find(x=>x.id===id);if(!d||!PROG.unlocked.includes(id))return;
+  const col=typeColor(d.category);const[rl,rc,rs]=RARITY[d.rarity]||RARITY.common;const stars='●'.repeat(rs)+'○'.repeat(5-rs);
+  const viz=buildViz(d,col);const sheet=document.getElementById('sheet');sheet.style.setProperty('--ct',col);
   sheet.innerHTML=`<button class="close" onclick="closeModal()">×</button>
     <div class="crow"><span class="idx">No.${String(d.id).padStart(3,'0')}</span><span class="type" style="background:${col}">${d.category}</span></div>
-    <h2 class="ctitle" style="font-size:30px">${d.title}</h2>
-    <div class="rar" style="color:${rc}">${stars}<span class="l">${rl}</span></div>
-    ${viz?`<div class="viz">${viz}</div>`:''}
-    <p style="font-size:15px;line-height:1.65;font-weight:500">${d.fact}</p>
+    <h2 class="ctitle" style="font-size:30px">${d.title}</h2><div class="rar" style="color:${rc}">${stars}<span class="l">${rl}</span></div>
+    ${viz?`<div class="viz">${viz}</div>`:''}<p style="font-size:15px;line-height:1.65;font-weight:500">${d.fact}</p>
     <div class="why"><h4>WHY IT MATTERS</h4><p>${d.why}</p></div>
     <div class="meta"><span>captured ${d.date}</span><span>${String(d.id).padStart(3,'0')} / ${String(DATA.length).padStart(3,'0')}</span></div>`;
   document.getElementById('modal').classList.add('open');
@@ -259,11 +363,8 @@ function closeModal(){document.getElementById('modal').classList.remove('open')}
 document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')closeModal()};
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 document.getElementById('search').addEventListener('input',e=>{searchTerm=e.target.value;render()});
-document.getElementById('randomBtn').onclick=()=>{
-  const pick=DATA[Math.floor(Math.random()*DATA.length)];
-  activeFilter='all';searchTerm='';document.getElementById('search').value='';render();
-  setTimeout(()=>openModal(pick.id),100);
-};
+document.getElementById('resetBtn').onclick=()=>{if(confirm('Reset all progress? This clears your unlocked cards and streak.')){PROG=defaultProgress();saveProgress(PROG);renderDaily();renderBadges();renderStats();render();}};
+
 load();
 </script>
 </body>
