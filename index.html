@@ -123,9 +123,37 @@
   .sheet .why p{font-size:14px;line-height:1.6}
   .meta{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);margin-top:20px;padding-top:14px;border-top:1px solid var(--line)}
 
-  footer{text-align:center;margin-top:48px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);letter-spacing:1px}
+  footer{margin-top:56px;border-top:3px solid var(--ink);padding-top:28px}
+  .foot-grid{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+  .foot-who .name{font-family:'Shippori Mincho',serif;font-weight:800;font-size:20px}
+  .foot-who .role{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);margin-top:4px;letter-spacing:.5px}
+  .foot-links{display:flex;gap:10px;flex-wrap:wrap}
+  .foot-links a{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+    color:var(--ink);text-decoration:none;border:1.5px solid var(--ink);padding:7px 14px;transition:all .15s}
+  .foot-links a:hover{background:var(--ink);color:var(--paper)}
+  .foot-tag{text-align:center;margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);letter-spacing:1px}
 
-  @media(max-width:560px){.grid{grid-template-columns:1fr}.sun{width:150px;height:150px;right:-30px}.kana{display:none}.reset{margin-left:0}}
+  @media(max-width:680px){
+    .wrap{padding:0 18px}
+    .hero{padding:36px 0 22px}
+    .sun{width:120px;height:120px;right:-24px;top:18px}
+    .kana{display:none}
+    .logo{font-size:clamp(44px,13vw,64px)}
+    .sub{max-width:none;font-size:14px;position:relative;z-index:2}
+    .grid{grid-template-columns:1fr}
+    .reset{margin-left:0}
+    .controls{gap:12px}
+    .filters{width:100%}
+    .q{font-size:18px}
+    .opts{grid-template-columns:1fr 1fr}
+    .foot-grid{flex-direction:column;align-items:flex-start;gap:18px}
+    .stats{width:100%}
+    .stat{flex:1;padding:11px 8px;text-align:center}
+  }
+  @media(max-width:380px){
+    .opts{grid-template-columns:1fr}
+    .stat .n{font-size:22px}
+  }
 </style>
 </head>
 <body>
@@ -152,12 +180,26 @@
   <div class="controls">
     <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input id="search" type="text" placeholder="search the dex" autocomplete="off"></div>
     <div class="filters" id="filters"></div>
+    <button class="reset" id="viewAllBtn">👁 view full gallery</button>
     <button class="reset" id="resetBtn">reset progress</button>
   </div>
 
   <div class="grid" id="grid"></div>
 
-  <footer>built with python &amp; curiosity · 知識を集めよう · since 1910 🦅</footer>
+  <footer>
+    <div class="foot-grid">
+      <div class="foot-who">
+        <div class="name">Built by Willian Yudy</div>
+        <div class="role">BIT student · Sydney · focused on data &amp; development</div>
+      </div>
+      <div class="foot-links">
+        <a href="https://github.com/Willian-Yudy-F" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/SEU-LINKEDIN" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:SEU-EMAIL@exemplo.com">Email</a>
+      </div>
+    </div>
+    <div class="foot-tag">built with python &amp; curiosity · 知識を集めよう · since 1910 🦅</div>
+  </footer>
 </div>
 
 <div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
@@ -191,7 +233,7 @@ const BADGES={
 };
 const cssVar=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const typeColor=c=>cssVar(TYPE_COLORS[c]||'--c-default');
-let DATA=[],PROG=loadProgress(),activeFilter='all',searchTerm='';
+let DATA=[],PROG=loadProgress(),activeFilter='all',searchTerm='',previewAll=false;
 
 /* ============ DAILY: deterministic by date ============ */
 function todayKey(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
@@ -425,7 +467,7 @@ function buildFilters(){
   document.querySelectorAll('.filter').forEach(b=>b.onclick=()=>{activeFilter=b.dataset.c;render()});
 }
 function cardHTML(d,i){
-  const unlocked=PROG.unlocked.includes(d.id);const col=typeColor(d.category);
+  const unlocked=PROG.unlocked.includes(d.id)||previewAll;const col=typeColor(d.category);
   if(!unlocked){
     return `<article class="card locked" style="--ct:${col};animation-delay:${i*40}ms">
       <div class="lock-inner"><div class="lock-ico">🔒</div><div class="lock-no">No.${String(d.id).padStart(3,'0')}</div>
@@ -445,12 +487,12 @@ function render(){
   buildFilters();
   const grid=document.getElementById('grid');
   let list=DATA.filter(d=>activeFilter==='all'||d.category===activeFilter);
-  if(searchTerm){const q=searchTerm.toLowerCase();list=list.filter(d=>PROG.unlocked.includes(d.id)&&(d.title+d.fact+d.why+(d.tags||[]).join(' ')).toLowerCase().includes(q));}
+  if(searchTerm){const q=searchTerm.toLowerCase();list=list.filter(d=>(PROG.unlocked.includes(d.id)||previewAll)&&(d.title+d.fact+d.why+(d.tags||[]).join(' ')).toLowerCase().includes(q));}
   grid.innerHTML=list.length?list.map((d,i)=>cardHTML(d,i)).join(''):'<div class="empty">no captures match.</div>';
   grid.querySelectorAll('.card:not(.locked)').forEach(c=>c.onclick=()=>openModal(+c.dataset.id));
 }
 function openModal(id){
-  const d=DATA.find(x=>x.id===id);if(!d||!PROG.unlocked.includes(id))return;
+  const d=DATA.find(x=>x.id===id);if(!d||(!PROG.unlocked.includes(id)&&!previewAll))return;
   const col=typeColor(d.category);const[rl,rc,rs]=RARITY[d.rarity]||RARITY.common;const stars='●'.repeat(rs)+'○'.repeat(5-rs);
   const viz=buildViz(d,col);const sheet=document.getElementById('sheet');sheet.style.setProperty('--ct',col);
   sheet.innerHTML=`<button class="close" onclick="closeModal()">×</button>
@@ -465,6 +507,11 @@ function closeModal(){document.getElementById('modal').classList.remove('open')}
 document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')closeModal()};
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 document.getElementById('search').addEventListener('input',e=>{searchTerm=e.target.value;render()});
+document.getElementById('viewAllBtn').onclick=()=>{
+  previewAll=!previewAll;
+  document.getElementById('viewAllBtn').textContent=previewAll?'🔒 back to game':'👁 view full gallery';
+  render();
+};
 document.getElementById('resetBtn').onclick=()=>{if(confirm('Reset all progress? This clears your unlocked cards and streak.')){PROG=defaultProgress();saveProgress(PROG);renderDaily();renderBadges();renderStats();render();}};
 
 load();
