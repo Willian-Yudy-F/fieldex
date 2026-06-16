@@ -29,7 +29,8 @@
   .sun{position:absolute;top:22px;right:-40px;width:220px;height:220px;border-radius:50%;background:var(--sun);opacity:.92;z-index:0}
   .kana{position:absolute;top:36px;right:196px;writing-mode:vertical-rl;font-family:'Shippori Mincho',serif;
     font-weight:800;font-size:42px;letter-spacing:6px;color:var(--ink);opacity:.16;z-index:0;user-select:none}
-  .hero-inner{position:relative;z-index:2}
+  .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:28px;align-items:end}
+  .hero-copy{min-width:0}
   .eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:5px;text-transform:uppercase;color:var(--sun-deep);font-weight:700;margin-bottom:10px}
   .logo{font-family:'Shippori Mincho',serif;font-weight:800;font-size:clamp(48px,8vw,92px);line-height:.88;letter-spacing:-2px}
   .logo em{font-style:normal;color:var(--sun)}
@@ -39,6 +40,23 @@
   .stat:last-child{border-right:none}
   .stat .n{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:26px;line-height:1}
   .stat .l{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);margin-top:4px}
+  .trainer-card{border:3px solid var(--ink);background:var(--paper);box-shadow:6px 6px 0 var(--sun);padding:18px;position:relative;z-index:3}
+  .trainer-top{display:flex;gap:12px;align-items:center;margin-bottom:14px}
+  .trainer-avatar{width:52px;height:52px;border:2px solid var(--ink);display:grid;place-items:center;background:var(--paper-2);font-family:'Shippori Mincho',serif;font-size:27px;font-weight:800}
+  .trainer-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--sun-deep);font-weight:700}
+  .trainer-name{font-family:'Shippori Mincho',serif;font-weight:800;font-size:25px;line-height:1.05;margin-top:2px}
+  .trainer-home{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft);margin-top:5px}
+  .trainer-copy{font-size:13px;line-height:1.5;color:var(--ink-soft);font-weight:500;margin:10px 0 14px}
+  .trainer-metrics{display:grid;grid-template-columns:repeat(3,1fr);border:1.5px solid var(--ink);margin:12px 0}
+  .trainer-metric{padding:9px 8px;border-right:1.5px solid var(--ink);text-align:center}
+  .trainer-metric:last-child{border-right:none}
+  .trainer-metric b{display:block;font-family:'JetBrains Mono',monospace;font-size:17px;line-height:1}
+  .trainer-metric span{display:block;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-soft);margin-top:4px}
+  .trainer-progress{height:9px;border:1.5px solid var(--ink);background:var(--paper-2);margin:12px 0}
+  .trainer-progress i{display:block;height:100%;width:var(--p);background:var(--sun)}
+  .trainer-recent{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft);line-height:1.5;margin-top:10px}
+  .trainer-btn{width:100%;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--paper);background:var(--ink);border:2px solid var(--ink);padding:10px 12px;cursor:pointer}
+  .trainer-btn:hover{background:var(--sun);border-color:var(--sun);color:var(--ink)}
 
   /* DAILY CHALLENGE */
   .daily{border:3px solid var(--ink);margin:26px 0;background:var(--paper);position:relative;overflow:hidden}
@@ -70,6 +88,10 @@
   .meter-bar i{display:block;height:100%;background:var(--sun);width:var(--p)}
 
   /* BADGES */
+  .badge-case{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:8px}
+  .case-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-end;margin:20px 0 12px}
+  .case-head span{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink)}
+  .case-head small{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft);text-align:right;line-height:1.4}
   .badges{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 6px}
   .badge{display:flex;align-items:center;gap:10px;border:2px solid var(--line);padding:10px 16px;background:var(--paper);opacity:.4;transition:all .3s}
   .badge.earned{opacity:1;border-color:var(--bc,var(--ink));box-shadow:3px 3px 0 var(--bc,var(--ink))}
@@ -147,11 +169,13 @@
   .capture-panel{border:2px solid var(--ct);padding:16px;margin-top:20px;background:rgba(255,255,255,.16)}
   .capture-panel .q{font-size:18px;margin-bottom:14px}
   .capture-panel.collected{border-color:var(--c-logic);background:rgba(44,122,107,.08)}
+  .capture-panel .trainer-btn{margin-top:12px}
 
   .empty{padding:50px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--ink-soft);grid-column:1/-1;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink)}
 
   /* MODAL */
   .modal{position:fixed;inset:0;background:rgba(20,18,15,.72);display:flex;align-items:center;justify-content:center;padding:24px;z-index:50;opacity:0;visibility:hidden;transition:.25s}
+  .profile-modal{z-index:70}
   .modal.open{opacity:1;visibility:visible}
   .sheet{background:var(--paper);border:3px solid var(--ink);max-width:560px;width:100%;padding:34px;position:relative;max-height:88vh;overflow-y:auto;transform:translateY(14px);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
   .modal.open .sheet{transform:none}
@@ -163,6 +187,14 @@
   .sheet .why h4{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--ink-soft);margin-bottom:7px}
   .sheet .why p{font-size:14px;line-height:1.6}
   .meta{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);margin-top:20px;padding-top:14px;border-top:1px solid var(--line)}
+  .trainer-form{display:grid;gap:14px;margin-top:18px}
+  .trainer-form label{display:grid;gap:6px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--ink-soft)}
+  .trainer-form input,.trainer-form select{width:100%;border:2px solid var(--ink);background:var(--paper);color:var(--ink);padding:11px 12px;font-family:'Zen Kaku Gothic New',sans-serif;font-size:15px;outline:none}
+  .trainer-form input:focus,.trainer-form select:focus{border-color:var(--sun);box-shadow:3px 3px 0 var(--sun)}
+  .form-actions{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;margin-top:4px}
+  .danger-btn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--sun-deep);background:transparent;border:1.5px solid var(--sun-deep);padding:9px 10px;cursor:pointer}
+  .danger-btn:hover{background:var(--sun-deep);color:var(--paper)}
+  .local-note{font-size:12px;line-height:1.5;color:var(--ink-soft);margin-top:12px}
 
   footer{margin-top:56px;border-top:3px solid var(--ink);padding-top:28px}
   .foot-grid{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
@@ -180,6 +212,7 @@
     .sun{width:120px;height:120px;right:-24px;top:18px}
     .kana{display:none}
     .logo{font-size:clamp(44px,13vw,64px)}
+    .hero-inner{grid-template-columns:1fr;gap:20px}
     .sub{max-width:none;font-size:14px;position:relative;z-index:2}
     .grid{grid-template-columns:1fr}
     .reset{margin-left:0}
@@ -191,6 +224,9 @@
     .stats{width:100%}
     .stat{flex:1;padding:11px 8px;text-align:center}
     .profile-summary{grid-template-columns:1fr}
+    .case-head{display:block}
+    .case-head small{display:block;text-align:left;margin-top:5px}
+    .form-actions{grid-template-columns:1fr}
   }
   @media(max-width:380px){
     .opts{grid-template-columns:1fr}
@@ -204,20 +240,29 @@
     <div class="sun"></div>
     <div class="kana">知識図鑑</div>
     <div class="hero-inner">
-      <div class="eyebrow">No. A-1910 · daily knowledge index</div>
-      <h1 class="logo">Fiel<em>Dex</em></h1>
-      <p class="sub">Read every card freely. To add one to your profile, solve its logic or math challenge.</p>
-      <div class="stats">
-        <div class="stat"><div class="n" id="unlocked">0</div><div class="l">Collected</div></div>
-        <div class="stat"><div class="n" id="total">0</div><div class="l">Visible</div></div>
-        <div class="stat"><div class="n" id="streak">0</div><div class="l">Streak</div></div>
+      <div class="hero-copy">
+        <div class="eyebrow">No. A-1910 · daily knowledge index</div>
+        <h1 class="logo">Fiel<em>Dex</em></h1>
+        <p class="sub">Read every card freely. Create a local Trainer Profile, solve logic challenges, and collect cards plus badges in your own browser.</p>
+        <div class="stats">
+          <div class="stat"><div class="n" id="unlocked">0</div><div class="l">Collected</div></div>
+          <div class="stat"><div class="n" id="total">0</div><div class="l">Visible</div></div>
+          <div class="stat"><div class="n" id="streak">0</div><div class="l">Streak</div></div>
+        </div>
       </div>
+      <aside class="trainer-card" id="trainerCard"></aside>
     </div>
   </header>
 
   <section class="daily" id="daily"></section>
 
-  <div class="badges" id="badges"></div>
+  <section class="badge-case">
+    <div class="case-head">
+      <span>Trainer Badge Case</span>
+      <small>Earn a badge by collecting every card of that type.</small>
+    </div>
+    <div class="badges" id="badges"></div>
+  </section>
 
   <div class="controls">
     <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input id="search" type="text" placeholder="search the dex" autocomplete="off"></div>
@@ -245,24 +290,75 @@
 </div>
 
 <div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
+<div class="modal profile-modal" id="profileModal">
+  <div class="sheet" style="--ct:var(--sun)">
+    <button class="close" type="button" id="closeProfileBtn">×</button>
+    <div class="trainer-label">local trainer login</div>
+    <h2 class="ctitle" style="font-size:30px">Create your Dex Master profile</h2>
+    <p class="local-note">This is a local login: your name, cards, badges and streak are saved in this browser with localStorage. No server account needed.</p>
+    <form class="trainer-form" id="profileForm">
+      <label>Trainer name
+        <input id="trainerName" name="trainerName" maxlength="24" placeholder="Ex: Willian" required autocomplete="nickname">
+      </label>
+      <label>Trainer mark
+        <select id="trainerAvatar" name="trainerAvatar">
+          <option value="◉">◉ Rising Sun</option>
+          <option value="◆">◆ Black Crest</option>
+          <option value="▲">▲ Mountain Mind</option>
+          <option value="✦">✦ Rare Spark</option>
+          <option value="◎">◎ Full Dex</option>
+        </select>
+      </label>
+      <label>Home base
+        <input id="trainerHome" name="trainerHome" maxlength="28" placeholder="Ex: Sydney" autocomplete="address-level2">
+      </label>
+      <div class="form-actions">
+        <button class="trainer-btn" type="submit">save local profile</button>
+        <button class="danger-btn" type="button" id="deleteProfileBtn">delete login</button>
+      </div>
+    </form>
+  </div>
+</div>
 
 <script>
 /* ============ STORAGE (safe wrapper) ============ */
 const SAVE_KEY='fieldex_progress_v1';
 const mem={}; // fallback if localStorage unavailable
 function loadProgress(){
-  try{const raw=localStorage.getItem(SAVE_KEY);return raw?JSON.parse(raw):defaultProgress();}
+  try{const raw=localStorage.getItem(SAVE_KEY);return normalizeProgress(raw?JSON.parse(raw):defaultProgress());}
   catch(e){return mem[SAVE_KEY]||defaultProgress();}
 }
 function saveProgress(p){
-  try{localStorage.setItem(SAVE_KEY,JSON.stringify(p));}
-  catch(e){mem[SAVE_KEY]=p;}
+  const clean=normalizeProgress(p);
+  try{localStorage.setItem(SAVE_KEY,JSON.stringify(clean));}
+  catch(e){mem[SAVE_KEY]=clean;}
+  PROG=clean;
 }
-function defaultProgress(){return{unlocked:[],lastSolved:null,streak:0};}
+function defaultProgress(){return{unlocked:[],collectedAt:{},lastSolved:null,streak:0,trainer:null};}
+function normalizeProgress(p){
+  const base=defaultProgress();
+  const src=(p&&typeof p==='object')?p:{};
+  const unlocked=Array.isArray(src.unlocked)?[...new Set(src.unlocked.map(Number).filter(Boolean))]:[];
+  return{
+    ...base,
+    ...src,
+    unlocked,
+    collectedAt:(src.collectedAt&&typeof src.collectedAt==='object')?src.collectedAt:{},
+    streak:Number(src.streak)||0,
+    trainer:(src.trainer&&typeof src.trainer==='object')?src.trainer:null,
+  };
+}
 function todayKey(){
   const d=new Date();
   d.setMinutes(d.getMinutes()-d.getTimezoneOffset());
   return d.toISOString().slice(0,10);
+}
+function escapeHTML(str=''){
+  return String(str).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+function formatDate(iso){
+  if(!iso)return 'not collected yet';
+  return String(iso).slice(0,10);
 }
 
 /* ============ CONFIG ============ */
@@ -434,12 +530,60 @@ function buildViz(d,c){
 async function load(){
   try{DATA=(await (await fetch('fieldex.json',{cache:'no-store'})).json()).entries.sort((a,b)=>b.id-a.id);}
   catch(e){DATA=[{id:1,date:'2026-06-07',category:'probability',rarity:'rare',title:'The Birthday Paradox',fact:'In a room of 23 people there is a 50% chance two share a birthday.',why:'We compare every pair, not each person to a fixed date.',tags:['statistics'],viz:{type:'birthday'}}];}
-  renderDaily();renderBadges();renderStats();render();
+  renderDaily();renderBadges();renderStats();renderTrainer();render();
 }
 function renderStats(){
   document.getElementById('unlocked').textContent=String(PROG.unlocked.length).padStart(2,'0');
   document.getElementById('total').textContent=String(DATA.length).padStart(2,'0');
   document.getElementById('streak').textContent=String(PROG.streak||0).padStart(2,'0');
+}
+function trainerRank(pct){
+  if(pct>=100)return 'Dex Master';
+  if(pct>=70)return 'Badge Hunter';
+  if(pct>=35)return 'Logic Trainer';
+  if(pct>0)return 'Rookie Collector';
+  return 'New Trainer';
+}
+function earnedBadgeCount(){
+  return leagueOrder().filter(cat=>leagueComplete(cat)).length;
+}
+function renderTrainer(){
+  const el=document.getElementById('trainerCard');if(!el)return;
+  const got=PROG.unlocked.length,total=DATA.length,pct=total?Math.round(got/total*100):0;
+  const trainer=PROG.trainer;
+  if(!trainer){
+    el.innerHTML=`<div class="trainer-label">local trainer login</div>
+      <div class="trainer-name">Become a Dex Master</div>
+      <p class="trainer-copy">Create a profile saved in this browser. Your collected cards, badges and streak will update here automatically.</p>
+      <div class="trainer-metrics">
+        <div class="trainer-metric"><b>${got}</b><span>cards</span></div>
+        <div class="trainer-metric"><b>${earnedBadgeCount()}</b><span>badges</span></div>
+        <div class="trainer-metric"><b>${PROG.streak||0}</b><span>streak</span></div>
+      </div>
+      <button class="trainer-btn" type="button" onclick="openProfileModal()">start local profile</button>`;
+    return;
+  }
+  const recent=[...PROG.unlocked]
+    .sort((a,b)=>String(PROG.collectedAt[b]||'').localeCompare(String(PROG.collectedAt[a]||'')))
+    .slice(0,3)
+    .map(id=>`#${String(id).padStart(3,'0')}`)
+    .join(' · ')||'no cards yet';
+  el.innerHTML=`<div class="trainer-top">
+      <div class="trainer-avatar">${escapeHTML(trainer.avatar||'◉')}</div>
+      <div>
+        <div class="trainer-label">${trainerRank(pct)}</div>
+        <div class="trainer-name">${escapeHTML(trainer.name||'Trainer')}</div>
+        <div class="trainer-home">${escapeHTML(trainer.home||'local browser')} · joined ${formatDate(trainer.joinedAt)}</div>
+      </div>
+    </div>
+    <div class="trainer-metrics">
+      <div class="trainer-metric"><b>${got}</b><span>cards</span></div>
+      <div class="trainer-metric"><b>${earnedBadgeCount()}</b><span>badges</span></div>
+      <div class="trainer-metric"><b>${PROG.streak||0}</b><span>streak</span></div>
+    </div>
+    <div class="trainer-progress" style="--p:${pct}%"><i></i></div>
+    <div class="trainer-recent">Recent captures: ${recent}<br>${pct}% of the visible dex collected locally.</div>
+    <button class="trainer-btn" type="button" onclick="openProfileModal()">edit trainer login</button>`;
 }
 
 /* ============ LEAGUE PROGRESS BANNER ============ */
@@ -450,7 +594,7 @@ function renderDaily(){
     <div class="daily-body profile-summary">
       <div class="profile-copy">
         <p><b>The gallery is fully open.</b> You can read every card, search the whole dex and inspect the details without unlocking anything.</p>
-        <p style="margin-top:8px">Collection still has a rule: to add a card to your profile, open it and solve the logic/math challenge.</p>
+        <p style="margin-top:8px">Collection has two rules: create a local Trainer Profile, then solve the logic/math challenge to add a card to that profile.</p>
       </div>
       <div class="profile-meter">
         <div class="label">profile collected</div>
@@ -470,9 +614,11 @@ function startChallenge(id){
 function capture(id){
   if(PROG.unlocked.includes(id)){openModal(id);return;}
   PROG.unlocked.push(id);
+  PROG.collectedAt[id]=new Date().toISOString();
   PROG.streak=(PROG.streak||0)+1;PROG.lastSolved=todayKey();
+  if(PROG.trainer)PROG.trainer.lastActive=todayKey();
   saveProgress(PROG);
-  renderStats();renderBadges();renderDaily();render();
+  renderStats();renderBadges();renderDaily();renderTrainer();render();
   openModal(id,true); // reveal the captured card
 }
 
@@ -505,12 +651,14 @@ function cardHTML(d,i){
   const kana=KANA[d.category]||'';
   const tags=(d.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('');
   const viz=buildViz(d,col);
+  const collectText=collected?'Collected on your profile':(PROG.trainer?'Visible now, not in your profile yet':'Create a trainer profile to collect');
+  const collectAction=collected?'open':(PROG.trainer?'solve to collect':'login required');
   return `<article class="card ${collected?'collected':'uncollected'}" style="--ct:${col};--rc:${rc};animation-delay:${i*40}ms" data-id="${d.id}">
     <span class="card-kana">${kana}</span>
     <div class="crow"><span class="idx">No.${String(d.id).padStart(3,'0')}</span><span class="type">${d.category}</span><span class="capture-state ${collected?'yes':'no'}">${collected?'profile':'uncollected'}</span></div>
     <h2 class="ctitle">${d.title}</h2><div class="rar">${stars}<span class="l">${rl}</span></div>
     ${viz?`<div class="viz">${viz}</div>`:''}<p class="cfact">${d.fact}</p><div class="ctags">${tags}</div>
-    <div class="collect-strip"><span>${collected?'Collected on your profile':'Visible now, not in your profile yet'}</span><b>${collected?'open':'solve to collect'}</b></div>
+    <div class="collect-strip"><span>${collectText}</span><b>${collectAction}</b></div>
   </article>`;
 }
 function render(){
@@ -527,14 +675,18 @@ function render(){
 }
 function openModal(id,celebrate){
   const d=DATA.find(x=>x.id===id);if(!d)return;
+  pendingCard=id;
   const collected=PROG.unlocked.includes(id);
   const col=typeColor(d.category);const[rl,rc,rs]=RARITY[d.rarity]||RARITY.common;const stars='●'.repeat(rs)+'○'.repeat(5-rs);
   const viz=buildViz(d,col);const sheet=document.getElementById('sheet');sheet.style.setProperty('--ct',col);
-  const pz=collected?null:makePuzzleForCard(id);
+  const pz=(collected||!PROG.trainer)?null:makePuzzleForCard(id);
   const capturePanel=collected?`<div class="capture-panel collected"><div class="challenge-tag">✓ already collected on your profile</div></div>`:
+    (!PROG.trainer?`<div class="capture-panel"><div class="challenge-tag">trainer login required</div>
+      <p class="local-note">Create a local Trainer Profile first. Then this card can be collected by solving its challenge.</p>
+      <button class="trainer-btn" type="button" onclick="openProfileModal()">create trainer profile</button></div>`:
     `<div class="capture-panel"><div class="challenge-tag">solve to collect this card</div>
       <div class="q">${pz.q}</div>
-      <div class="opts" id="copts">${pz.options.map(o=>`<button class="opt" data-v="${o}">${o}</button>`).join('')}</div></div>`;
+      <div class="opts" id="copts">${pz.options.map(o=>`<button class="opt" data-v="${o}">${o}</button>`).join('')}</div></div>`);
   sheet.innerHTML=`<button class="close" onclick="closeModal()">×</button>
     ${celebrate?'<div class="capture-banner">🎉 Card captured!</div>':''}
     <div class="crow"><span class="idx">No.${String(d.id).padStart(3,'0')}</span><span class="type" style="background:${col}">${d.category}</span></div>
@@ -542,7 +694,7 @@ function openModal(id,celebrate){
     ${viz?`<div class="viz">${viz}</div>`:''}<p style="font-size:15px;line-height:1.65;font-weight:500">${d.fact}</p>
     <div class="why"><h4>WHY IT MATTERS</h4><p>${d.why}</p></div>
     ${capturePanel}
-    <div class="meta"><span>published ${d.date}</span><span>${String(d.id).padStart(3,'0')} / ${String(DATA.length).padStart(3,'0')}</span></div>`;
+    <div class="meta"><span>${collected?`collected ${formatDate(PROG.collectedAt[id])}`:`published ${d.date}`}</span><span>${String(d.id).padStart(3,'0')} / ${String(DATA.length).padStart(3,'0')}</span></div>`;
   if(pz)wireChallengeButtons(id,pz);
   document.getElementById('modal').classList.add('open');
 }
@@ -556,15 +708,58 @@ function wireChallengeButtons(id,pz){
   });
 }
 function closeModal(){document.getElementById('modal').classList.remove('open')}
+function openProfileModal(){
+  const modal=document.getElementById('profileModal');
+  const trainer=PROG.trainer||{};
+  document.getElementById('trainerName').value=trainer.name||'';
+  document.getElementById('trainerAvatar').value=trainer.avatar||'◉';
+  document.getElementById('trainerHome').value=trainer.home||'';
+  modal.classList.add('open');
+  setTimeout(()=>document.getElementById('trainerName').focus(),50);
+}
+function closeProfileModal(){document.getElementById('profileModal').classList.remove('open')}
 document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')closeModal()};
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+document.getElementById('profileModal').onclick=e=>{if(e.target.id==='profileModal')closeProfileModal()};
+document.getElementById('closeProfileBtn').onclick=closeProfileModal;
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeProfileModal();}});
 document.getElementById('search').addEventListener('input',e=>{searchTerm=e.target.value;render()});
 document.getElementById('viewAllBtn').onclick=()=>{
   profileOnly=!profileOnly;
   document.getElementById('viewAllBtn').textContent=profileOnly?'👁 show full gallery':'🎒 show profile only';
   render();
 };
-document.getElementById('resetBtn').onclick=()=>{if(confirm('Reset all progress? This clears your unlocked cards and streak.')){PROG=defaultProgress();saveProgress(PROG);renderDaily();renderBadges();renderStats();render();}};
+document.getElementById('profileForm').onsubmit=e=>{
+  e.preventDefault();
+  const now=new Date().toISOString();
+  PROG.trainer={
+    ...(PROG.trainer||{}),
+    name:document.getElementById('trainerName').value.trim()||'Trainer',
+    avatar:document.getElementById('trainerAvatar').value,
+    home:document.getElementById('trainerHome').value.trim()||'local browser',
+    joinedAt:(PROG.trainer&&PROG.trainer.joinedAt)||now,
+    lastActive:todayKey(),
+  };
+  saveProgress(PROG);
+  closeProfileModal();
+  renderDaily();renderBadges();renderStats();renderTrainer();render();
+  if(pendingCard)openModal(pendingCard);
+};
+document.getElementById('deleteProfileBtn').onclick=()=>{
+  if(confirm('Delete this local trainer login and collection from this browser?')){
+    PROG=defaultProgress();saveProgress(PROG);
+    closeProfileModal();closeModal();
+    renderDaily();renderBadges();renderStats();renderTrainer();render();
+  }
+};
+document.getElementById('resetBtn').textContent='reset collection';
+document.getElementById('resetBtn').onclick=()=>{
+  if(confirm('Reset collected cards and streak? Your trainer login stays saved.')){
+    const trainer=PROG.trainer;
+    PROG=defaultProgress();PROG.trainer=trainer;
+    saveProgress(PROG);
+    renderDaily();renderBadges();renderStats();renderTrainer();render();
+  }
+};
 
 load();
 </script>
