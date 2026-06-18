@@ -261,6 +261,125 @@
       "viz": {
         "type": "limits"
       }
+    },
+    {
+      "id": 16,
+      "date": "2026-06-18",
+      "category": "security",
+      "rarity": "rare",
+      "title": "Módulo 4: A Ameaça em Movimento",
+      "fact": "Malware é software criado para causar dano, obter acesso não autorizado ou interromper sistemas.",
+      "why": "Ele transforma a tríade CIA em alvo: rouba confidencialidade, altera integridade e bloqueia disponibilidade.",
+      "tags": [
+        "malware",
+        "cia",
+        "slo-2"
+      ],
+      "viz": {
+        "type": "threat-map"
+      }
+    },
+    {
+      "id": 17,
+      "date": "2026-06-18",
+      "category": "security",
+      "rarity": "uncommon",
+      "title": "Vírus, Worm e Trojan",
+      "fact": "Vírus precisa de arquivo hospedeiro e ação humana; worm se replica sozinho pela rede; trojan finge ser legítimo para abrir a porta.",
+      "why": "Os três parecem iguais porque todos são malware, mas a diferença principal é como entram e se propagam.",
+      "tags": [
+        "virus",
+        "worm",
+        "trojan"
+      ],
+      "viz": {
+        "type": "malware-types"
+      }
+    },
+    {
+      "id": 18,
+      "date": "2026-06-18",
+      "category": "security",
+      "rarity": "rare",
+      "title": "Propagação Não É Payload",
+      "fact": "Propagação é como o ataque entra: e-mail, USB, download, vulnerabilidade ou site comprometido. Payload é o que ele faz depois.",
+      "why": "Separar entrada de efeito evita confusão: o mesmo vetor pode entregar roubo de dados, ransomware ou espionagem.",
+      "tags": [
+        "payload",
+        "vetores",
+        "ataques"
+      ],
+      "viz": {
+        "type": "attack-chain"
+      }
+    },
+    {
+      "id": 19,
+      "date": "2026-06-18",
+      "category": "security",
+      "rarity": "uncommon",
+      "title": "Engenharia Social Ataca Pessoas",
+      "fact": "Phishing, spear phishing e pretexting manipulam confiança para fazer alguém clicar, baixar ou revelar credenciais.",
+      "why": "Muitos ataques não começam quebrando criptografia ou firewall; começam explorando decisão humana.",
+      "tags": [
+        "phishing",
+        "credenciais",
+        "social"
+      ],
+      "viz": {
+        "type": "social-engineering"
+      }
+    },
+    {
+      "id": 20,
+      "date": "2026-06-18",
+      "category": "security",
+      "rarity": "legendary",
+      "title": "Change Healthcare: MFA Ausente",
+      "fact": "Em 2024, a Change Healthcare sofreu ransomware após acesso por um portal remoto Citrix sem MFA; uma credencial roubada bastou.",
+      "why": "É um exemplo direto da ligação entre Módulo 2 e Módulo 4: autenticação fraca vira porta de entrada para malware.",
+      "tags": [
+        "ransomware",
+        "mfa",
+        "case-study"
+      ],
+      "viz": {
+        "type": "case-study"
+      }
+    },
+    {
+      "id": 21,
+      "date": "2026-06-18",
+      "category": "security",
+      "rarity": "epic",
+      "title": "APT: O Ataque Que Mora na Rede",
+      "fact": "Uma Advanced Persistent Threat é prolongada, direcionada e furtiva: o invasor tenta permanecer na rede sem ser notado.",
+      "why": "Ela muda a pergunta de 'bloqueamos a entrada?' para 'como detectamos movimento lateral e persistência?'.",
+      "tags": [
+        "apt",
+        "stealth",
+        "monitoring"
+      ],
+      "viz": {
+        "type": "advanced-threat"
+      }
+    },
+    {
+      "id": 22,
+      "date": "2026-06-18",
+      "category": "security",
+      "rarity": "rare",
+      "title": "Defesa em Camadas",
+      "fact": "Antivírus, firewall ou backup isolado não resolvem sozinhos; cada controle cobre apenas uma parte do risco.",
+      "why": "Defesa em camadas combina MFA, patches, EDR, segmentação, menor privilégio, backups testados e resposta a incidentes.",
+      "tags": [
+        "defense-in-depth",
+        "edr",
+        "slo-3"
+      ],
+      "viz": {
+        "type": "defense"
+      }
     }
   ]
 }

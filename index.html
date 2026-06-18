@@ -14,6 +14,7 @@
     --sun:#e8502c;--sun-deep:#c43d1d;--gold:#d99a2b;--line:#c9bda3;
     --c-probability:#2f5d8a;--c-math:#c0392b;--c-logic:#2c7a6b;
     --c-history:#d99a2b;--c-geography:#3a7d8c;--c-data:#7d5ba6;
+    --c-security:#4f6f52;
     --c-corinthians:#1c1a17;--c-default:#8a8270;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -362,8 +363,8 @@ function formatDate(iso){
 }
 
 /* ============ CONFIG ============ */
-const TYPE_COLORS={probability:'--c-probability',math:'--c-math',logic:'--c-logic',history:'--c-history',geography:'--c-geography',data:'--c-data',corinthians:'--c-corinthians'};
-const KANA={probability:'確率',math:'数学',logic:'論理',history:'歴史',geography:'地理',data:'情報',corinthians:'球団'};
+const TYPE_COLORS={probability:'--c-probability',math:'--c-math',logic:'--c-logic',history:'--c-history',geography:'--c-geography',data:'--c-data',security:'--c-security',corinthians:'--c-corinthians'};
+const KANA={probability:'確率',math:'数学',logic:'論理',history:'歴史',geography:'地理',data:'情報',security:'安全',corinthians:'球団'};
 const RARITY={common:['COMMON','#8a8270',1],uncommon:['UNCOMMON','#2c7a6b',2],rare:['RARE','#2f5d8a',3],epic:['EPIC','#7d5ba6',4],legendary:['LEGENDARY','#d99a2b',5]};
 const BADGES={
   corinthians:{name:'Gavião da Fiel',ico:'🦅',color:'#1c1a17'},
@@ -373,6 +374,7 @@ const BADGES={
   math:{name:'Calculator',ico:'➗',color:'#c0392b'},
   logic:{name:'Logician',ico:'🧩',color:'#2c7a6b'},
   data:{name:'Analyst',ico:'📊',color:'#7d5ba6'},
+  security:{name:'Security Analyst',ico:'SEC',color:'#4f6f52'},
 };
 const cssVar=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const typeColor=c=>cssVar(TYPE_COLORS[c]||'--c-default');
@@ -512,6 +514,21 @@ function vizData(c,d){
     bars+=`<rect x="${x}" y="${H-p-bh}" width="${bw}" height="${bh}" fill="${c}" opacity="${0.4+0.5*(bh/90)}"/>`;}
   return `<svg viewBox="0 0 ${W} ${H}"><line x1="${p}" y1="${H-p}" x2="${W-p}" y2="${H-p}" stroke="${c}" stroke-width="1" opacity=".4"/>${bars}</svg>`;
 }
+function vizSecurity(c,d){
+  const W=300,H=120,cx=150,cy=58;const seed=hash(d.title||'security');
+  const nodes=[[42,32],[64,88],[114,56],[186,34],[218,86],[258,52]];
+  let links='';for(let i=0;i<nodes.length;i++){const a=nodes[i],b=nodes[(i+2)%nodes.length];
+    links+=`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${c}" stroke-width="1" opacity=".24"/>`;}
+  let dots=nodes.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="${4+(seed+i)%3}" fill="${c}" opacity="${i%2?'.45':'.75'}"/>`).join('');
+  return `<svg viewBox="0 0 ${W} ${H}">
+    ${links}${dots}
+    <path d="M${cx} ${cy-42} L${cx+42} ${cy-24} V${cy+10} C${cx+42} ${cy+34} ${cx+20} ${cy+48} ${cx} ${cy+56} C${cx-20} ${cy+48} ${cx-42} ${cy+34} ${cx-42} ${cy+10} V${cy-24} Z" fill="${c}" opacity=".09" stroke="${c}" stroke-width="2"/>
+    <rect x="${cx-18}" y="${cy-2}" width="36" height="28" rx="3" fill="none" stroke="${c}" stroke-width="2"/>
+    <path d="M${cx-12} ${cy-2} V${cy-14} C${cx-12} ${cy-30} ${cx+12} ${cy-30} ${cx+12} ${cy-14} V${cy-2}" fill="none" stroke="${c}" stroke-width="2"/>
+    <circle cx="${cx}" cy="${cy+12}" r="3.5" fill="${c}"/>
+    <line x1="${cx}" y1="${cy+16}" x2="${cx}" y2="${cy+22}" stroke="${c}" stroke-width="2"/>
+  </svg>`;
+}
 
 function buildViz(d,c){
   switch(d.category){
@@ -522,6 +539,7 @@ function buildViz(d,c){
     case 'math':return vizMath(c,d);
     case 'logic':return vizLogic(c,d);
     case 'data':return vizData(c,d);
+    case 'security':return vizSecurity(c,d);
     default:return vizHistory(c,d);
   }
 }

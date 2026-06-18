@@ -16,11 +16,17 @@ import json
 import sys
 import re
 import textwrap
+import unicodedata
 from pathlib import Path
 
-import matplotlib.pyplot as plt
-from matplotlib.patches import FancyBboxPatch, Circle
-import matplotlib.patheffects as pe
+try:
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import FancyBboxPatch, Circle
+    import matplotlib.patheffects as pe
+    HAS_MPL = True
+except ModuleNotFoundError:
+    from PIL import Image, ImageDraw, ImageFont
+    HAS_MPL = False
 
 ROOT = Path(__file__).parent
 DEX = ROOT / "fieldex.json"
@@ -35,6 +41,7 @@ TYPES = {
     "history":     {"color": "#ffb703", "glow": "#3a2a0a", "icon": "H"},
     "geography":   {"color": "#8ecae6", "glow": "#1a2a3a", "icon": "G"},
     "data":        {"color": "#c77dff", "glow": "#2a0a3a", "icon": "#"},
+    "security":    {"color": "#9ad17b", "glow": "#15301d", "icon": "S"},
     "corinthians": {"color": "#ffffff", "glow": "#1a1a1a", "icon": "C"},
 }
 DEFAULT_TYPE = {"color": "#adb5bd", "glow": "#22252a", "icon": "?"}
@@ -54,10 +61,170 @@ MUTED = "#6c757d"
 
 
 def slug(s):
+    s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode("ascii")
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")[:30]
 
 
+def hex_rgb(value):
+    value = value.lstrip("#")
+    return tuple(int(value[i:i + 2], 16) for i in (0, 2, 4))
+
+
+def blend(a, b, amount):
+    ar, ag, ab = hex_rgb(a)
+    br, bg, bb = hex_rgb(b)
+    return (
+        int(ar + (br - ar) * amount),
+        int(ag + (bg - ag) * amount),
+        int(ab + (bb - ab) * amount),
+    )
+
+
+def pillow_font(size, bold=False, mono=False):
+    if mono:
+        candidates = ["/System/Library/Fonts/Menlo.ttc"]
+    elif bold:
+        candidates = [
+            "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
+            "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+        ]
+    else:
+        candidates = [
+            "/System/Library/Fonts/Supplemental/Arial.ttf",
+            "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+        ]
+    for candidate in candidates:
+        if Path(candidate).exists():
+            try:
+                return ImageFont.truetype(candidate, size=size)
+            except OSError:
+                pass
+    return ImageFont.load_default()
+
+
+def text_wh(draw, text, font):
+    box = draw.textbbox((0, 0), text, font=font)
+    return box[2] - box[0], box[3] - box[1]
+
+
+def wrap_px(draw, text, font, max_width):
+    lines = []
+    for paragraph in str(text).splitlines() or [""]:
+        words = paragraph.split()
+        current = ""
+        for word in words:
+            trial = f"{current} {word}".strip()
+            if current and text_wh(draw, trial, font)[0] > max_width:
+                lines.append(current)
+                current = word
+            else:
+                current = trial
+        if current:
+            lines.append(current)
+    return lines or [""]
+
+
+def draw_center(draw, box, text, font, fill):
+    w, h = text_wh(draw, text, font)
+    x = box[0] + (box[2] - box[0] - w) / 2
+    y = box[1] + (box[3] - box[1] - h) / 2
+    draw.text((x, y), text, font=font, fill=fill)
+
+
+def draw_lines(draw, x, y, lines, font, fill, line_gap):
+    for line in lines:
+        draw.text((x, y), line, font=font, fill=fill)
+        y += font.size + line_gap
+    return y
+
+
+def draw_card_pillow(entry):
+    t = TYPES.get(entry["category"], DEFAULT_TYPE)
+    color, glow, icon = t["color"], t["glow"], t["icon"]
+    rar_label, rar_color, rar_stars = RARITY.get(entry.get("rarity", "common"))
+
+    W, H = 1080, 1350
+    img = Image.new("RGB", (W, H), hex_rgb(BG))
+    draw = ImageDraw.Draw(img)
+
+    card = [42, 42, 1038, 1308]
+    draw.rounded_rectangle(card, radius=36, fill=hex_rgb(PANEL), outline=hex_rgb(color), width=5)
+
+    title_font = pillow_font(46, bold=True)
+    title_lines = wrap_px(draw, entry["title"], title_font, 720)
+    band_bottom = 410 + max(0, len(title_lines) - 1) * 58
+    draw.rounded_rectangle([62, 62, 1018, band_bottom], radius=24, fill=blend(PANEL, glow, 0.76))
+
+    mono_46 = pillow_font(46, bold=True, mono=True)
+    badge_font = pillow_font(24, bold=True)
+    icon_font = pillow_font(34, bold=True)
+    draw.text((90, 105), f"#{entry['id']:03d}", font=mono_46, fill=hex_rgb(color))
+    badge = [720, 96, 970, 164]
+    draw.rounded_rectangle(badge, radius=28, fill=hex_rgb(color))
+    draw_center(draw, badge, entry["category"].upper(), badge_font, hex_rgb(BG))
+    draw.ellipse([105, 214, 195, 304], fill=hex_rgb(color))
+    draw_center(draw, [105, 214, 195, 304], icon, icon_font, hex_rgb(BG))
+
+    title_y = 205
+    draw_lines(draw, 240, title_y, title_lines, title_font, hex_rgb(TEXT), 12)
+
+    rarity_y = max(342, title_y + len(title_lines) * 58 + 24)
+    star_font = pillow_font(30, bold=True, mono=True)
+    label_font = pillow_font(22, bold=True)
+    star_str = "*" * rar_stars + "-" * (5 - rar_stars)
+    draw.text((90, rarity_y), star_str, font=star_font, fill=hex_rgb(rar_color))
+    draw.text((310, rarity_y + 6), rar_label, font=label_font, fill=hex_rgb(rar_color))
+
+    label_font = pillow_font(23, bold=True)
+    fact_font = pillow_font(30)
+    why_font = pillow_font(27)
+    fact_top = rarity_y + 72
+    fact_lines = wrap_px(draw, entry["fact"], fact_font, 830)
+    fact_h = 86 + len(fact_lines) * 42
+    draw.rounded_rectangle([90, fact_top, 990, fact_top + fact_h], radius=20,
+                           fill=hex_rgb(BG), outline=hex_rgb(MUTED), width=2)
+    draw.text((132, fact_top + 30), "FACT", font=label_font, fill=hex_rgb(color))
+    draw_lines(draw, 132, fact_top + 72, fact_lines, fact_font, hex_rgb(TEXT), 12)
+
+    why_top = fact_top + fact_h + 42
+    why_lines = wrap_px(draw, entry["why"], why_font, 840)
+    why_h = 82 + len(why_lines) * 38
+    draw.rounded_rectangle([90, why_top, 990, why_top + why_h], radius=20,
+                           fill=blend(PANEL, glow, 0.72))
+    draw.text((132, why_top + 28), "WHY IT MATTERS", font=pillow_font(22, bold=True),
+              fill=hex_rgb(color))
+    draw_lines(draw, 132, why_top + 68, why_lines, why_font, hex_rgb("#ced4da"), 11)
+
+    tag_y = min(why_top + why_h + 48, 1138)
+    tag_font = pillow_font(21, mono=True)
+    x = 132
+    for tag in entry.get("tags", [])[:4]:
+        label = f"#{tag}"
+        tw, _ = text_wh(draw, label, tag_font)
+        width = tw + 34
+        if x + width > 950:
+            break
+        draw.rounded_rectangle([x, tag_y, x + width, tag_y + 46], radius=16,
+                               outline=hex_rgb(MUTED), width=2)
+        draw_center(draw, [x, tag_y, x + width, tag_y + 46], label, tag_font, hex_rgb(MUTED))
+        x += width + 18
+
+    draw.text((90, 1230), "FielDex", font=pillow_font(38, bold=True), fill=hex_rgb(color))
+    draw.text((90, 1276), "gotta learn 'em all", font=pillow_font(20), fill=hex_rgb(MUTED))
+    date_font = pillow_font(22, mono=True)
+    date_w, _ = text_wh(draw, entry["date"], date_font)
+    draw.text((990 - date_w, 1260), entry["date"], font=date_font, fill=hex_rgb(MUTED))
+
+    fname = OUT / f"fieldex_{entry['id']:03d}_{slug(entry['title'])}.png"
+    img.save(fname)
+    print(f"  captured -> {fname.name}")
+    return fname
+
+
 def draw_card(entry):
+    if not HAS_MPL:
+        return draw_card_pillow(entry)
+
     t = TYPES.get(entry["category"], DEFAULT_TYPE)
     color, glow, icon = t["color"], t["glow"], t["icon"]
     rar_label, rar_color, rar_stars = RARITY.get(entry.get("rarity", "common"))
