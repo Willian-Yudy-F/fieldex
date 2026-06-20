@@ -24,6 +24,16 @@ Three goals in one project:
 | `index.html` | The web gallery — browse the whole collection, filter by type, view details (GitHub Pages) |
 | `cards/` | All generated card images |
 
+## Featured study: Brazil's 2026 World Cup group
+
+The gallery now includes a dedicated **World Cup** category for Brazil's Group C path in the 2026 World Cup:
+
+- Brazil vs Morocco — East Rutherford, New Jersey, at New York New Jersey Stadium (MetLife Stadium)
+- Brazil vs Haiti — Philadelphia, Pennsylvania, at Philadelphia Stadium (Lincoln Financial Field)
+- Scotland vs Brazil — Miami Gardens, Florida, at Miami Stadium (Hard Rock Stadium)
+
+The feature highlights Morocco, Haiti and Scotland with country context, football history, cultural notes, stadium information, and sourced facts. The site includes a PT/EN switch for the guide and the World Cup cards, making the project useful for both Portuguese- and English-speaking audiences.
+
 ## How a "capture" works
 
 Each entry is typed (like a Pokémon type) and has a rarity. The web gallery shows every card by default, but local profile progress only advances after the reader creates a Trainer Profile and answers that card's deterministic logic/math puzzle.
@@ -37,7 +47,7 @@ Progress is saved with `localStorage`, so it belongs to that browser/device:
 
 There is no backend account yet; clearing browser storage or switching devices starts a fresh local profile.
 
-- **Types:** probability · math · logic · history · geography · data · security · corinthians
+- **Types:** probability · math · logic · history · geography · data · security · corinthians · worldcup
 - **Rarity:** common → uncommon → rare → epic → legendary
 
 ```json

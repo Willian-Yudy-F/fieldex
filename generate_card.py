@@ -43,6 +43,7 @@ TYPES = {
     "data":        {"color": "#c77dff", "glow": "#2a0a3a", "icon": "#"},
     "security":    {"color": "#9ad17b", "glow": "#15301d", "icon": "S"},
     "corinthians": {"color": "#ffffff", "glow": "#1a1a1a", "icon": "C"},
+    "worldcup":    {"color": "#2dd4bf", "glow": "#0f2f2d", "icon": "W"},
 }
 DEFAULT_TYPE = {"color": "#adb5bd", "glow": "#22252a", "icon": "?"}
 
@@ -63,6 +64,10 @@ MUTED = "#6c757d"
 def slug(s):
     s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode("ascii")
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")[:30]
+
+
+def type_label(category):
+    return {"worldcup": "WORLD CUP"}.get(category, category.upper())
 
 
 def hex_rgb(value):
@@ -161,7 +166,7 @@ def draw_card_pillow(entry):
     draw.text((90, 105), f"#{entry['id']:03d}", font=mono_46, fill=hex_rgb(color))
     badge = [720, 96, 970, 164]
     draw.rounded_rectangle(badge, radius=28, fill=hex_rgb(color))
-    draw_center(draw, badge, entry["category"].upper(), badge_font, hex_rgb(BG))
+    draw_center(draw, badge, type_label(entry["category"]), badge_font, hex_rgb(BG))
     draw.ellipse([105, 214, 195, 304], fill=hex_rgb(color))
     draw_center(draw, [105, 214, 195, 304], icon, icon_font, hex_rgb(BG))
 
@@ -255,7 +260,7 @@ def draw_card(entry):
     ax.add_patch(FancyBboxPatch((68, 110), 24, 6,
                  boxstyle="round,pad=0.6,rounding_size=3",
                  fc=color, ec="none", zorder=5))
-    ax.text(80, 113, entry["category"].upper(), color=BG, fontsize=12.5,
+    ax.text(80, 113, type_label(entry["category"]), color=BG, fontsize=12.5,
             fontweight="bold", ha="center", va="center", zorder=6)
 
     # type icon coin

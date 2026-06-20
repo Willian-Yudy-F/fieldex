@@ -380,6 +380,180 @@
       "viz": {
         "type": "defense"
       }
+    },
+    {
+      "id": 23,
+      "date": "2026-06-19",
+      "category": "worldcup",
+      "rarity": "rare",
+      "title": "Grupo C: rota do Brasil",
+      "fact": "Na Copa de 2026, o Brasil caiu no Grupo C com Marrocos, Haiti e Escócia. A rota passa por East Rutherford, Filadélfia e Miami Gardens.",
+      "why": "A tabela também conta uma história: o Brasil abre contra a semifinalista africana de 2022, encontra o Haiti em um jogo carregado de simbolismo e fecha contra a Escócia.",
+      "tags": [
+        "world-cup",
+        "brazil",
+        "schedule"
+      ],
+      "viz": {
+        "type": "route"
+      },
+      "i18n": {
+        "en": {
+          "title": "Group C: Brazil's route",
+          "fact": "At the 2026 World Cup, Brazil landed in Group C with Morocco, Haiti and Scotland. The route runs through East Rutherford, Philadelphia and Miami Gardens.",
+          "why": "The schedule tells a story too: Brazil opens against Africa's 2022 semifinalist, meets Haiti in a symbolic matchup and closes the group against Scotland."
+        }
+      }
+    },
+    {
+      "id": 24,
+      "date": "2026-06-19",
+      "category": "worldcup",
+      "rarity": "epic",
+      "title": "Marrocos: encontro de mundos",
+      "fact": "O Marrocos fica no Maghreb, no noroeste da África, com costa no Atlântico e no Mediterrâneo; a capital é Rabat.",
+      "why": "Essa posição ajuda a explicar uma cultura de camadas: raízes amazigh, árabes, africanas, andaluzas e europeias convivem no mesmo mapa.",
+      "tags": [
+        "morocco",
+        "maghreb",
+        "geography"
+      ],
+      "viz": {
+        "type": "latitude",
+        "value": 31.8
+      },
+      "i18n": {
+        "en": {
+          "title": "Morocco: crossroads of worlds",
+          "fact": "Morocco sits in the Maghreb, in northwest Africa, with coastline on both the Atlantic and the Mediterranean; its capital is Rabat.",
+          "why": "That position helps explain a layered culture where Amazigh, Arab, African, Andalusian and European roots share the same map."
+        }
+      }
+    },
+    {
+      "id": 25,
+      "date": "2026-06-19",
+      "category": "worldcup",
+      "rarity": "legendary",
+      "title": "Marrocos e a semi de 2022",
+      "fact": "Em 2022, o Marrocos se tornou a primeira seleção africana e árabe a chegar a uma semifinal de Copa do Mundo.",
+      "why": "Contra o Brasil, isso muda a leitura: não é uma zebra folclórica, mas uma seleção que já provou organização defensiva e maturidade em jogo grande.",
+      "tags": [
+        "morocco",
+        "atlas-lions",
+        "2022"
+      ],
+      "viz": {
+        "type": "timeline",
+        "value": 2022
+      },
+      "i18n": {
+        "en": {
+          "title": "Morocco and the 2022 semifinal",
+          "fact": "In 2022, Morocco became the first African and Arab team to reach a World Cup semifinal.",
+          "why": "Against Brazil, that changes the reading: Morocco is not a novelty underdog, but a team that has already proved defensive organization and big-game maturity."
+        }
+      }
+    },
+    {
+      "id": 26,
+      "date": "2026-06-19",
+      "category": "worldcup",
+      "rarity": "legendary",
+      "title": "Haiti: revolução e liberdade",
+      "fact": "O Haiti conquistou independência em 1804 depois da Revolução Haitiana, tornando-se um país fundado por ex-escravizados.",
+      "why": "Conhecer o Haiti pelo futebol sem entender 1791-1804 é perder o coração da história: resistência, liberdade e custos históricos enormes.",
+      "tags": [
+        "haiti",
+        "revolution",
+        "1804"
+      ],
+      "viz": {
+        "type": "timeline",
+        "value": 1804
+      },
+      "i18n": {
+        "en": {
+          "title": "Haiti: revolution and freedom",
+          "fact": "Haiti won independence in 1804 after the Haitian Revolution, becoming a country founded by formerly enslaved people.",
+          "why": "Learning about Haiti through football without understanding 1791-1804 misses the heart of the story: resistance, freedom and enormous historical costs."
+        }
+      }
+    },
+    {
+      "id": 27,
+      "date": "2026-06-19",
+      "category": "worldcup",
+      "rarity": "epic",
+      "title": "Haiti: Sanon contra Zoff",
+      "fact": "Na Copa de 1974, Emmanuel Sanon marcou contra a Itália e encerrou a série de 1.142 minutos sem sofrer gol do lendário goleiro Dino Zoff.",
+      "why": "O Haiti perdeu por 3 a 1, mas aquele gol virou memória de orgulho: uma seleção caribenha deixou marca eterna na história da Copa.",
+      "tags": [
+        "haiti",
+        "1974",
+        "world-cup"
+      ],
+      "viz": {
+        "type": "timeline",
+        "value": 1974
+      },
+      "i18n": {
+        "en": {
+          "title": "Haiti: Sanon against Zoff",
+          "fact": "At the 1974 World Cup, Emmanuel Sanon scored against Italy and ended legendary goalkeeper Dino Zoff's 1,142-minute shutout streak.",
+          "why": "Haiti lost 3-1, but that goal became a memory of pride: a Caribbean team left an eternal mark on World Cup history."
+        }
+      }
+    },
+    {
+      "id": 28,
+      "date": "2026-06-19",
+      "category": "worldcup",
+      "rarity": "rare",
+      "title": "Brasil x Haiti na Filadélfia",
+      "fact": "Brasil x Haiti está marcado para 19 de junho de 2026, às 20h30 locais, no Philadelphia Stadium, nome FIFA do Lincoln Financial Field.",
+      "why": "Depois do 1 a 1 com o Marrocos, o jogo carrega pressão esportiva para o Brasil e valor simbólico para os haitianos nos Estados Unidos.",
+      "tags": [
+        "philadelphia",
+        "haiti",
+        "brazil"
+      ],
+      "viz": {
+        "type": "latitude",
+        "value": 39.95
+      },
+      "i18n": {
+        "en": {
+          "title": "Brazil vs Haiti in Philadelphia",
+          "fact": "Brazil vs Haiti is scheduled for June 19, 2026, at 20:30 local time, at Philadelphia Stadium, FIFA's name for Lincoln Financial Field.",
+          "why": "After the 1-1 draw with Morocco, the match carries sporting pressure for Brazil and symbolic value for Haitians in the United States."
+        }
+      }
+    },
+    {
+      "id": 29,
+      "date": "2026-06-19",
+      "category": "worldcup",
+      "rarity": "rare",
+      "title": "Escócia: retorno da Tartan Army",
+      "fact": "A Escócia voltou à Copa de 2026 depois de 28 anos; sua última participação havia sido em 1998, também em um grupo com Brasil e Marrocos.",
+      "why": "O jogo em Miami fecha a rota brasileira e traz uma seleção de torcida forte, memória mundialista antiga e desejo de finalmente passar da fase de grupos.",
+      "tags": [
+        "scotland",
+        "tartan-army",
+        "world-cup"
+      ],
+      "viz": {
+        "type": "timeline",
+        "value": 1998
+      },
+      "i18n": {
+        "en": {
+          "title": "Scotland: return of the Tartan Army",
+          "fact": "Scotland returned to the 2026 World Cup after 28 years; its previous appearance was in 1998, also in a group with Brazil and Morocco.",
+          "why": "The Miami match closes Brazil's group-stage route against a team with a powerful fan culture, old World Cup memories and a hunger to finally escape the group stage."
+        }
+      }
     }
   ]
 }

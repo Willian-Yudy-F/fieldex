@@ -14,7 +14,7 @@
     --sun:#e8502c;--sun-deep:#c43d1d;--gold:#d99a2b;--line:#c9bda3;
     --c-probability:#2f5d8a;--c-math:#c0392b;--c-logic:#2c7a6b;
     --c-history:#d99a2b;--c-geography:#3a7d8c;--c-data:#7d5ba6;
-    --c-security:#4f6f52;
+    --c-security:#4f6f52;--c-worldcup:#0f766e;
     --c-corinthians:#1c1a17;--c-default:#8a8270;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -87,6 +87,56 @@
   .profile-meter .value{font-family:'Shippori Mincho',serif;font-weight:800;font-size:38px;line-height:1;margin:6px 0;color:var(--ink)}
   .meter-bar{height:12px;border:1.5px solid var(--ink);background:var(--paper);margin-top:12px}
   .meter-bar i{display:block;height:100%;background:var(--sun);width:var(--p)}
+
+  /* WORLD CUP GUIDE */
+  .worldcup{margin:28px 0 28px;border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);padding:26px 0 28px}
+  .wc-head{display:flex;justify-content:space-between;gap:22px;align-items:flex-start;margin-bottom:18px}
+  .wc-kicker{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--sun-deep);margin-bottom:8px}
+  .wc-title{font-family:'Shippori Mincho',serif;font-weight:800;font-size:32px;line-height:1.05;margin-bottom:10px}
+  .wc-copy{max-width:740px;font-size:15px;line-height:1.6;color:var(--ink-soft);font-weight:500}
+  .wc-actions{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+  .wc-pill{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border:2px solid var(--ink);padding:8px 12px;background:var(--paper-2);white-space:nowrap}
+  .lang-toggle{display:flex;border:2px solid var(--ink);background:var(--paper)}
+  .lang-toggle button{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1px;border:0;border-right:2px solid var(--ink);background:transparent;color:var(--ink);padding:8px 11px;cursor:pointer}
+  .lang-toggle button:last-child{border-right:0}
+  .lang-toggle button.active{background:var(--ink);color:var(--paper)}
+  .wc-hint{border:2px solid var(--ink);background:var(--paper-2);padding:14px 16px;margin:12px 0 18px;display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+  .wc-hint b{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--sun-deep)}
+  .wc-hint p{font-size:14px;line-height:1.5;color:var(--ink-soft);font-weight:500;margin-top:4px}
+  .wc-hint span{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
+  .wc-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:2px solid var(--ink);margin:18px 0;background:var(--paper);position:relative}
+  .wc-flow::before{content:"";position:absolute;left:12%;right:12%;top:27px;height:2px;background:var(--sun);opacity:.55}
+  .wc-flow-step{padding:16px;position:relative;z-index:1;text-align:center;border-right:2px solid var(--ink)}
+  .wc-flow-step:last-child{border-right:0}
+  .wc-flow-step i{display:inline-grid;place-items:center;width:24px;height:24px;border:2px solid var(--ink);background:var(--sun);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;font-style:normal;margin-bottom:9px}
+  .wc-flow-step b{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px}
+  .wc-flow-step span{font-size:12px;line-height:1.4;color:var(--ink-soft);font-weight:500}
+  .journey-grid{display:grid;gap:18px;margin-top:18px}
+  .journey-card{border:2px solid var(--ink);display:grid;grid-template-columns:230px minmax(0,1fr);background:var(--paper)}
+  .journey-visual{border-right:2px solid var(--ink);background:#0b0f14;display:flex;flex-direction:column;min-width:0}
+  .journey-visual img{width:100%;height:100%;min-height:280px;object-fit:contain;display:block}
+  .journey-visual figcaption{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:8px 10px;text-align:center}
+  .journey-body{padding:18px;min-width:0}
+  .journey-title{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}
+  .journey-title h3{font-family:'Shippori Mincho',serif;font-weight:800;font-size:27px;line-height:1}
+  .journey-tag{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:4px 8px;white-space:nowrap}
+  .journey-line{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1.5px solid var(--ink)}
+  .journey-step{padding:13px;border-right:1.5px solid var(--ink);min-height:165px}
+  .journey-step:last-child{border-right:0}
+  .journey-step h4{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--sun-deep);margin-bottom:7px}
+  .journey-step p,.journey-step li{font-size:13px;line-height:1.45;color:var(--ink-soft);font-weight:500}
+  .journey-step ul{display:grid;gap:6px;list-style:none;margin:0}
+  .journey-step li{position:relative;padding-left:13px}
+  .journey-step li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;background:var(--sun)}
+  .wc-insight{margin-top:18px;border:2px solid var(--ink);display:grid;grid-template-columns:1fr 1fr}
+  .wc-insight article{padding:16px;border-right:2px solid var(--ink)}
+  .wc-insight article:last-child{border-right:0}
+  .wc-insight h3{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;color:var(--sun-deep)}
+  .wc-insight p{font-size:14px;line-height:1.55;color:var(--ink-soft);font-weight:500}
+  .wc-sources{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;align-items:center}
+  .wc-sources span{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--ink-soft)}
+  .wc-sources a{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--ink);text-decoration:none;border:1px solid var(--line);padding:5px 8px}
+  .wc-sources a:hover{border-color:var(--ink);background:var(--ink);color:var(--paper)}
 
   /* BADGES */
   .badge-case{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:8px}
@@ -225,6 +275,22 @@
     .stats{width:100%}
     .stat{flex:1;padding:11px 8px;text-align:center}
     .profile-summary{grid-template-columns:1fr}
+    .wc-head{display:block}
+    .wc-actions{align-items:flex-start;margin-top:12px}
+    .wc-pill{white-space:normal}
+    .wc-hint{display:block}
+    .wc-hint span{display:block;margin-top:8px;white-space:normal}
+    .wc-flow,.journey-line,.wc-insight{grid-template-columns:1fr}
+    .wc-flow::before{display:none}
+    .wc-flow-step{border-right:0;border-bottom:2px solid var(--ink)}
+    .wc-flow-step:last-child{border-bottom:0}
+    .journey-card{grid-template-columns:1fr}
+    .journey-visual{border-right:0;border-bottom:2px solid var(--ink)}
+    .journey-visual img{min-height:240px}
+    .journey-step{border-right:0;border-bottom:1.5px solid var(--ink);min-height:auto}
+    .journey-step:last-child{border-bottom:0}
+    .wc-insight article{border-right:0;border-bottom:2px solid var(--ink)}
+    .wc-insight article:last-child{border-bottom:0}
     .case-head{display:block}
     .case-head small{display:block;text-align:left;margin-top:5px}
     .form-actions{grid-template-columns:1fr}
@@ -256,6 +322,8 @@
   </header>
 
   <section class="daily" id="daily"></section>
+
+  <section class="worldcup" id="world-cup"></section>
 
   <section class="badge-case">
     <div class="case-head">
@@ -363,8 +431,16 @@ function formatDate(iso){
 }
 
 /* ============ CONFIG ============ */
-const TYPE_COLORS={probability:'--c-probability',math:'--c-math',logic:'--c-logic',history:'--c-history',geography:'--c-geography',data:'--c-data',security:'--c-security',corinthians:'--c-corinthians'};
-const KANA={probability:'確率',math:'数学',logic:'論理',history:'歴史',geography:'地理',data:'情報',security:'安全',corinthians:'球団'};
+const LANG_KEY='fieldex_lang_v1';
+let LANG='pt';
+try{LANG=localStorage.getItem(LANG_KEY)||'pt';}catch(e){LANG='pt';}
+if(!['pt','en'].includes(LANG))LANG='pt';
+const TYPE_COLORS={probability:'--c-probability',math:'--c-math',logic:'--c-logic',history:'--c-history',geography:'--c-geography',data:'--c-data',security:'--c-security',corinthians:'--c-corinthians',worldcup:'--c-worldcup'};
+const KANA={probability:'確率',math:'数学',logic:'論理',history:'歴史',geography:'地理',data:'情報',security:'安全',corinthians:'球団',worldcup:'世界杯'};
+const CATEGORY_LABELS={
+  pt:{probability:'probabilidade',math:'matemática',logic:'lógica',history:'história',geography:'geografia',data:'dados',security:'segurança',corinthians:'corinthians',worldcup:'World Cup',all:'todos'},
+  en:{probability:'probability',math:'math',logic:'logic',history:'history',geography:'geography',data:'data',security:'security',corinthians:'corinthians',worldcup:'World Cup',all:'all'}
+};
 const RARITY={common:['COMMON','#8a8270',1],uncommon:['UNCOMMON','#2c7a6b',2],rare:['RARE','#2f5d8a',3],epic:['EPIC','#7d5ba6',4],legendary:['LEGENDARY','#d99a2b',5]};
 const BADGES={
   corinthians:{name:'Gavião da Fiel',ico:'🦅',color:'#1c1a17'},
@@ -375,10 +451,112 @@ const BADGES={
   logic:{name:'Logician',ico:'🧩',color:'#2c7a6b'},
   data:{name:'Analyst',ico:'📊',color:'#7d5ba6'},
   security:{name:'Security Analyst',ico:'SEC',color:'#4f6f52'},
+  worldcup:{name:'World Cup Scout',ico:'WC',color:'#0f766e'},
 };
 const cssVar=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const typeColor=c=>cssVar(TYPE_COLORS[c]||'--c-default');
 let DATA=[],PROG=loadProgress(),activeFilter='all',searchTerm='',profileOnly=false;
+const categoryLabel=cat=>(CATEGORY_LABELS[LANG]&&CATEGORY_LABELS[LANG][cat])||cat;
+function entryText(d,key){return(d.i18n&&d.i18n[LANG]&&d.i18n[LANG][key])||d[key]||'';}
+function entrySearchText(d){return[d.title,d.fact,d.why,(d.tags||[]).join(' '),JSON.stringify(d.i18n||{})].join(' ');}
+
+const WC_COPY={
+  pt:{
+    kicker:'Categoria World Cup · Copa do Mundo 2026',
+    title:'Brasil no mapa: adversários, cidades e estádios',
+    copy:'Uma trilha de leitura para acompanhar o Grupo C: primeiro o país e suas curiosidades, depois a partida do Brasil, por fim o estádio e a cidade onde tudo acontece.',
+    updated:'Atualizado · 20 jun 2026',
+    hintTitle:'Categoria World Cup',
+    hintCopy:'Ao clicar em World Cup, o dex reúne contexto cultural, histórico e esportivo em uma sequência feita para portfólio.',
+    hintMeta:'7 cards · PT/EN',
+    flow:[
+      ['1','História e curiosidades','Contexto do país, cultura, memória de Copa e detalhes que ajudam a entender o adversário.'],
+      ['2','Partida do Brasil','Data, placar quando já jogado, leitura tática e peso emocional do confronto.'],
+      ['3','Estádio e cidade','Nome FIFA da arena, nome comercial conhecido e cidade-sede da partida.']
+    ],
+    labels:{history:'História e curiosidades',match:'Partida do Brasil',place:'Estádio e cidade',sources:'Fontes'},
+    sources:[
+      ['FIFA','https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/matches'],
+      ['AP · Brasil x Marrocos','https://apnews.com/article/f7c99c7947a903c46562344462d12057'],
+      ['AP · Haiti x Brasil','https://apnews.com/article/world-cup-haiti-brazil-soccer-fans-26ed67e72c7c81f4cf782675bb9ff667'],
+      ['Britannica · Marrocos','https://www.britannica.com/place/Morocco'],
+      ['Britannica · Haiti','https://www.britannica.com/place/Haiti'],
+      ['World Bank','https://data.worldbank.org/indicator/SP.POP.TOTL?locations=MA-HT']
+    ],
+    journeys:[
+      {country:'Marrocos',tag:'Leões do Atlas',card:'cards/fieldex_024_marrocos-encontro-de-mundos.png',caption:'Card #024 · Marrocos',history:['País do Maghreb, no noroeste da África, com costa no Atlântico e no Mediterrâneo.','Cultura com raízes amazigh, árabes, andaluzas, africanas e europeias.','Em 2022, virou a primeira seleção africana e árabe em uma semifinal de Copa.'],match:'Brasil 1 x 1 Marrocos · 13 jun. Vinicius Junior empatou depois de Ismael Saibari abrir o placar. O jogo mostrou que o Marrocos é organizado, maduro e perigoso em transição.',place:'New York New Jersey Stadium · nome FIFA do MetLife Stadium · East Rutherford, Nova Jersey. Arena da final de 2026.'},
+      {country:'Haiti',tag:'Les Grenadiers',card:'cards/fieldex_026_haiti-revolucao-e-liberdade.png',caption:'Card #026 · Haiti',history:['Ocupa o terço ocidental de Hispaniola, no Caribe; a capital é Port-au-Prince.','A independência de 1804 nasceu da Revolução Haitiana, conduzida por ex-escravizados.','Em 1974, Emmanuel Sanon marcou contra a Itália e encerrou a série invicta de Dino Zoff.'],match:'Brasil x Haiti · 19 jun · 20h30 ET. Para o Brasil, é jogo de controle e pressão por vitória; para o Haiti e sua diáspora, é uma noite de orgulho raro no palco mais visível do futebol.',place:'Philadelphia Stadium · nome FIFA do Lincoln Financial Field · Filadélfia, Pensilvânia. A cidade recebe o encontro mais simbólico do grupo.'},
+      {country:'Escócia',tag:'Tartan Army',card:'cards/fieldex_029_escocia-retorno-da-tartan-army.png',caption:'Card #029 · Escócia',history:['A Escócia voltou à Copa depois de 28 anos; sua última participação havia sido em 1998.','Brasil, Marrocos e Escócia também estiveram juntos em grupo na Copa de 1998.','A Tartan Army é uma das torcidas viajantes mais reconhecíveis do futebol europeu.'],match:'Escócia x Brasil · 24 jun · 18h ET. É o fechamento do Grupo C e pode definir posição, chaveamento e pressão para a fase de 32 equipes.',place:'Miami Stadium · nome FIFA do Hard Rock Stadium · Miami Gardens, Flórida. Palco grande, clima quente e fechamento de grupo em cidade internacional.'}
+    ],
+    insights:[['Leitura esportiva','Depois do empate com o Marrocos, o Brasil precisa transformar superioridade técnica em controle. A sequência Haiti-Escócia pede paciência, ritmo e menos espaço para contra-ataques.'],['Leitura cultural','A chave fica mais rica quando o adversário deixa de ser só camisa: Marrocos carrega a força africana recente, Haiti carrega uma história de liberdade, e Escócia traz tradição e torcida.']]
+  },
+  en:{
+    kicker:'World Cup Category · 2026 FIFA World Cup',
+    title:'Brazil on the map: opponents, cities and stadiums',
+    copy:'A reading path for Group C: first the country and its curiosities, then Brazil’s match, finally the stadium and host city where it happens.',
+    updated:'Updated · Jun 20, 2026',
+    hintTitle:'World Cup category',
+    hintCopy:'Clicking World Cup turns the dex into a portfolio-style guide connecting culture, history, football context and venue information.',
+    hintMeta:'7 cards · PT/EN',
+    flow:[
+      ['1','History and curiosities','Country context, culture, World Cup memory and details that make the opponent easier to understand.'],
+      ['2','Brazil match','Date, score when already played, tactical reading and emotional weight of the fixture.'],
+      ['3','Stadium and city','FIFA venue name, better-known commercial name and the host city of the match.']
+    ],
+    labels:{history:'History and curiosities',match:'Brazil match',place:'Stadium and city',sources:'Sources'},
+    sources:[
+      ['FIFA','https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/matches'],
+      ['AP · Brazil vs Morocco','https://apnews.com/article/f7c99c7947a903c46562344462d12057'],
+      ['AP · Haiti vs Brazil','https://apnews.com/article/world-cup-haiti-brazil-soccer-fans-26ed67e72c7c81f4cf782675bb9ff667'],
+      ['Britannica · Morocco','https://www.britannica.com/place/Morocco'],
+      ['Britannica · Haiti','https://www.britannica.com/place/Haiti'],
+      ['World Bank','https://data.worldbank.org/indicator/SP.POP.TOTL?locations=MA-HT']
+    ],
+    journeys:[
+      {country:'Morocco',tag:'Atlas Lions',card:'cards/fieldex_024_marrocos-encontro-de-mundos.png',caption:'Card #024 · Morocco',history:['A Maghreb country in northwest Africa, with coastline on both the Atlantic and the Mediterranean.','A layered culture with Amazigh, Arab, Andalusian, African and European roots.','In 2022, Morocco became the first African and Arab team to reach a World Cup semifinal.'],match:'Brazil 1-1 Morocco · Jun 13. Vinicius Junior equalized after Ismael Saibari opened the scoring. The match showed Morocco is organized, mature and dangerous in transition.',place:'New York New Jersey Stadium · FIFA name for MetLife Stadium · East Rutherford, New Jersey. The 2026 final venue.'},
+      {country:'Haiti',tag:'Les Grenadiers',card:'cards/fieldex_026_haiti-revolucao-e-liberdade.png',caption:'Card #026 · Haiti',history:['Haiti occupies the western third of Hispaniola in the Caribbean; its capital is Port-au-Prince.','Its 1804 independence came from the Haitian Revolution, led by formerly enslaved people.','In 1974, Emmanuel Sanon scored against Italy and ended Dino Zoff’s shutout streak.'],match:'Brazil vs Haiti · Jun 19 · 20:30 ET. For Brazil, it is about control and pressure to win; for Haiti and its diaspora, it is a rare night of pride on football’s biggest stage.',place:'Philadelphia Stadium · FIFA name for Lincoln Financial Field · Philadelphia, Pennsylvania. A major sports city hosting the group’s most symbolic matchup.'},
+      {country:'Scotland',tag:'Tartan Army',card:'cards/fieldex_029_escocia-retorno-da-tartan-army.png',caption:'Card #029 · Scotland',history:['Scotland returned to the World Cup after 28 years; its previous appearance was in 1998.','Brazil, Morocco and Scotland were also grouped together at the 1998 World Cup.','The Tartan Army is one of European football’s most recognizable traveling fan cultures.'],match:'Scotland vs Brazil · Jun 24 · 18:00 ET. This closes Group C and may decide position, knockout path and pressure for the round of 32.',place:'Miami Stadium · FIFA name for Hard Rock Stadium · Miami Gardens, Florida. A large venue, hot conditions and a group finale in an international city.'}
+    ],
+    insights:[['Sporting read','After drawing with Morocco, Brazil has to turn technical superiority into control. The Haiti-Scotland sequence asks for patience, tempo and less room for counters.'],['Cultural read','The group gets richer when opponents stop being just shirts: Morocco carries recent African force, Haiti carries a freedom story, and Scotland brings tradition and traveling support.']]
+  }
+};
+
+function renderWorldCupGuide(){
+  const el=document.getElementById('world-cup');if(!el)return;
+  const t=WC_COPY[LANG]||WC_COPY.pt;
+  const flow=t.flow.map(([n,title,copy])=>`<div class="wc-flow-step"><i>${n}</i><b>${escapeHTML(title)}</b><span>${escapeHTML(copy)}</span></div>`).join('');
+  const journeys=t.journeys.map(item=>`<article class="journey-card">
+    <figure class="journey-visual">
+      <img src="${item.card}" alt="${escapeHTML(item.caption)}">
+      <figcaption>${escapeHTML(item.caption)}</figcaption>
+    </figure>
+    <div class="journey-body">
+      <div class="journey-title"><h3>${escapeHTML(item.country)}</h3><span class="journey-tag">${escapeHTML(item.tag)}</span></div>
+      <div class="journey-line">
+        <section class="journey-step"><h4>${escapeHTML(t.labels.history)}</h4><ul>${item.history.map(point=>`<li>${escapeHTML(point)}</li>`).join('')}</ul></section>
+        <section class="journey-step"><h4>${escapeHTML(t.labels.match)}</h4><p>${escapeHTML(item.match)}</p></section>
+        <section class="journey-step"><h4>${escapeHTML(t.labels.place)}</h4><p>${escapeHTML(item.place)}</p></section>
+      </div>
+    </div>
+  </article>`).join('');
+  const insights=t.insights.map(([title,copy])=>`<article><h3>${escapeHTML(title)}</h3><p>${escapeHTML(copy)}</p></article>`).join('');
+  const sources=t.sources.map(([label,url])=>`<a href="${url}" target="_blank" rel="noopener">${escapeHTML(label)}</a>`).join('');
+  el.innerHTML=`<div class="wc-head">
+    <div><div class="wc-kicker">${escapeHTML(t.kicker)}</div><h2 class="wc-title">${escapeHTML(t.title)}</h2><p class="wc-copy">${escapeHTML(t.copy)}</p></div>
+    <div class="wc-actions"><div class="wc-pill">${escapeHTML(t.updated)}</div><div class="lang-toggle" aria-label="Language">
+      <button type="button" class="${LANG==='pt'?'active':''}" data-lang="pt" aria-pressed="${LANG==='pt'}">PT</button>
+      <button type="button" class="${LANG==='en'?'active':''}" data-lang="en" aria-pressed="${LANG==='en'}">EN</button>
+    </div></div>
+  </div>
+  <div class="wc-hint"><div><b>${escapeHTML(t.hintTitle)}</b><p>${escapeHTML(t.hintCopy)}</p></div><span>${escapeHTML(t.hintMeta)}</span></div>
+  <div class="wc-flow">${flow}</div><div class="journey-grid">${journeys}</div><div class="wc-insight">${insights}</div>
+  <div class="wc-sources"><span>${escapeHTML(t.labels.sources)}</span>${sources}</div>`;
+  el.querySelectorAll('[data-lang]').forEach(btn=>btn.onclick=()=>{
+    LANG=btn.dataset.lang;
+    try{localStorage.setItem(LANG_KEY,LANG);}catch(e){}
+    renderWorldCupGuide();renderStats();renderTrainer();renderBadges();render();
+  });
+}
 
 /* ============ PER-CARD PUZZLES + LEAGUES ============ */
 function rng(seed){let s=seed%2147483647;if(s<=0)s+=2147483646;return()=>(s=s*16807%2147483647)/2147483647;}
@@ -540,6 +718,10 @@ function buildViz(d,c){
     case 'logic':return vizLogic(c,d);
     case 'data':return vizData(c,d);
     case 'security':return vizSecurity(c,d);
+    case 'worldcup':
+      if(d.viz&&d.viz.type==='timeline')return vizHistory(c,d);
+      if(d.viz&&d.viz.type==='latitude')return vizGeography(c,d);
+      return vizData(c,d);
     default:return vizHistory(c,d);
   }
 }
@@ -548,7 +730,7 @@ function buildViz(d,c){
 async function load(){
   try{DATA=(await (await fetch('fieldex.json',{cache:'no-store'})).json()).entries.sort((a,b)=>b.id-a.id);}
   catch(e){DATA=[{id:1,date:'2026-06-07',category:'probability',rarity:'rare',title:'The Birthday Paradox',fact:'In a room of 23 people there is a 50% chance two share a birthday.',why:'We compare every pair, not each person to a fixed date.',tags:['statistics'],viz:{type:'birthday'}}];}
-  renderDaily();renderBadges();renderStats();renderTrainer();render();
+  renderWorldCupGuide();renderDaily();renderBadges();renderStats();renderTrainer();render();
 }
 function renderStats(){
   document.getElementById('unlocked').textContent=String(PROG.unlocked.length).padStart(2,'0');
@@ -649,7 +831,7 @@ function renderBadges(){
     const earned=got===ids.length&&ids.length>0;const b=BADGES[cat]||{name:cat,ico:'⭐',color:'#1c1a17'};
     return `<div class="badge ${earned?'earned':''}" style="--bc:${b.color}">
       <span class="ico">${b.ico}</span>
-      <span class="txt"><span class="name">${b.name}</span><span class="prog">${cat} · ${got}/${ids.length}</span></span></div>`;
+      <span class="txt"><span class="name">${b.name}</span><span class="prog">${categoryLabel(cat)} · ${got}/${ids.length}</span></span></div>`;
   }).join('');
 }
 
@@ -659,32 +841,37 @@ function buildFilters(){
   const cats=['all',...Object.keys(c).sort()];
   document.getElementById('filters').innerHTML=cats.map(cat=>{
     const n=cat==='all'?DATA.length:c[cat];
-    return `<button class="filter ${cat===activeFilter?'active':''}" data-c="${cat}">${cat}<span class="c">${n}</span></button>`;
+    return `<button class="filter ${cat===activeFilter?'active':''}" data-c="${cat}">${categoryLabel(cat)}<span class="c">${n}</span></button>`;
   }).join('');
-  document.querySelectorAll('.filter').forEach(b=>b.onclick=()=>{activeFilter=b.dataset.c;render()});
+  document.querySelectorAll('.filter').forEach(b=>b.onclick=()=>{
+    activeFilter=b.dataset.c;render();
+    if(activeFilter==='worldcup')setTimeout(()=>document.getElementById('world-cup')?.scrollIntoView({behavior:'smooth',block:'start'}),20);
+  });
 }
 function cardHTML(d,i){
   const collected=PROG.unlocked.includes(d.id);const col=typeColor(d.category);
   const[rl,rc,rs]=RARITY[d.rarity]||RARITY.common;const stars='●'.repeat(rs)+'○'.repeat(5-rs);
   const kana=KANA[d.category]||'';
+  const title=entryText(d,'title'),fact=entryText(d,'fact');
   const tags=(d.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('');
   const viz=buildViz(d,col);
   const collectText=collected?'Collected on your profile':(PROG.trainer?'Visible now, not in your profile yet':'Create a trainer profile to collect');
   const collectAction=collected?'open':(PROG.trainer?'solve to collect':'login required');
   return `<article class="card ${collected?'collected':'uncollected'}" style="--ct:${col};--rc:${rc};animation-delay:${i*40}ms" data-id="${d.id}">
     <span class="card-kana">${kana}</span>
-    <div class="crow"><span class="idx">No.${String(d.id).padStart(3,'0')}</span><span class="type">${d.category}</span><span class="capture-state ${collected?'yes':'no'}">${collected?'profile':'uncollected'}</span></div>
-    <h2 class="ctitle">${d.title}</h2><div class="rar">${stars}<span class="l">${rl}</span></div>
-    ${viz?`<div class="viz">${viz}</div>`:''}<p class="cfact">${d.fact}</p><div class="ctags">${tags}</div>
+    <div class="crow"><span class="idx">No.${String(d.id).padStart(3,'0')}</span><span class="type">${categoryLabel(d.category)}</span><span class="capture-state ${collected?'yes':'no'}">${collected?'profile':'uncollected'}</span></div>
+    <h2 class="ctitle">${escapeHTML(title)}</h2><div class="rar">${stars}<span class="l">${rl}</span></div>
+    ${viz?`<div class="viz">${viz}</div>`:''}<p class="cfact">${escapeHTML(fact)}</p><div class="ctags">${tags}</div>
     <div class="collect-strip"><span>${collectText}</span><b>${collectAction}</b></div>
   </article>`;
 }
 function render(){
+  renderWorldCupGuide();
   buildFilters();
   const grid=document.getElementById('grid');
   let list=DATA.filter(d=>activeFilter==='all'||d.category===activeFilter);
   if(profileOnly)list=list.filter(d=>PROG.unlocked.includes(d.id));
-  if(searchTerm){const q=searchTerm.toLowerCase();list=list.filter(d=>(d.title+d.fact+d.why+(d.tags||[]).join(' ')).toLowerCase().includes(q));}
+  if(searchTerm){const q=searchTerm.toLowerCase();list=list.filter(d=>entrySearchText(d).toLowerCase().includes(q));}
   grid.innerHTML=list.length?list.map((d,i)=>cardHTML(d,i)).join(''):`<div class="empty">${profileOnly?'your profile has no cards here yet.':'no cards match.'}</div>`;
   grid.querySelectorAll('.card').forEach(c=>{
     const id=+c.dataset.id;
@@ -696,6 +883,7 @@ function openModal(id,celebrate){
   pendingCard=id;
   const collected=PROG.unlocked.includes(id);
   const col=typeColor(d.category);const[rl,rc,rs]=RARITY[d.rarity]||RARITY.common;const stars='●'.repeat(rs)+'○'.repeat(5-rs);
+  const title=entryText(d,'title'),fact=entryText(d,'fact'),why=entryText(d,'why');
   const viz=buildViz(d,col);const sheet=document.getElementById('sheet');sheet.style.setProperty('--ct',col);
   const pz=(collected||!PROG.trainer)?null:makePuzzleForCard(id);
   const capturePanel=collected?`<div class="capture-panel collected"><div class="challenge-tag">✓ already collected on your profile</div></div>`:
@@ -707,10 +895,10 @@ function openModal(id,celebrate){
       <div class="opts" id="copts">${pz.options.map(o=>`<button class="opt" data-v="${o}">${o}</button>`).join('')}</div></div>`);
   sheet.innerHTML=`<button class="close" onclick="closeModal()">×</button>
     ${celebrate?'<div class="capture-banner">🎉 Card captured!</div>':''}
-    <div class="crow"><span class="idx">No.${String(d.id).padStart(3,'0')}</span><span class="type" style="background:${col}">${d.category}</span></div>
-    <h2 class="ctitle" style="font-size:30px">${d.title}</h2><div class="rar" style="color:${rc}">${stars}<span class="l">${rl}</span></div>
-    ${viz?`<div class="viz">${viz}</div>`:''}<p style="font-size:15px;line-height:1.65;font-weight:500">${d.fact}</p>
-    <div class="why"><h4>WHY IT MATTERS</h4><p>${d.why}</p></div>
+    <div class="crow"><span class="idx">No.${String(d.id).padStart(3,'0')}</span><span class="type" style="background:${col}">${categoryLabel(d.category)}</span></div>
+    <h2 class="ctitle" style="font-size:30px">${escapeHTML(title)}</h2><div class="rar" style="color:${rc}">${stars}<span class="l">${rl}</span></div>
+    ${viz?`<div class="viz">${viz}</div>`:''}<p style="font-size:15px;line-height:1.65;font-weight:500">${escapeHTML(fact)}</p>
+    <div class="why"><h4>${LANG==='pt'?'POR QUE IMPORTA':'WHY IT MATTERS'}</h4><p>${escapeHTML(why)}</p></div>
     ${capturePanel}
     <div class="meta"><span>${collected?`collected ${formatDate(PROG.collectedAt[id])}`:`published ${d.date}`}</span><span>${String(d.id).padStart(3,'0')} / ${String(DATA.length).padStart(3,'0')}</span></div>`;
   if(pz)wireChallengeButtons(id,pz);
