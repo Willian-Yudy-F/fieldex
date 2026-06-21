@@ -1,0 +1,703 @@
+window.FIELD_DEX_INLINE = {
+  "trainer": "your_name",
+  "started": "2026-06-07",
+  "entries": [
+    {
+      "id": 1,
+      "date": "2026-06-07",
+      "category": "probability",
+      "rarity": "rare",
+      "title": "The Birthday Paradox",
+      "fact": "In a room of just 23 people, there's a 50% chance two of them share a birthday. With 70 people, it jumps to 99.9%.",
+      "why": "Because we compare every PAIR of people, not each person to one fixed date. 23 people make 253 pairs.",
+      "tags": [
+        "statistics",
+        "counterintuitive"
+      ],
+      "viz": {
+        "type": "birthday"
+      }
+    },
+    {
+      "id": 2,
+      "date": "2026-06-08",
+      "category": "history",
+      "rarity": "uncommon",
+      "title": "The Corinthians' Birth Year",
+      "fact": "Sport Club Corinthians Paulista was founded on September 1, 1910, by a group of railway workers in the Bom Retiro neighborhood of Sao Paulo.",
+      "why": "They named the club after the English amateur team Corinthian FC, which was touring Brazil at the time.",
+      "tags": [
+        "corinthians",
+        "football",
+        "brazil"
+      ],
+      "viz": {
+        "type": "timeline",
+        "value": 1910
+      }
+    },
+    {
+      "id": 3,
+      "date": "2026-06-09",
+      "category": "geography",
+      "rarity": "common",
+      "title": "Sydney Sits at 33 South",
+      "fact": "Sydney lies at roughly 33.87 S, 151.21 E placing it on a similar latitude band as Cape Town, Buenos Aires and Santiago.",
+      "why": "Cities on the same latitude share daylight patterns and seasons, which is why these southern hubs feel climatically alike.",
+      "tags": [
+        "maps",
+        "cities",
+        "southern-hemisphere"
+      ],
+      "viz": {
+        "type": "latitude",
+        "value": 33.87
+      }
+    },
+    {
+      "id": 4,
+      "date": "2026-06-09",
+      "category": "corinthians",
+      "rarity": "epic",
+      "title": "The Hymn Had Two Authors",
+      "fact": "The Corinthians anthem \"Campeao dos Campeoes\" is usually credited to radio host Lauro DAvila, but he only wrote the words. The melody came from maestro Edmundo Russomanno around 1952.",
+      "why": "DAvila was not a musician. The marching tune the whole stadium sings was written by a trained clarinetist and bandleader whose name most fans never learn.",
+      "tags": [
+        "corinthians",
+        "music",
+        "history"
+      ],
+      "viz": {
+        "type": "timeline",
+        "value": 1952
+      }
+    },
+    {
+      "id": 5,
+      "date": "2026-06-10",
+      "category": "geography",
+      "rarity": "uncommon",
+      "title": "The Atlantic Is Growing",
+      "fact": "The Atlantic Ocean widens by about 4 cm every year as tectonic plates drift apart, roughly the speed your fingernails grow.",
+      "why": "Mid-ocean ridges constantly create new seafloor, slowly pushing the Americas away from Europe and Africa.",
+      "tags": [
+        "oceans",
+        "geology",
+        "tectonics"
+      ],
+      "viz": {
+        "type": "latitude",
+        "value": 0
+      }
+    },
+    {
+      "id": 6,
+      "date": "2026-06-11",
+      "category": "corinthians",
+      "rarity": "legendary",
+      "title": "The Invasion of 1976",
+      "fact": "In 1976, around 70,000 Corinthians fans traveled to Rio de Janeiro for a semifinal, an exodus that became known as the Invasion of Maracana.",
+      "why": "After a 22-year title drought, the trip turned into a cultural milestone of Brazilian football fandom, win or lose.",
+      "tags": [
+        "corinthians",
+        "fans",
+        "1976"
+      ],
+      "viz": {
+        "type": "timeline",
+        "value": 1976
+      }
+    },
+    {
+      "id": 7,
+      "date": "2026-06-16",
+      "category": "data",
+      "rarity": "rare",
+      "title": "FielCup: pergunta central",
+      "fact": "O FielCup transforma a pergunta \"qual seleção tem mais chance de ganhar a Copa?\" em duas etapas: prever cada jogo e simular o torneio inteiro.",
+      "why": "Separar jogo individual de caminho de torneio deixa o projeto explicável: Dixon-Coles calcula confrontos, Monte Carlo agrega milhares de Copas possíveis.",
+      "tags": [
+        "fielcup",
+        "forecast",
+        "data"
+      ],
+      "viz": {
+        "type": "bars"
+      }
+    },
+    {
+      "id": 8,
+      "date": "2026-06-16",
+      "category": "probability",
+      "rarity": "uncommon",
+      "title": "Ataque, defesa e gols esperados",
+      "fact": "No Dixon-Coles, cada seleção ganha uma força de ataque e uma força de defesa aprendidas a partir de resultados reais.",
+      "why": "O modelo não recebe uma nota manual para Brasil ou Argentina; ele ajusta esses números para explicar placares históricos.",
+      "tags": [
+        "dixon-coles",
+        "football",
+        "ratings"
+      ],
+      "viz": {
+        "type": "ratings"
+      }
+    },
+    {
+      "id": 9,
+      "date": "2026-06-16",
+      "category": "math",
+      "rarity": "rare",
+      "title": "Por que Poisson entra no jogo",
+      "fact": "Gols são eventos contáveis e relativamente raros. A distribuição de Poisson transforma uma média esperada λ na chance de marcar 0, 1, 2 ou mais gols.",
+      "why": "Se λ = 1.4, a fórmula P(k) = λ^k e^-λ / k! vira uma tabela de probabilidades para cada quantidade de gols.",
+      "tags": [
+        "poisson",
+        "lambda",
+        "math"
+      ],
+      "viz": {
+        "type": "formula"
+      }
+    },
+    {
+      "id": 10,
+      "date": "2026-06-16",
+      "category": "data",
+      "rarity": "rare",
+      "title": "A matriz de placares",
+      "fact": "Com um λ para cada time, o FielCup monta uma matriz de placares: 0x0, 1x0, 0x1, 2x1 e assim por diante.",
+      "why": "Somar as células certas da matriz gera as chances de vitória, empate e derrota que aparecem no dashboard.",
+      "tags": [
+        "scoreline",
+        "probability",
+        "dashboard"
+      ],
+      "viz": {
+        "type": "matrix"
+      }
+    },
+    {
+      "id": 11,
+      "date": "2026-06-16",
+      "category": "logic",
+      "rarity": "epic",
+      "title": "O ajuste Dixon-Coles",
+      "fact": "Dixon-Coles corrige placares baixos como 0x0, 1x0, 0x1 e 1x1 com um parâmetro chamado rho (ρ).",
+      "why": "A Poisson pura trata os gols dos times como independentes, mas jogos apertados mudam comportamento tático e distorcem exatamente esses placares.",
+      "tags": [
+        "rho",
+        "low-scores",
+        "modeling"
+      ],
+      "viz": {
+        "type": "low-score"
+      }
+    },
+    {
+      "id": 12,
+      "date": "2026-06-16",
+      "category": "math",
+      "rarity": "uncommon",
+      "title": "Peso temporal",
+      "fact": "O FielCup aplica decaimento temporal: peso = e^(-ξ · dias). No projeto, ξ = 0.0019 dá meia-vida perto de um ano.",
+      "why": "Uma seleção muda rápido. Um jogo de 2025 precisa falar mais alto sobre a força atual do que um jogo de 2019.",
+      "tags": [
+        "time-decay",
+        "xi",
+        "recency"
+      ],
+      "viz": {
+        "type": "decay",
+        "value": 365
+      }
+    },
+    {
+      "id": 13,
+      "date": "2026-06-16",
+      "category": "logic",
+      "rarity": "rare",
+      "title": "Maxima verossimilhanca",
+      "fact": "O treinamento procura os ataques e defesas que tornam os placares reais observados os mais prováveis dentro do modelo.",
+      "why": "Na prática, o otimizador SLSQP ajusta os parâmetros até minimizar a log-verossimilhança negativa.",
+      "tags": [
+        "mle",
+        "optimization",
+        "scipy"
+      ],
+      "viz": {
+        "type": "optimization"
+      }
+    },
+    {
+      "id": 14,
+      "date": "2026-06-16",
+      "category": "probability",
+      "rarity": "legendary",
+      "title": "Monte Carlo: 50.000 Copas",
+      "fact": "Depois de prever jogos individuais, o FielCup simula a Copa inteira milhares de vezes e conta quantas vezes cada seleção levanta a taça.",
+      "why": "Se a Argentina vence 11.115 de 50.000 simulações, sua chance estimada de título é 22.23%. É frequência virando probabilidade.",
+      "tags": [
+        "monte-carlo",
+        "simulation",
+        "world-cup"
+      ],
+      "viz": {
+        "type": "simulation"
+      }
+    },
+    {
+      "id": 15,
+      "date": "2026-06-16",
+      "category": "data",
+      "rarity": "epic",
+      "title": "A honestidade do modelo",
+      "fact": "O FielCup assume suas limitações: o chaveamento do mata-mata é simplificado e o modelo enxerga resultados de seleção, não lesões ou talento individual completo.",
+      "why": "Saber explicar onde o modelo erra é parte da maturidade técnica. Probabilidade boa não é promessa; é uma leitura transparente do que os dados conseguem ver.",
+      "tags": [
+        "model-risk",
+        "portfolio",
+        "validation"
+      ],
+      "viz": {
+        "type": "limits"
+      }
+    },
+    {
+      "id": 16,
+      "date": "2026-06-18",
+      "category": "security",
+      "rarity": "rare",
+      "title": "Módulo 4: A Ameaça em Movimento",
+      "fact": "Malware é software criado para causar dano, obter acesso não autorizado ou interromper sistemas.",
+      "why": "Ele transforma a tríade CIA em alvo: rouba confidencialidade, altera integridade e bloqueia disponibilidade.",
+      "tags": [
+        "malware",
+        "cia",
+        "slo-2"
+      ],
+      "viz": {
+        "type": "threat-map"
+      }
+    },
+    {
+      "id": 17,
+      "date": "2026-06-18",
+      "category": "security",
+      "rarity": "uncommon",
+      "title": "Vírus, Worm e Trojan",
+      "fact": "Vírus precisa de arquivo hospedeiro e ação humana; worm se replica sozinho pela rede; trojan finge ser legítimo para abrir a porta.",
+      "why": "Os três parecem iguais porque todos são malware, mas a diferença principal é como entram e se propagam.",
+      "tags": [
+        "virus",
+        "worm",
+        "trojan"
+      ],
+      "viz": {
+        "type": "malware-types"
+      }
+    },
+    {
+      "id": 18,
+      "date": "2026-06-18",
+      "category": "security",
+      "rarity": "rare",
+      "title": "Propagação Não É Payload",
+      "fact": "Propagação é como o ataque entra: e-mail, USB, download, vulnerabilidade ou site comprometido. Payload é o que ele faz depois.",
+      "why": "Separar entrada de efeito evita confusão: o mesmo vetor pode entregar roubo de dados, ransomware ou espionagem.",
+      "tags": [
+        "payload",
+        "vetores",
+        "ataques"
+      ],
+      "viz": {
+        "type": "attack-chain"
+      }
+    },
+    {
+      "id": 19,
+      "date": "2026-06-18",
+      "category": "security",
+      "rarity": "uncommon",
+      "title": "Engenharia Social Ataca Pessoas",
+      "fact": "Phishing, spear phishing e pretexting manipulam confiança para fazer alguém clicar, baixar ou revelar credenciais.",
+      "why": "Muitos ataques não começam quebrando criptografia ou firewall; começam explorando decisão humana.",
+      "tags": [
+        "phishing",
+        "credenciais",
+        "social"
+      ],
+      "viz": {
+        "type": "social-engineering"
+      }
+    },
+    {
+      "id": 20,
+      "date": "2026-06-18",
+      "category": "security",
+      "rarity": "legendary",
+      "title": "Change Healthcare: MFA Ausente",
+      "fact": "Em 2024, a Change Healthcare sofreu ransomware após acesso por um portal remoto Citrix sem MFA; uma credencial roubada bastou.",
+      "why": "É um exemplo direto da ligação entre Módulo 2 e Módulo 4: autenticação fraca vira porta de entrada para malware.",
+      "tags": [
+        "ransomware",
+        "mfa",
+        "case-study"
+      ],
+      "viz": {
+        "type": "case-study"
+      }
+    },
+    {
+      "id": 21,
+      "date": "2026-06-18",
+      "category": "security",
+      "rarity": "epic",
+      "title": "APT: O Ataque Que Mora na Rede",
+      "fact": "Uma Advanced Persistent Threat é prolongada, direcionada e furtiva: o invasor tenta permanecer na rede sem ser notado.",
+      "why": "Ela muda a pergunta de 'bloqueamos a entrada?' para 'como detectamos movimento lateral e persistência?'.",
+      "tags": [
+        "apt",
+        "stealth",
+        "monitoring"
+      ],
+      "viz": {
+        "type": "advanced-threat"
+      }
+    },
+    {
+      "id": 22,
+      "date": "2026-06-18",
+      "category": "security",
+      "rarity": "rare",
+      "title": "Defesa em Camadas",
+      "fact": "Antivírus, firewall ou backup isolado não resolvem sozinhos; cada controle cobre apenas uma parte do risco.",
+      "why": "Defesa em camadas combina MFA, patches, EDR, segmentação, menor privilégio, backups testados e resposta a incidentes.",
+      "tags": [
+        "defense-in-depth",
+        "edr",
+        "slo-3"
+      ],
+      "viz": {
+        "type": "defense"
+      }
+    },
+    {
+      "id": 23,
+      "date": "2026-06-19",
+      "category": "worldcup",
+      "rarity": "rare",
+      "title": "Grupo C: rota do Brasil",
+      "fact": "Na Copa de 2026, o Brasil caiu no Grupo C com Marrocos, Haiti e Escócia. A rota passa por East Rutherford, Filadélfia e Miami Gardens.",
+      "why": "A tabela também conta uma história: o Brasil abre contra a semifinalista africana de 2022, encontra o Haiti em um jogo carregado de simbolismo e fecha contra a Escócia.",
+      "tags": [
+        "world-cup",
+        "brazil",
+        "schedule"
+      ],
+      "viz": {
+        "type": "route"
+      },
+      "i18n": {
+        "en": {
+          "title": "Group C: Brazil's route",
+          "fact": "At the 2026 World Cup, Brazil landed in Group C with Morocco, Haiti and Scotland. The route runs through East Rutherford, Philadelphia and Miami Gardens.",
+          "why": "The schedule tells a story too: Brazil opens against Africa's 2022 semifinalist, meets Haiti in a symbolic matchup and closes the group against Scotland."
+        }
+      }
+    },
+    {
+      "id": 24,
+      "date": "2026-06-19",
+      "category": "worldcup",
+      "rarity": "epic",
+      "title": "Marrocos: encontro de mundos",
+      "fact": "O Marrocos fica no Maghreb, no noroeste da África, com costa no Atlântico e no Mediterrâneo; a capital é Rabat.",
+      "why": "Essa posição ajuda a explicar uma cultura de camadas: raízes amazigh, árabes, africanas, andaluzas e europeias convivem no mesmo mapa.",
+      "tags": [
+        "morocco",
+        "maghreb",
+        "geography"
+      ],
+      "viz": {
+        "type": "latitude",
+        "value": 31.8
+      },
+      "i18n": {
+        "en": {
+          "title": "Morocco: crossroads of worlds",
+          "fact": "Morocco sits in the Maghreb, in northwest Africa, with coastline on both the Atlantic and the Mediterranean; its capital is Rabat.",
+          "why": "That position helps explain a layered culture where Amazigh, Arab, African, Andalusian and European roots share the same map."
+        }
+      }
+    },
+    {
+      "id": 25,
+      "date": "2026-06-19",
+      "category": "worldcup",
+      "rarity": "legendary",
+      "title": "Marrocos e a semi de 2022",
+      "fact": "Em 2022, o Marrocos se tornou a primeira seleção africana e árabe a chegar a uma semifinal de Copa do Mundo.",
+      "why": "Contra o Brasil, isso muda a leitura: não é uma zebra folclórica, mas uma seleção que já provou organização defensiva e maturidade em jogo grande.",
+      "tags": [
+        "morocco",
+        "atlas-lions",
+        "2022"
+      ],
+      "viz": {
+        "type": "timeline",
+        "value": 2022
+      },
+      "i18n": {
+        "en": {
+          "title": "Morocco and the 2022 semifinal",
+          "fact": "In 2022, Morocco became the first African and Arab team to reach a World Cup semifinal.",
+          "why": "Against Brazil, that changes the reading: Morocco is not a novelty underdog, but a team that has already proved defensive organization and big-game maturity."
+        }
+      }
+    },
+    {
+      "id": 26,
+      "date": "2026-06-19",
+      "category": "worldcup",
+      "rarity": "legendary",
+      "title": "Haiti: revolução e liberdade",
+      "fact": "O Haiti conquistou independência em 1804 depois da Revolução Haitiana, tornando-se um país fundado por ex-escravizados.",
+      "why": "Conhecer o Haiti pelo futebol sem entender 1791-1804 é perder o coração da história: resistência, liberdade e custos históricos enormes.",
+      "tags": [
+        "haiti",
+        "revolution",
+        "1804"
+      ],
+      "viz": {
+        "type": "timeline",
+        "value": 1804
+      },
+      "i18n": {
+        "en": {
+          "title": "Haiti: revolution and freedom",
+          "fact": "Haiti won independence in 1804 after the Haitian Revolution, becoming a country founded by formerly enslaved people.",
+          "why": "Learning about Haiti through football without understanding 1791-1804 misses the heart of the story: resistance, freedom and enormous historical costs."
+        }
+      }
+    },
+    {
+      "id": 27,
+      "date": "2026-06-19",
+      "category": "worldcup",
+      "rarity": "epic",
+      "title": "Haiti: Sanon contra Zoff",
+      "fact": "Na Copa de 1974, Emmanuel Sanon marcou contra a Itália e encerrou a série de 1.142 minutos sem sofrer gol do lendário goleiro Dino Zoff.",
+      "why": "O Haiti perdeu por 3 a 1, mas aquele gol virou memória de orgulho: uma seleção caribenha deixou marca eterna na história da Copa.",
+      "tags": [
+        "haiti",
+        "1974",
+        "world-cup"
+      ],
+      "viz": {
+        "type": "timeline",
+        "value": 1974
+      },
+      "i18n": {
+        "en": {
+          "title": "Haiti: Sanon against Zoff",
+          "fact": "At the 1974 World Cup, Emmanuel Sanon scored against Italy and ended legendary goalkeeper Dino Zoff's 1,142-minute shutout streak.",
+          "why": "Haiti lost 3-1, but that goal became a memory of pride: a Caribbean team left an eternal mark on World Cup history."
+        }
+      }
+    },
+    {
+      "id": 28,
+      "date": "2026-06-19",
+      "category": "worldcup",
+      "rarity": "rare",
+      "title": "Brasil x Haiti na Filadélfia",
+      "fact": "Brasil x Haiti está marcado para 19 de junho de 2026, às 20h30 locais, no Philadelphia Stadium, nome FIFA do Lincoln Financial Field.",
+      "why": "Depois do 1 a 1 com o Marrocos, o jogo carrega pressão esportiva para o Brasil e valor simbólico para os haitianos nos Estados Unidos.",
+      "tags": [
+        "philadelphia",
+        "haiti",
+        "brazil"
+      ],
+      "viz": {
+        "type": "latitude",
+        "value": 39.95
+      },
+      "i18n": {
+        "en": {
+          "title": "Brazil vs Haiti in Philadelphia",
+          "fact": "Brazil vs Haiti is scheduled for June 19, 2026, at 20:30 local time, at Philadelphia Stadium, FIFA's name for Lincoln Financial Field.",
+          "why": "After the 1-1 draw with Morocco, the match carries sporting pressure for Brazil and symbolic value for Haitians in the United States."
+        }
+      }
+    },
+    {
+      "id": 29,
+      "date": "2026-06-19",
+      "category": "worldcup",
+      "rarity": "rare",
+      "title": "Escócia: retorno da Tartan Army",
+      "fact": "A Escócia voltou à Copa de 2026 depois de 28 anos; sua última participação havia sido em 1998, também em um grupo com Brasil e Marrocos.",
+      "why": "O jogo em Miami fecha a rota brasileira e traz uma seleção de torcida forte, memória mundialista antiga e desejo de finalmente passar da fase de grupos.",
+      "tags": [
+        "scotland",
+        "tartan-army",
+        "world-cup"
+      ],
+      "viz": {
+        "type": "timeline",
+        "value": 1998
+      },
+      "i18n": {
+        "en": {
+          "title": "Scotland: return of the Tartan Army",
+          "fact": "Scotland returned to the 2026 World Cup after 28 years; its previous appearance was in 1998, also in a group with Brazil and Morocco.",
+          "why": "The Miami match closes Brazil's group-stage route against a team with a powerful fan culture, old World Cup memories and a hunger to finally escape the group stage."
+        }
+      }
+    },
+    {
+      "id": 30,
+      "date": "2026-06-21",
+      "category": "football",
+      "rarity": "rare",
+      "title": "Pressão alta: roubar perto do gol",
+      "fact": "Pressão alta empurra o time para o campo ofensivo e tenta recuperar a bola logo na saída do adversário.",
+      "why": "Quando funciona, a recuperação vira chance curta e rápida. O risco é deixar espaço nas costas da linha defensiva.",
+      "tags": [
+        "pressing",
+        "tactics",
+        "football"
+      ],
+      "viz": {
+        "type": "press"
+      },
+      "i18n": {
+        "en": {
+          "title": "High press: win it near goal",
+          "fact": "A high press pushes the team into the attacking half and tries to win the ball during the opponent's buildup.",
+          "why": "When it works, recovery becomes a short, fast chance. The risk is leaving space behind the defensive line."
+        }
+      }
+    },
+    {
+      "id": 31,
+      "date": "2026-06-21",
+      "category": "football",
+      "rarity": "uncommon",
+      "title": "Bloco baixo: proteger a área",
+      "fact": "Bloco baixo recua linhas, fecha o centro e força o adversário a circular a bola longe do gol.",
+      "why": "Não é só se defender com muitos jogadores; é controlar espaço perigoso e escolher o momento certo para contra-atacar.",
+      "tags": [
+        "low-block",
+        "defense",
+        "compactness"
+      ],
+      "viz": {
+        "type": "low-block"
+      },
+      "i18n": {
+        "en": {
+          "title": "Low block: protect the box",
+          "fact": "A low block drops the lines, closes the middle and forces the opponent to circulate the ball away from goal.",
+          "why": "It is not simply defending with many players; it is controlling dangerous space and choosing the right counterattack moment."
+        }
+      }
+    },
+    {
+      "id": 32,
+      "date": "2026-06-21",
+      "category": "football",
+      "rarity": "rare",
+      "title": "Amplitude e profundidade",
+      "fact": "Amplitude abre o campo pelos lados; profundidade ameaça as costas da defesa e alonga o bloco rival.",
+      "why": "Um ataque bom não ocupa só onde a bola está. Ele estica o adversário para criar linhas de passe e espaços entre jogadores.",
+      "tags": [
+        "width",
+        "depth",
+        "positional-play"
+      ],
+      "viz": {
+        "type": "width-depth"
+      },
+      "i18n": {
+        "en": {
+          "title": "Width and depth",
+          "fact": "Width opens the pitch on the sides; depth threatens the space behind the defense and stretches the opponent's block.",
+          "why": "A good attack does not only occupy where the ball is. It stretches the opponent to create passing lanes and spaces between players."
+        }
+      }
+    },
+    {
+      "id": 33,
+      "date": "2026-06-21",
+      "category": "football",
+      "rarity": "epic",
+      "title": "Terceiro homem",
+      "fact": "O terceiro homem aparece quando A passa para B para que C receba livre, usando B como ponte para escapar da marcação.",
+      "why": "É uma forma elegante de quebrar pressão: o passe decisivo não vai direto ao alvo, ele usa um jogador intermediário para mudar o ângulo.",
+      "tags": [
+        "third-man",
+        "passing",
+        "positional-play"
+      ],
+      "viz": {
+        "type": "third-man"
+      },
+      "i18n": {
+        "en": {
+          "title": "The third-man run",
+          "fact": "The third man appears when A passes to B so C can receive free, using B as a bridge to escape pressure.",
+          "why": "It is an elegant way to break pressure: the key pass does not go straight to the target, it uses an intermediate player to change the angle."
+        }
+      }
+    },
+    {
+      "id": 34,
+      "date": "2026-06-21",
+      "category": "football",
+      "rarity": "rare",
+      "title": "Transição defensiva",
+      "fact": "Transição defensiva é o comportamento imediatamente depois de perder a bola: pressionar, atrasar o ataque ou reorganizar o bloco.",
+      "why": "Muitos gols nascem nos segundos após a perda. A reação coletiva decide se o time sofre contra-ataque ou recupera controle.",
+      "tags": [
+        "transition",
+        "counterpress",
+        "defense"
+      ],
+      "viz": {
+        "type": "transition"
+      },
+      "i18n": {
+        "en": {
+          "title": "Defensive transition",
+          "fact": "Defensive transition is what a team does immediately after losing the ball: press, delay the attack or reorganize the block.",
+          "why": "Many goals are born seconds after a turnover. The collective reaction decides whether the team faces a counterattack or regains control."
+        }
+      }
+    },
+    {
+      "id": 35,
+      "date": "2026-06-21",
+      "category": "football",
+      "rarity": "legendary",
+      "title": "Rest defense: atacar protegido",
+      "fact": "Rest defense é a estrutura que fica atrás da bola enquanto o time ataca, preparada para controlar contra-ataques.",
+      "why": "Times dominantes não pensam só em criar chances; eles organizam a retaguarda antes de perder a bola.",
+      "tags": [
+        "rest-defense",
+        "structure",
+        "tactics"
+      ],
+      "viz": {
+        "type": "rest-defense"
+      },
+      "i18n": {
+        "en": {
+          "title": "Rest defense: attack protected",
+          "fact": "Rest defense is the structure left behind the ball while a team attacks, prepared to control counterattacks.",
+          "why": "Dominant teams do not only think about creating chances; they organize the back line before the ball is lost."
+        }
+      }
+    }
+  ]
+};

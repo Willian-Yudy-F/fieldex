@@ -389,6 +389,7 @@
   </div>
 </div>
 
+<script src="fieldex-data.js"></script>
 <script>
 /* ============ STORAGE (safe wrapper) ============ */
 const SAVE_KEY='fieldex_progress_v1';
@@ -758,7 +759,7 @@ function buildViz(d,c){
 /* ============ INIT ============ */
 async function load(){
   try{DATA=(await (await fetch('fieldex.json',{cache:'no-store'})).json()).entries.sort((a,b)=>b.id-a.id);}
-  catch(e){DATA=[{id:1,date:'2026-06-07',category:'probability',rarity:'rare',title:'The Birthday Paradox',fact:'In a room of 23 people there is a 50% chance two share a birthday.',why:'We compare every pair, not each person to a fixed date.',tags:['statistics'],viz:{type:'birthday'}}];}
+  catch(e){DATA=((window.FIELD_DEX_INLINE&&window.FIELD_DEX_INLINE.entries)||[{id:1,date:'2026-06-07',category:'probability',rarity:'rare',title:'The Birthday Paradox',fact:'In a room of 23 people there is a 50% chance two share a birthday.',why:'We compare every pair, not each person to a fixed date.',tags:['statistics'],viz:{type:'birthday'}}]).sort((a,b)=>b.id-a.id);}
   renderWorldCupGuide();renderDaily();renderBadges();renderStats();renderTrainer();render();
 }
 function renderStats(){
