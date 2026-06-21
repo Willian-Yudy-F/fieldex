@@ -14,7 +14,7 @@
     --sun:#e8502c;--sun-deep:#c43d1d;--gold:#d99a2b;--line:#c9bda3;
     --c-probability:#2f5d8a;--c-math:#c0392b;--c-logic:#2c7a6b;
     --c-history:#d99a2b;--c-geography:#3a7d8c;--c-data:#7d5ba6;
-    --c-security:#4f6f52;--c-worldcup:#0f766e;
+    --c-security:#4f6f52;--c-worldcup:#0f766e;--c-football:#277043;
     --c-corinthians:#1c1a17;--c-default:#8a8270;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -435,11 +435,11 @@ const LANG_KEY='fieldex_lang_v1';
 let LANG='pt';
 try{LANG=localStorage.getItem(LANG_KEY)||'pt';}catch(e){LANG='pt';}
 if(!['pt','en'].includes(LANG))LANG='pt';
-const TYPE_COLORS={probability:'--c-probability',math:'--c-math',logic:'--c-logic',history:'--c-history',geography:'--c-geography',data:'--c-data',security:'--c-security',corinthians:'--c-corinthians',worldcup:'--c-worldcup'};
-const KANA={probability:'確率',math:'数学',logic:'論理',history:'歴史',geography:'地理',data:'情報',security:'安全',corinthians:'球団',worldcup:'世界杯'};
+const TYPE_COLORS={probability:'--c-probability',math:'--c-math',logic:'--c-logic',history:'--c-history',geography:'--c-geography',data:'--c-data',security:'--c-security',corinthians:'--c-corinthians',worldcup:'--c-worldcup',football:'--c-football'};
+const KANA={probability:'確率',math:'数学',logic:'論理',history:'歴史',geography:'地理',data:'情報',security:'安全',corinthians:'球団',worldcup:'世界杯',football:'戦術'};
 const CATEGORY_LABELS={
-  pt:{probability:'probabilidade',math:'matemática',logic:'lógica',history:'história',geography:'geografia',data:'dados',security:'segurança',corinthians:'corinthians',worldcup:'World Cup',all:'todos'},
-  en:{probability:'probability',math:'math',logic:'logic',history:'history',geography:'geography',data:'data',security:'security',corinthians:'corinthians',worldcup:'World Cup',all:'all'}
+  pt:{probability:'probabilidade',math:'matemática',logic:'lógica',history:'história',geography:'geografia',data:'dados',security:'segurança',corinthians:'corinthians',worldcup:'World Cup',football:'futebol',all:'todos'},
+  en:{probability:'probability',math:'math',logic:'logic',history:'history',geography:'geography',data:'data',security:'security',corinthians:'corinthians',worldcup:'World Cup',football:'football',all:'all'}
 };
 const RARITY={common:['COMMON','#8a8270',1],uncommon:['UNCOMMON','#2c7a6b',2],rare:['RARE','#2f5d8a',3],epic:['EPIC','#7d5ba6',4],legendary:['LEGENDARY','#d99a2b',5]};
 const BADGES={
@@ -452,6 +452,7 @@ const BADGES={
   data:{name:'Analyst',ico:'📊',color:'#7d5ba6'},
   security:{name:'Security Analyst',ico:'SEC',color:'#4f6f52'},
   worldcup:{name:'World Cup Scout',ico:'WC',color:'#0f766e'},
+  football:{name:'Tactical Analyst',ico:'XI',color:'#277043'},
 };
 const cssVar=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const typeColor=c=>cssVar(TYPE_COLORS[c]||'--c-default');
@@ -707,6 +708,33 @@ function vizSecurity(c,d){
     <line x1="${cx}" y1="${cy+16}" x2="${cx}" y2="${cy+22}" stroke="${c}" stroke-width="2"/>
   </svg>`;
 }
+function vizFootball(c,d){
+  const W=300,H=120,p=10,type=(d.viz&&d.viz.type)||'shape';
+  const dot=(x,y,r=4,fill=c)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${fill}"/>`;
+  const line=(x1,y1,x2,y2,w=1.5,op=.55)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${c}" stroke-width="${w}" opacity="${op}" stroke-linecap="round"/>`;
+  let marks='';
+  if(type==='press'){
+    marks=[dot(84,36),dot(84,84),dot(118,60),dot(152,38),dot(152,82),line(60,26,126,46,2,.75),line(60,94,126,74,2,.75),line(116,60,172,60,2,.75)].join('');
+  }else if(type==='low-block'){
+    marks=[line(74,26,74,94,2,.75),line(112,30,112,90,2,.55),dot(70,32),dot(70,50),dot(70,70),dot(70,88),dot(108,40),dot(108,60),dot(108,80)].join('');
+  }else if(type==='width-depth'){
+    marks=[dot(42,24),dot(42,96),dot(256,24),dot(256,96),dot(150,60),line(42,24,256,24,2,.55),line(42,96,256,96,2,.55),line(150,96,150,28,2,.7)].join('');
+  }else if(type==='third-man'){
+    marks=[dot(78,78),dot(150,36),dot(220,76),line(78,78,150,36,2,.8),line(150,36,220,76,2,.8),`<path d="M82 78 Q150 102 218 76" fill="none" stroke="${c}" stroke-width="1.3" opacity=".35" stroke-dasharray="4 4"/>`].join('');
+  }else if(type==='transition'){
+    marks=[dot(98,60),dot(132,42),dot(132,78),dot(206,60),line(98,60,206,60,2.5,.8),line(132,42,206,60,1.8,.6),line(132,78,206,60,1.8,.6)].join('');
+  }else{
+    marks=[dot(118,36),dot(118,84),dot(156,50),dot(156,70),dot(202,60),line(118,36,156,50,1.8,.65),line(118,84,156,70,1.8,.65),line(156,50,202,60,1.8,.65),line(156,70,202,60,1.8,.65)].join('');
+  }
+  return `<svg viewBox="0 0 ${W} ${H}">
+    <rect x="${p}" y="${p}" width="${W-2*p}" height="${H-2*p}" fill="${c}" opacity=".06" stroke="${c}" stroke-width="1.5"/>
+    <line x1="${W/2}" y1="${p}" x2="${W/2}" y2="${H-p}" stroke="${c}" stroke-width="1" opacity=".28"/>
+    <circle cx="${W/2}" cy="${H/2}" r="18" fill="none" stroke="${c}" stroke-width="1" opacity=".28"/>
+    <rect x="${p}" y="${H/2-28}" width="32" height="56" fill="none" stroke="${c}" stroke-width="1" opacity=".28"/>
+    <rect x="${W-p-32}" y="${H/2-28}" width="32" height="56" fill="none" stroke="${c}" stroke-width="1" opacity=".28"/>
+    ${marks}
+  </svg>`;
+}
 
 function buildViz(d,c){
   switch(d.category){
@@ -718,6 +746,7 @@ function buildViz(d,c){
     case 'logic':return vizLogic(c,d);
     case 'data':return vizData(c,d);
     case 'security':return vizSecurity(c,d);
+    case 'football':return vizFootball(c,d);
     case 'worldcup':
       if(d.viz&&d.viz.type==='timeline')return vizHistory(c,d);
       if(d.viz&&d.viz.type==='latitude')return vizGeography(c,d);

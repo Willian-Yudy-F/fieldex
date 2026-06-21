@@ -44,6 +44,7 @@ TYPES = {
     "security":    {"color": "#9ad17b", "glow": "#15301d", "icon": "S"},
     "corinthians": {"color": "#ffffff", "glow": "#1a1a1a", "icon": "C"},
     "worldcup":    {"color": "#2dd4bf", "glow": "#0f2f2d", "icon": "W"},
+    "football":    {"color": "#74c69d", "glow": "#102d1c", "icon": "XI"},
 }
 DEFAULT_TYPE = {"color": "#adb5bd", "glow": "#22252a", "icon": "?"}
 

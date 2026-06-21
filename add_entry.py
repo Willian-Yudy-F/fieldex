@@ -18,7 +18,7 @@ ROOT = Path(__file__).parent
 DEX = ROOT / "fieldex.json"
 
 CATEGORIES = ["probability", "math", "logic", "history",
-              "geography", "data", "security", "corinthians", "worldcup"]
+              "geography", "data", "security", "corinthians", "worldcup", "football"]
 RARITIES = ["common", "uncommon", "rare", "epic", "legendary"]
 
 

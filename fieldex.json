@@ -554,6 +554,150 @@
           "why": "The Miami match closes Brazil's group-stage route against a team with a powerful fan culture, old World Cup memories and a hunger to finally escape the group stage."
         }
       }
+    },
+    {
+      "id": 30,
+      "date": "2026-06-21",
+      "category": "football",
+      "rarity": "rare",
+      "title": "Pressão alta: roubar perto do gol",
+      "fact": "Pressão alta empurra o time para o campo ofensivo e tenta recuperar a bola logo na saída do adversário.",
+      "why": "Quando funciona, a recuperação vira chance curta e rápida. O risco é deixar espaço nas costas da linha defensiva.",
+      "tags": [
+        "pressing",
+        "tactics",
+        "football"
+      ],
+      "viz": {
+        "type": "press"
+      },
+      "i18n": {
+        "en": {
+          "title": "High press: win it near goal",
+          "fact": "A high press pushes the team into the attacking half and tries to win the ball during the opponent's buildup.",
+          "why": "When it works, recovery becomes a short, fast chance. The risk is leaving space behind the defensive line."
+        }
+      }
+    },
+    {
+      "id": 31,
+      "date": "2026-06-21",
+      "category": "football",
+      "rarity": "uncommon",
+      "title": "Bloco baixo: proteger a área",
+      "fact": "Bloco baixo recua linhas, fecha o centro e força o adversário a circular a bola longe do gol.",
+      "why": "Não é só se defender com muitos jogadores; é controlar espaço perigoso e escolher o momento certo para contra-atacar.",
+      "tags": [
+        "low-block",
+        "defense",
+        "compactness"
+      ],
+      "viz": {
+        "type": "low-block"
+      },
+      "i18n": {
+        "en": {
+          "title": "Low block: protect the box",
+          "fact": "A low block drops the lines, closes the middle and forces the opponent to circulate the ball away from goal.",
+          "why": "It is not simply defending with many players; it is controlling dangerous space and choosing the right counterattack moment."
+        }
+      }
+    },
+    {
+      "id": 32,
+      "date": "2026-06-21",
+      "category": "football",
+      "rarity": "rare",
+      "title": "Amplitude e profundidade",
+      "fact": "Amplitude abre o campo pelos lados; profundidade ameaça as costas da defesa e alonga o bloco rival.",
+      "why": "Um ataque bom não ocupa só onde a bola está. Ele estica o adversário para criar linhas de passe e espaços entre jogadores.",
+      "tags": [
+        "width",
+        "depth",
+        "positional-play"
+      ],
+      "viz": {
+        "type": "width-depth"
+      },
+      "i18n": {
+        "en": {
+          "title": "Width and depth",
+          "fact": "Width opens the pitch on the sides; depth threatens the space behind the defense and stretches the opponent's block.",
+          "why": "A good attack does not only occupy where the ball is. It stretches the opponent to create passing lanes and spaces between players."
+        }
+      }
+    },
+    {
+      "id": 33,
+      "date": "2026-06-21",
+      "category": "football",
+      "rarity": "epic",
+      "title": "Terceiro homem",
+      "fact": "O terceiro homem aparece quando A passa para B para que C receba livre, usando B como ponte para escapar da marcação.",
+      "why": "É uma forma elegante de quebrar pressão: o passe decisivo não vai direto ao alvo, ele usa um jogador intermediário para mudar o ângulo.",
+      "tags": [
+        "third-man",
+        "passing",
+        "positional-play"
+      ],
+      "viz": {
+        "type": "third-man"
+      },
+      "i18n": {
+        "en": {
+          "title": "The third-man run",
+          "fact": "The third man appears when A passes to B so C can receive free, using B as a bridge to escape pressure.",
+          "why": "It is an elegant way to break pressure: the key pass does not go straight to the target, it uses an intermediate player to change the angle."
+        }
+      }
+    },
+    {
+      "id": 34,
+      "date": "2026-06-21",
+      "category": "football",
+      "rarity": "rare",
+      "title": "Transição defensiva",
+      "fact": "Transição defensiva é o comportamento imediatamente depois de perder a bola: pressionar, atrasar o ataque ou reorganizar o bloco.",
+      "why": "Muitos gols nascem nos segundos após a perda. A reação coletiva decide se o time sofre contra-ataque ou recupera controle.",
+      "tags": [
+        "transition",
+        "counterpress",
+        "defense"
+      ],
+      "viz": {
+        "type": "transition"
+      },
+      "i18n": {
+        "en": {
+          "title": "Defensive transition",
+          "fact": "Defensive transition is what a team does immediately after losing the ball: press, delay the attack or reorganize the block.",
+          "why": "Many goals are born seconds after a turnover. The collective reaction decides whether the team faces a counterattack or regains control."
+        }
+      }
+    },
+    {
+      "id": 35,
+      "date": "2026-06-21",
+      "category": "football",
+      "rarity": "legendary",
+      "title": "Rest defense: atacar protegido",
+      "fact": "Rest defense é a estrutura que fica atrás da bola enquanto o time ataca, preparada para controlar contra-ataques.",
+      "why": "Times dominantes não pensam só em criar chances; eles organizam a retaguarda antes de perder a bola.",
+      "tags": [
+        "rest-defense",
+        "structure",
+        "tactics"
+      ],
+      "viz": {
+        "type": "rest-defense"
+      },
+      "i18n": {
+        "en": {
+          "title": "Rest defense: attack protected",
+          "fact": "Rest defense is the structure left behind the ball while a team attacks, prepared to control counterattacks.",
+          "why": "Dominant teams do not only think about creating chances; they organize the back line before the ball is lost."
+        }
+      }
     }
   ]
 }

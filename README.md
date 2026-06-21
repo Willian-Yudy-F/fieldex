@@ -47,7 +47,7 @@ Progress is saved with `localStorage`, so it belongs to that browser/device:
 
 There is no backend account yet; clearing browser storage or switching devices starts a fresh local profile.
 
-- **Types:** probability · math · logic · history · geography · data · security · corinthians · worldcup
+- **Types:** probability · math · logic · history · geography · data · security · corinthians · worldcup · football
 - **Rarity:** common → uncommon → rare → epic → legendary
 
 ```json
