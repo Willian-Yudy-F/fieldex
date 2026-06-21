@@ -323,8 +323,6 @@
 
   <section class="daily" id="daily"></section>
 
-  <section class="worldcup" id="world-cup"></section>
-
   <section class="badge-case">
     <div class="case-head">
       <span>Trainer Badge Case</span>
@@ -341,6 +339,8 @@
   </div>
 
   <div class="grid" id="grid"></div>
+
+  <section class="worldcup" id="world-cup"></section>
 
   <footer>
     <div class="foot-grid">
@@ -467,7 +467,7 @@ const WC_COPY={
     copy:'Uma trilha de leitura para acompanhar o Grupo C: primeiro o país e suas curiosidades, depois a partida do Brasil, por fim o estádio e a cidade onde tudo acontece.',
     updated:'Atualizado · 20 jun 2026',
     hintTitle:'Categoria World Cup',
-    hintCopy:'Ao clicar em World Cup, o dex reúne contexto cultural, histórico e esportivo em uma sequência feita para portfólio.',
+    hintCopy:'Ao clicar em World Cup, o dex abre este guia sem esconder a galeria completa: contexto cultural, histórico e esportivo em uma sequência feita para portfólio.',
     hintMeta:'7 cards · PT/EN',
     flow:[
       ['1','História e curiosidades','Contexto do país, cultura, memória de Copa e detalhes que ajudam a entender o adversário.'],
@@ -496,7 +496,7 @@ const WC_COPY={
     copy:'A reading path for Group C: first the country and its curiosities, then Brazil’s match, finally the stadium and host city where it happens.',
     updated:'Updated · Jun 20, 2026',
     hintTitle:'World Cup category',
-    hintCopy:'Clicking World Cup turns the dex into a portfolio-style guide connecting culture, history, football context and venue information.',
+    hintCopy:'Clicking World Cup opens this guide without hiding the full gallery: a portfolio-style path connecting culture, history, football context and venue information.',
     hintMeta:'7 cards · PT/EN',
     flow:[
       ['1','History and curiosities','Country context, culture, World Cup memory and details that make the opponent easier to understand.'],
@@ -844,8 +844,14 @@ function buildFilters(){
     return `<button class="filter ${cat===activeFilter?'active':''}" data-c="${cat}">${categoryLabel(cat)}<span class="c">${n}</span></button>`;
   }).join('');
   document.querySelectorAll('.filter').forEach(b=>b.onclick=()=>{
-    activeFilter=b.dataset.c;render();
-    if(activeFilter==='worldcup')setTimeout(()=>document.getElementById('world-cup')?.scrollIntoView({behavior:'smooth',block:'start'}),20);
+    const next=b.dataset.c;
+    if(next==='worldcup'){
+      activeFilter='all';
+      render();
+      setTimeout(()=>document.getElementById('world-cup')?.scrollIntoView({behavior:'smooth',block:'start'}),20);
+      return;
+    }
+    activeFilter=next;render();
   });
 }
 function cardHTML(d,i){
