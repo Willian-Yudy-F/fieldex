@@ -698,6 +698,31 @@ window.FIELD_DEX_INLINE = {
           "why": "Dominant teams do not only think about creating chances; they organize the back line before the ball is lost."
         }
       }
+    },
+    {
+      "id": 36,
+      "date": "2026-06-25",
+      "category": "history",
+      "rarity": "epic",
+      "title": "Escócia: identidade que resistiu",
+      "fact": "Em 1707, a Escócia se uniu à Inglaterra para formar a Grã-Bretanha, mas preservou uma identidade própria em símbolos como tartan, Highland Games, gaélico, Scots e a literatura de Robert Burns.",
+      "why": "A força cultural escocesa nasce dessa tensão: fazer parte de uma união política sem deixar de contar a própria história como nação.",
+      "tags": [
+        "scotland",
+        "culture",
+        "1707"
+      ],
+      "viz": {
+        "type": "timeline",
+        "value": 1707
+      },
+      "i18n": {
+        "en": {
+          "title": "Scotland: identity that endured",
+          "fact": "In 1707, Scotland joined England to form Great Britain, but kept a distinct identity through symbols such as tartan, Highland Games, Gaelic, Scots and the literature of Robert Burns.",
+          "why": "Scottish culture is shaped by that tension: belonging to a political union while still telling its own story as a nation."
+        }
+      }
     }
   ]
 };
