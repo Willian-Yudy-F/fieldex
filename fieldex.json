@@ -723,6 +723,30 @@
           "why": "Scottish culture is shaped by that tension: belonging to a political union while still telling its own story as a nation."
         }
       }
+    },
+    {
+      "id": 37,
+      "date": "2026-07-07",
+      "category": "data",
+      "rarity": "rare",
+      "title": "LLM: linguagem em escala",
+      "fact": "LLM significa Large Language Model: um modelo treinado em grandes volumes de texto para prever a próxima parte de uma sequência.",
+      "why": "Ele não consulta uma consciência; calcula padrões de linguagem. Por isso pode resumir, escrever e programar, mas ainda precisa de contexto, checagem e bom julgamento humano.",
+      "tags": [
+        "llm",
+        "ai",
+        "language-model"
+      ],
+      "viz": {
+        "type": "bars"
+      },
+      "i18n": {
+        "en": {
+          "title": "LLM: language at scale",
+          "fact": "LLM means Large Language Model: a model trained on huge volumes of text to predict the next part of a sequence.",
+          "why": "It is not consulting a consciousness; it is calculating language patterns. That is why it can summarize, write and code, but still needs context, checking and good human judgment."
+        }
+      }
     }
   ]
 }
