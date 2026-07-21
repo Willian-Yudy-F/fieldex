@@ -267,9 +267,9 @@
       "date": "2026-06-18",
       "category": "security",
       "rarity": "rare",
-      "title": "Módulo 4: A Ameaça em Movimento",
-      "fact": "Malware é software criado para causar dano, obter acesso não autorizado ou interromper sistemas.",
-      "why": "Ele transforma a tríade CIA em alvo: rouba confidencialidade, altera integridade e bloqueia disponibilidade.",
+      "title": "Malware targets CIA",
+      "fact": "Malware is software built to damage systems, gain unauthorized access or disrupt availability.",
+      "why": "It turns the CIA triad into a target: stealing confidentiality, changing integrity and blocking availability.",
       "tags": [
         "malware",
         "cia",
@@ -284,9 +284,9 @@
       "date": "2026-06-18",
       "category": "security",
       "rarity": "uncommon",
-      "title": "Vírus, Worm e Trojan",
-      "fact": "Vírus precisa de arquivo hospedeiro e ação humana; worm se replica sozinho pela rede; trojan finge ser legítimo para abrir a porta.",
-      "why": "Os três parecem iguais porque todos são malware, mas a diferença principal é como entram e se propagam.",
+      "title": "Virus, Worm and Trojan",
+      "fact": "A virus needs a host file and human action; a worm self-replicates across networks; a trojan pretends to be legitimate to open the door.",
+      "why": "They look similar because all are malware, but the key difference is how they enter and spread.",
       "tags": [
         "virus",
         "worm",
@@ -301,13 +301,13 @@
       "date": "2026-06-18",
       "category": "security",
       "rarity": "rare",
-      "title": "Propagação Não É Payload",
-      "fact": "Propagação é como o ataque entra: e-mail, USB, download, vulnerabilidade ou site comprometido. Payload é o que ele faz depois.",
-      "why": "Separar entrada de efeito evita confusão: o mesmo vetor pode entregar roubo de dados, ransomware ou espionagem.",
+      "title": "Propagation Is Not Payload",
+      "fact": "Propagation is how an attack enters: email, USB, download, vulnerability or compromised website. Payload is what it does next.",
+      "why": "Separating entry from effect avoids confusion: the same vector can deliver data theft, ransomware or espionage.",
       "tags": [
         "payload",
-        "vetores",
-        "ataques"
+        "vectors",
+        "attack-chain"
       ],
       "viz": {
         "type": "attack-chain"
@@ -318,12 +318,12 @@
       "date": "2026-06-18",
       "category": "security",
       "rarity": "uncommon",
-      "title": "Engenharia Social Ataca Pessoas",
-      "fact": "Phishing, spear phishing e pretexting manipulam confiança para fazer alguém clicar, baixar ou revelar credenciais.",
-      "why": "Muitos ataques não começam quebrando criptografia ou firewall; começam explorando decisão humana.",
+      "title": "Social Engineering",
+      "fact": "Phishing, spear phishing and pretexting manipulate trust to make someone click, download or reveal credentials.",
+      "why": "Many attacks do not start by breaking cryptography or firewalls; they start by exploiting human decision-making.",
       "tags": [
         "phishing",
-        "credenciais",
+        "credentials",
         "social"
       ],
       "viz": {
@@ -335,9 +335,9 @@
       "date": "2026-06-18",
       "category": "security",
       "rarity": "legendary",
-      "title": "Change Healthcare: MFA Ausente",
-      "fact": "Em 2024, a Change Healthcare sofreu ransomware após acesso por um portal remoto Citrix sem MFA; uma credencial roubada bastou.",
-      "why": "É um exemplo direto da ligação entre Módulo 2 e Módulo 4: autenticação fraca vira porta de entrada para malware.",
+      "title": "Change Healthcare: Missing MFA",
+      "fact": "In 2024, Change Healthcare suffered ransomware after access through a remote Citrix portal without MFA; one stolen credential was enough.",
+      "why": "It links authentication and malware clearly: weak access control becomes the entry point for a major incident.",
       "tags": [
         "ransomware",
         "mfa",
@@ -352,9 +352,9 @@
       "date": "2026-06-18",
       "category": "security",
       "rarity": "epic",
-      "title": "APT: O Ataque Que Mora na Rede",
-      "fact": "Uma Advanced Persistent Threat é prolongada, direcionada e furtiva: o invasor tenta permanecer na rede sem ser notado.",
-      "why": "Ela muda a pergunta de 'bloqueamos a entrada?' para 'como detectamos movimento lateral e persistência?'.",
+      "title": "APT: Persistent Intrusion",
+      "fact": "An Advanced Persistent Threat is targeted, stealthy and long-running: the attacker aims to remain inside the network without being noticed.",
+      "why": "It shifts the defensive question from 'did we block entry?' to 'can we detect lateral movement and persistence?'.",
       "tags": [
         "apt",
         "stealth",
@@ -369,9 +369,9 @@
       "date": "2026-06-18",
       "category": "security",
       "rarity": "rare",
-      "title": "Defesa em Camadas",
-      "fact": "Antivírus, firewall ou backup isolado não resolvem sozinhos; cada controle cobre apenas uma parte do risco.",
-      "why": "Defesa em camadas combina MFA, patches, EDR, segmentação, menor privilégio, backups testados e resposta a incidentes.",
+      "title": "Defense in Depth",
+      "fact": "Antivirus, firewalls or isolated backups do not solve risk alone; each control covers only part of the attack surface.",
+      "why": "Defense in depth combines MFA, patching, EDR, segmentation, least privilege, tested backups and incident response.",
       "tags": [
         "defense-in-depth",
         "edr",
@@ -753,9 +753,9 @@
       "date": "2026-07-22",
       "category": "security",
       "rarity": "epic",
-      "title": "Zero Trust: verifique sempre",
-      "fact": "Zero Trust troca confiança implícita por verificação contínua: identidade, dispositivo, localização, contexto e privilégio precisam fazer sentido a cada acesso.",
-      "why": "Em ambientes com nuvem, trabalho remoto e SaaS, a rede interna deixou de ser uma fronteira confiável. Segurança madura valida cada sessão antes de liberar impacto.",
+      "title": "Zero Trust: Verify Always",
+      "fact": "Zero Trust replaces implicit trust with continuous verification: identity, device, location, context and privilege must make sense for every access.",
+      "why": "With cloud, remote work and SaaS, the internal network is no longer a trusted border. Mature security validates each session before allowing impact.",
       "tags": [
         "zero-trust",
         "iam",
@@ -777,9 +777,9 @@
       "date": "2026-07-22",
       "category": "security",
       "rarity": "rare",
-      "title": "Modelagem de ameaças",
-      "fact": "Modelagem de ameaças pergunta o que estamos protegendo, quem atacaria, por onde entraria e qual controle reduz o risco.",
-      "why": "Antes de comprar ferramentas, um analista precisa enxergar o sistema como um adversário. Esse mapa transforma medo genérico em decisões testáveis.",
+      "title": "Threat Modeling",
+      "fact": "Threat modeling asks what we protect, who would attack it, where they would enter and which control reduces the risk.",
+      "why": "Before buying tools, an analyst must see the system like an adversary. That map turns vague fear into testable decisions.",
       "tags": [
         "threat-modeling",
         "risk",
@@ -801,9 +801,9 @@
       "date": "2026-07-22",
       "category": "security",
       "rarity": "rare",
-      "title": "Menor privilégio",
-      "fact": "Menor privilégio dá a cada usuário, serviço ou processo apenas o acesso necessário, pelo menor tempo possível.",
-      "why": "Quando uma conta é comprometida, o estrago depende do alcance dela. Reduzir privilégio diminui movimento lateral, vazamento e dano operacional.",
+      "title": "Least Privilege",
+      "fact": "Least privilege gives each user, service or process only the access it needs, for the shortest reasonable time.",
+      "why": "When an account is compromised, damage depends on its reach. Reducing privilege limits lateral movement, leakage and operational impact.",
       "tags": [
         "least-privilege",
         "iam",
@@ -825,9 +825,9 @@
       "date": "2026-07-22",
       "category": "security",
       "rarity": "epic",
-      "title": "SIEM: sinal vira decisão",
-      "fact": "Um SIEM centraliza logs de sistemas, identidade, rede e aplicações para correlacionar eventos e destacar comportamentos suspeitos.",
-      "why": "Log isolado é ruído. Correlação bem feita ajuda o SOC a priorizar alerta real, reduzir falso positivo e responder antes que o ataque cresça.",
+      "title": "SIEM: From Signal to Decision",
+      "fact": "A SIEM centralizes logs from systems, identity, network and applications to correlate events and surface suspicious behavior.",
+      "why": "An isolated log is noise. Good correlation helps the SOC prioritize real alerts, reduce false positives and respond before the attack grows.",
       "tags": [
         "siem",
         "soc",
@@ -838,7 +838,7 @@
       },
       "i18n": {
         "en": {
-          "title": "SIEM: signal to decision",
+          "title": "SIEM: From Signal to Decision",
           "fact": "A SIEM centralizes logs from systems, identity, network and applications to correlate events and surface suspicious behavior.",
           "why": "An isolated log is noise. Good correlation helps the SOC prioritize real alerts, reduce false positives and respond before the attack grows."
         }
@@ -849,9 +849,9 @@
       "date": "2026-07-22",
       "category": "security",
       "rarity": "legendary",
-      "title": "Resposta a incidentes",
-      "fact": "Resposta a incidentes organiza preparação, detecção, contenção, erradicação, recuperação e lições aprendidas em um processo repetível.",
-      "why": "Na crise, improviso custa caro. Um playbook claro protege evidências, reduz tempo de parada e transforma cada incidente em melhoria defensiva.",
+      "title": "Incident Response",
+      "fact": "Incident response organizes preparation, detection, containment, eradication, recovery and lessons learned into a repeatable process.",
+      "why": "During a crisis, improvisation is expensive. A clear playbook protects evidence, reduces downtime and turns each incident into defensive improvement.",
       "tags": [
         "incident-response",
         "playbook",

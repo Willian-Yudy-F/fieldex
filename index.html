@@ -432,10 +432,10 @@ function formatDate(iso){
 }
 
 /* ============ CONFIG ============ */
-const LANG_KEY='fieldex_lang_v1';
-let LANG='pt';
-try{LANG=localStorage.getItem(LANG_KEY)||'pt';}catch(e){LANG='pt';}
-if(!['pt','en'].includes(LANG))LANG='pt';
+const LANG_KEY='fieldex_lang_v2';
+let LANG='en';
+try{LANG=localStorage.getItem(LANG_KEY)||'en';}catch(e){LANG='en';}
+if(!['pt','en'].includes(LANG))LANG='en';
 const TYPE_COLORS={probability:'--c-probability',math:'--c-math',logic:'--c-logic',history:'--c-history',geography:'--c-geography',data:'--c-data',security:'--c-security',corinthians:'--c-corinthians',worldcup:'--c-worldcup',football:'--c-football'};
 const KANA={probability:'確率',math:'数学',logic:'論理',history:'歴史',geography:'地理',data:'情報',security:'安全',corinthians:'球団',worldcup:'世界杯',football:'戦術'};
 const CATEGORY_LABELS={
