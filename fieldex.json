@@ -747,6 +747,126 @@
           "why": "It is not consulting a consciousness; it is calculating language patterns. That is why it can summarize, write and code, but still needs context, checking and good human judgment."
         }
       }
+    },
+    {
+      "id": 38,
+      "date": "2026-07-22",
+      "category": "security",
+      "rarity": "epic",
+      "title": "Zero Trust: verifique sempre",
+      "fact": "Zero Trust troca confiança implícita por verificação contínua: identidade, dispositivo, localização, contexto e privilégio precisam fazer sentido a cada acesso.",
+      "why": "Em ambientes com nuvem, trabalho remoto e SaaS, a rede interna deixou de ser uma fronteira confiável. Segurança madura valida cada sessão antes de liberar impacto.",
+      "tags": [
+        "zero-trust",
+        "iam",
+        "access"
+      ],
+      "viz": {
+        "type": "zero-trust"
+      },
+      "i18n": {
+        "en": {
+          "title": "Zero Trust: verify always",
+          "fact": "Zero Trust replaces implicit trust with continuous verification: identity, device, location, context and privilege must make sense for every access.",
+          "why": "With cloud, remote work and SaaS, the internal network is no longer a trusted border. Mature security validates each session before allowing impact."
+        }
+      }
+    },
+    {
+      "id": 39,
+      "date": "2026-07-22",
+      "category": "security",
+      "rarity": "rare",
+      "title": "Modelagem de ameaças",
+      "fact": "Modelagem de ameaças pergunta o que estamos protegendo, quem atacaria, por onde entraria e qual controle reduz o risco.",
+      "why": "Antes de comprar ferramentas, um analista precisa enxergar o sistema como um adversário. Esse mapa transforma medo genérico em decisões testáveis.",
+      "tags": [
+        "threat-modeling",
+        "risk",
+        "stride"
+      ],
+      "viz": {
+        "type": "threat-model"
+      },
+      "i18n": {
+        "en": {
+          "title": "Threat modeling",
+          "fact": "Threat modeling asks what we protect, who would attack it, where they would enter and which control reduces the risk.",
+          "why": "Before buying tools, an analyst must see the system like an adversary. That map turns vague fear into testable decisions."
+        }
+      }
+    },
+    {
+      "id": 40,
+      "date": "2026-07-22",
+      "category": "security",
+      "rarity": "rare",
+      "title": "Menor privilégio",
+      "fact": "Menor privilégio dá a cada usuário, serviço ou processo apenas o acesso necessário, pelo menor tempo possível.",
+      "why": "Quando uma conta é comprometida, o estrago depende do alcance dela. Reduzir privilégio diminui movimento lateral, vazamento e dano operacional.",
+      "tags": [
+        "least-privilege",
+        "iam",
+        "blast-radius"
+      ],
+      "viz": {
+        "type": "least-privilege"
+      },
+      "i18n": {
+        "en": {
+          "title": "Least privilege",
+          "fact": "Least privilege gives each user, service or process only the access it needs, for the shortest reasonable time.",
+          "why": "When an account is compromised, damage depends on its reach. Reducing privilege limits lateral movement, leakage and operational impact."
+        }
+      }
+    },
+    {
+      "id": 41,
+      "date": "2026-07-22",
+      "category": "security",
+      "rarity": "epic",
+      "title": "SIEM: sinal vira decisão",
+      "fact": "Um SIEM centraliza logs de sistemas, identidade, rede e aplicações para correlacionar eventos e destacar comportamentos suspeitos.",
+      "why": "Log isolado é ruído. Correlação bem feita ajuda o SOC a priorizar alerta real, reduzir falso positivo e responder antes que o ataque cresça.",
+      "tags": [
+        "siem",
+        "soc",
+        "detection"
+      ],
+      "viz": {
+        "type": "siem"
+      },
+      "i18n": {
+        "en": {
+          "title": "SIEM: signal to decision",
+          "fact": "A SIEM centralizes logs from systems, identity, network and applications to correlate events and surface suspicious behavior.",
+          "why": "An isolated log is noise. Good correlation helps the SOC prioritize real alerts, reduce false positives and respond before the attack grows."
+        }
+      }
+    },
+    {
+      "id": 42,
+      "date": "2026-07-22",
+      "category": "security",
+      "rarity": "legendary",
+      "title": "Resposta a incidentes",
+      "fact": "Resposta a incidentes organiza preparação, detecção, contenção, erradicação, recuperação e lições aprendidas em um processo repetível.",
+      "why": "Na crise, improviso custa caro. Um playbook claro protege evidências, reduz tempo de parada e transforma cada incidente em melhoria defensiva.",
+      "tags": [
+        "incident-response",
+        "playbook",
+        "resilience"
+      ],
+      "viz": {
+        "type": "incident-response"
+      },
+      "i18n": {
+        "en": {
+          "title": "Incident response",
+          "fact": "Incident response organizes preparation, detection, containment, eradication, recovery and lessons learned into a repeatable process.",
+          "why": "During a crisis, improvisation is expensive. A clear playbook protects evidence, reduces downtime and turns each incident into defensive improvement."
+        }
+      }
     }
   ]
 }
