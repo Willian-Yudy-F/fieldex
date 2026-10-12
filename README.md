@@ -3,6 +3,12 @@
 > **Gotta learn 'em all.**
 > A daily knowledge "Pokédex" — every card is visible, but a card only joins the reader's local Trainer Profile after they solve a logic/math challenge.
 
+
+## In plain English
+A "Pokédex" for knowledge instead of monsters. Every day I learn one new thing (a maths idea, a security concept, a football tactic…) and turn it into a collectible card. The gallery is a website anyone can read; to "collect" a card you solve a small logic puzzle. A Python script generates the card images automatically and GitHub Actions rebuilds the site on every commit.
+
+**What I learned:** generating images with Python, keeping a JSON "database" versioned in git, building a small front end without frameworks, and the discipline of shipping something every day.
+
 FielDex is a learning-in-public project: a personal commitment to learn something new every single day, turn it into a polished collectible card, and keep a public, growing dex of it all. The full gallery is open for reading; the collection profile is earned through small reasoning puzzles and saved locally in the user's browser. The name is a play on **Pokédex** — but instead of catching creatures, I'm catching knowledge — with a small nod to *o Timão* (the club's nickname, "a Fiel", founded in **1910**).
 
 ## Why this exists
