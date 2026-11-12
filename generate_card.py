@@ -12,21 +12,25 @@ Usage:
 Output: cards/fieldex_<id>_<slug>.png
 """
 
-import json
 import sys
 import re
 import textwrap
 import unicodedata
 from pathlib import Path
 
-try:
-    import matplotlib.pyplot as plt
-    from matplotlib.patches import FancyBboxPatch, Circle
-    import matplotlib.patheffects as pe
-    HAS_MPL = True
-except ModuleNotFoundError:
-    from PIL import Image, ImageDraw, ImageFont
-    HAS_MPL = False
+from fieldex_core import load_dex
+from PIL import Image, ImageDraw, ImageFont
+
+HAS_MPL = False
+if "--matplotlib" in sys.argv:
+    try:
+        import matplotlib.patheffects as pe
+        import matplotlib.pyplot as plt
+        from matplotlib.patches import Circle, FancyBboxPatch
+
+        HAS_MPL = True
+    except ModuleNotFoundError:
+        pass
 
 ROOT = Path(__file__).parent
 DEX = ROOT / "fieldex.json"
@@ -88,16 +92,21 @@ def blend(a, b, amount):
 
 def pillow_font(size, bold=False, mono=False):
     if mono:
-        candidates = ["/System/Library/Fonts/Menlo.ttc"]
+        candidates = [
+            "/System/Library/Fonts/Menlo.ttc",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf",
+        ]
     elif bold:
         candidates = [
             "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
             "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
         ]
     else:
         candidates = [
             "/System/Library/Fonts/Supplemental/Arial.ttf",
             "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
         ]
     for candidate in candidates:
         if Path(candidate).exists():
@@ -228,8 +237,14 @@ def draw_card_pillow(entry):
 
 
 def draw_card(entry):
+    """Render a card with Pillow for consistent local and CI output."""
+    return draw_card_pillow(entry)
+
+
+def draw_card_matplotlib(entry):
+    """Render with the original optional Matplotlib implementation."""
     if not HAS_MPL:
-        return draw_card_pillow(entry)
+        raise RuntimeError("Matplotlib renderer is not installed")
 
     t = TYPES.get(entry["category"], DEFAULT_TYPE)
     color, glow, icon = t["color"], t["glow"], t["icon"]
@@ -340,7 +355,7 @@ def draw_card(entry):
 
 
 def main():
-    data = json.loads(DEX.read_text(encoding="utf-8"))
+    data = load_dex(DEX)
     entries = data["entries"]
 
     if "--all" in sys.argv:
@@ -355,8 +370,9 @@ def main():
         targets = [max(entries, key=lambda e: e["id"])]
 
     print(f"FielDex - generating {len(targets)} card(s):")
+    renderer = draw_card_matplotlib if "--matplotlib" in sys.argv else draw_card
     for e in targets:
-        draw_card(e)
+        renderer(e)
 
 
 if __name__ == "__main__":

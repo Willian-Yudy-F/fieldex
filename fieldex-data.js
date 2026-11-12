@@ -267,9 +267,9 @@ window.FIELD_DEX_INLINE = {
       "date": "2026-06-18",
       "category": "security",
       "rarity": "rare",
-      "title": "Módulo 4: A Ameaça em Movimento",
-      "fact": "Malware é software criado para causar dano, obter acesso não autorizado ou interromper sistemas.",
-      "why": "Ele transforma a tríade CIA em alvo: rouba confidencialidade, altera integridade e bloqueia disponibilidade.",
+      "title": "Malware targets CIA",
+      "fact": "Malware is software built to damage systems, gain unauthorized access or disrupt availability.",
+      "why": "It turns the CIA triad into a target: stealing confidentiality, changing integrity and blocking availability.",
       "tags": [
         "malware",
         "cia",
@@ -284,9 +284,9 @@ window.FIELD_DEX_INLINE = {
       "date": "2026-06-18",
       "category": "security",
       "rarity": "uncommon",
-      "title": "Vírus, Worm e Trojan",
-      "fact": "Vírus precisa de arquivo hospedeiro e ação humana; worm se replica sozinho pela rede; trojan finge ser legítimo para abrir a porta.",
-      "why": "Os três parecem iguais porque todos são malware, mas a diferença principal é como entram e se propagam.",
+      "title": "Virus, Worm and Trojan",
+      "fact": "A virus needs a host file and human action; a worm self-replicates across networks; a trojan pretends to be legitimate to open the door.",
+      "why": "They look similar because all are malware, but the key difference is how they enter and spread.",
       "tags": [
         "virus",
         "worm",
@@ -301,13 +301,13 @@ window.FIELD_DEX_INLINE = {
       "date": "2026-06-18",
       "category": "security",
       "rarity": "rare",
-      "title": "Propagação Não É Payload",
-      "fact": "Propagação é como o ataque entra: e-mail, USB, download, vulnerabilidade ou site comprometido. Payload é o que ele faz depois.",
-      "why": "Separar entrada de efeito evita confusão: o mesmo vetor pode entregar roubo de dados, ransomware ou espionagem.",
+      "title": "Propagation Is Not Payload",
+      "fact": "Propagation is how an attack enters: email, USB, download, vulnerability or compromised website. Payload is what it does next.",
+      "why": "Separating entry from effect avoids confusion: the same vector can deliver data theft, ransomware or espionage.",
       "tags": [
         "payload",
-        "vetores",
-        "ataques"
+        "vectors",
+        "attack-chain"
       ],
       "viz": {
         "type": "attack-chain"
@@ -318,12 +318,12 @@ window.FIELD_DEX_INLINE = {
       "date": "2026-06-18",
       "category": "security",
       "rarity": "uncommon",
-      "title": "Engenharia Social Ataca Pessoas",
-      "fact": "Phishing, spear phishing e pretexting manipulam confiança para fazer alguém clicar, baixar ou revelar credenciais.",
-      "why": "Muitos ataques não começam quebrando criptografia ou firewall; começam explorando decisão humana.",
+      "title": "Social Engineering",
+      "fact": "Phishing, spear phishing and pretexting manipulate trust to make someone click, download or reveal credentials.",
+      "why": "Many attacks do not start by breaking cryptography or firewalls; they start by exploiting human decision-making.",
       "tags": [
         "phishing",
-        "credenciais",
+        "credentials",
         "social"
       ],
       "viz": {
@@ -335,9 +335,9 @@ window.FIELD_DEX_INLINE = {
       "date": "2026-06-18",
       "category": "security",
       "rarity": "legendary",
-      "title": "Change Healthcare: MFA Ausente",
-      "fact": "Em 2024, a Change Healthcare sofreu ransomware após acesso por um portal remoto Citrix sem MFA; uma credencial roubada bastou.",
-      "why": "É um exemplo direto da ligação entre Módulo 2 e Módulo 4: autenticação fraca vira porta de entrada para malware.",
+      "title": "Change Healthcare: Missing MFA",
+      "fact": "In 2024, Change Healthcare suffered ransomware after access through a remote Citrix portal without MFA; one stolen credential was enough.",
+      "why": "It links authentication and malware clearly: weak access control becomes the entry point for a major incident.",
       "tags": [
         "ransomware",
         "mfa",
@@ -352,9 +352,9 @@ window.FIELD_DEX_INLINE = {
       "date": "2026-06-18",
       "category": "security",
       "rarity": "epic",
-      "title": "APT: O Ataque Que Mora na Rede",
-      "fact": "Uma Advanced Persistent Threat é prolongada, direcionada e furtiva: o invasor tenta permanecer na rede sem ser notado.",
-      "why": "Ela muda a pergunta de 'bloqueamos a entrada?' para 'como detectamos movimento lateral e persistência?'.",
+      "title": "APT: Persistent Intrusion",
+      "fact": "An Advanced Persistent Threat is targeted, stealthy and long-running: the attacker aims to remain inside the network without being noticed.",
+      "why": "It shifts the defensive question from 'did we block entry?' to 'can we detect lateral movement and persistence?'.",
       "tags": [
         "apt",
         "stealth",
@@ -369,9 +369,9 @@ window.FIELD_DEX_INLINE = {
       "date": "2026-06-18",
       "category": "security",
       "rarity": "rare",
-      "title": "Defesa em Camadas",
-      "fact": "Antivírus, firewall ou backup isolado não resolvem sozinhos; cada controle cobre apenas uma parte do risco.",
-      "why": "Defesa em camadas combina MFA, patches, EDR, segmentação, menor privilégio, backups testados e resposta a incidentes.",
+      "title": "Defense in Depth",
+      "fact": "Antivirus, firewalls or isolated backups do not solve risk alone; each control covers only part of the attack surface.",
+      "why": "Defense in depth combines MFA, patching, EDR, segmentation, least privilege, tested backups and incident response.",
       "tags": [
         "defense-in-depth",
         "edr",
@@ -721,6 +721,150 @@ window.FIELD_DEX_INLINE = {
           "title": "Scotland: identity that endured",
           "fact": "In 1707, Scotland joined England to form Great Britain, but kept a distinct identity through symbols such as tartan, Highland Games, Gaelic, Scots and the literature of Robert Burns.",
           "why": "Scottish culture is shaped by that tension: belonging to a political union while still telling its own story as a nation."
+        }
+      }
+    },
+    {
+      "id": 37,
+      "date": "2026-07-07",
+      "category": "data",
+      "rarity": "rare",
+      "title": "LLM: linguagem em escala",
+      "fact": "LLM significa Large Language Model: um modelo treinado em grandes volumes de texto para prever a próxima parte de uma sequência.",
+      "why": "Ele não consulta uma consciência; calcula padrões de linguagem. Por isso pode resumir, escrever e programar, mas ainda precisa de contexto, checagem e bom julgamento humano.",
+      "tags": [
+        "llm",
+        "ai",
+        "language-model"
+      ],
+      "viz": {
+        "type": "bars"
+      },
+      "i18n": {
+        "en": {
+          "title": "LLM: language at scale",
+          "fact": "LLM means Large Language Model: a model trained on huge volumes of text to predict the next part of a sequence.",
+          "why": "It is not consulting a consciousness; it is calculating language patterns. That is why it can summarize, write and code, but still needs context, checking and good human judgment."
+        }
+      }
+    },
+    {
+      "id": 38,
+      "date": "2026-07-22",
+      "category": "security",
+      "rarity": "epic",
+      "title": "Zero Trust: Verify Always",
+      "fact": "Zero Trust replaces implicit trust with continuous verification: identity, device, location, context and privilege must make sense for every access.",
+      "why": "With cloud, remote work and SaaS, the internal network is no longer a trusted border. Mature security validates each session before allowing impact.",
+      "tags": [
+        "zero-trust",
+        "iam",
+        "access"
+      ],
+      "viz": {
+        "type": "zero-trust"
+      },
+      "i18n": {
+        "en": {
+          "title": "Zero Trust: verify always",
+          "fact": "Zero Trust replaces implicit trust with continuous verification: identity, device, location, context and privilege must make sense for every access.",
+          "why": "With cloud, remote work and SaaS, the internal network is no longer a trusted border. Mature security validates each session before allowing impact."
+        }
+      }
+    },
+    {
+      "id": 39,
+      "date": "2026-07-22",
+      "category": "security",
+      "rarity": "rare",
+      "title": "Threat Modeling",
+      "fact": "Threat modeling asks what we protect, who would attack it, where they would enter and which control reduces the risk.",
+      "why": "Before buying tools, an analyst must see the system like an adversary. That map turns vague fear into testable decisions.",
+      "tags": [
+        "threat-modeling",
+        "risk",
+        "stride"
+      ],
+      "viz": {
+        "type": "threat-model"
+      },
+      "i18n": {
+        "en": {
+          "title": "Threat modeling",
+          "fact": "Threat modeling asks what we protect, who would attack it, where they would enter and which control reduces the risk.",
+          "why": "Before buying tools, an analyst must see the system like an adversary. That map turns vague fear into testable decisions."
+        }
+      }
+    },
+    {
+      "id": 40,
+      "date": "2026-07-22",
+      "category": "security",
+      "rarity": "rare",
+      "title": "Least Privilege",
+      "fact": "Least privilege gives each user, service or process only the access it needs, for the shortest reasonable time.",
+      "why": "When an account is compromised, damage depends on its reach. Reducing privilege limits lateral movement, leakage and operational impact.",
+      "tags": [
+        "least-privilege",
+        "iam",
+        "blast-radius"
+      ],
+      "viz": {
+        "type": "least-privilege"
+      },
+      "i18n": {
+        "en": {
+          "title": "Least privilege",
+          "fact": "Least privilege gives each user, service or process only the access it needs, for the shortest reasonable time.",
+          "why": "When an account is compromised, damage depends on its reach. Reducing privilege limits lateral movement, leakage and operational impact."
+        }
+      }
+    },
+    {
+      "id": 41,
+      "date": "2026-07-22",
+      "category": "security",
+      "rarity": "epic",
+      "title": "SIEM: From Signal to Decision",
+      "fact": "A SIEM centralizes logs from systems, identity, network and applications to correlate events and surface suspicious behavior.",
+      "why": "An isolated log is noise. Good correlation helps the SOC prioritize real alerts, reduce false positives and respond before the attack grows.",
+      "tags": [
+        "siem",
+        "soc",
+        "detection"
+      ],
+      "viz": {
+        "type": "siem"
+      },
+      "i18n": {
+        "en": {
+          "title": "SIEM: From Signal to Decision",
+          "fact": "A SIEM centralizes logs from systems, identity, network and applications to correlate events and surface suspicious behavior.",
+          "why": "An isolated log is noise. Good correlation helps the SOC prioritize real alerts, reduce false positives and respond before the attack grows."
+        }
+      }
+    },
+    {
+      "id": 42,
+      "date": "2026-07-22",
+      "category": "security",
+      "rarity": "legendary",
+      "title": "Incident Response",
+      "fact": "Incident response organizes preparation, detection, containment, eradication, recovery and lessons learned into a repeatable process.",
+      "why": "During a crisis, improvisation is expensive. A clear playbook protects evidence, reduces downtime and turns each incident into defensive improvement.",
+      "tags": [
+        "incident-response",
+        "playbook",
+        "resilience"
+      ],
+      "viz": {
+        "type": "incident-response"
+      },
+      "i18n": {
+        "en": {
+          "title": "Incident response",
+          "fact": "Incident response organizes preparation, detection, containment, eradication, recovery and lessons learned into a repeatable process.",
+          "why": "During a crisis, improvisation is expensive. A clear playbook protects evidence, reduces downtime and turns each incident into defensive improvement."
         }
       }
     }
