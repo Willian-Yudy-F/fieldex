@@ -1,60 +1,51 @@
 # FielDex 🦅
 
-> **Gotta learn 'em all.**
-> A daily knowledge "Pokédex" — every card is visible, but a card only joins the reader's local Trainer Profile after they solve a logic/math challenge.
+[![CI](https://github.com/Willian-Yudy-F/fieldex/actions/workflows/ci.yml/badge.svg)](https://github.com/Willian-Yudy-F/fieldex/actions/workflows/ci.yml)
 
+A learning-in-public project that turns short lessons into collectible knowledge cards.
+The public gallery currently contains 42 entries across probability, maths, history,
+geography, data, security and football topics.
+
+**Live gallery:** https://willian-yudy-f.github.io/fieldex/
 
 ## In plain English
-A "Pokédex" for knowledge instead of monsters. Every day I learn one new thing (a maths idea, a security concept, a football tactic…) and turn it into a collectible card. The gallery is a website anyone can read; to "collect" a card you solve a small logic puzzle. A Python script generates the card images automatically and GitHub Actions rebuilds the site on every commit.
 
-**What I learned:** generating images with Python, keeping a JSON "database" versioned in git, building a small front end without frameworks, and the discipline of shipping something every day.
+Every card explains one idea, why it matters and a few tags. Anyone can read the gallery.
+A reader can also create a local profile and solve a deterministic logic or maths challenge
+to add cards to their browser-based collection.
 
-FielDex is a learning-in-public project: a personal commitment to learn something new every single day, turn it into a polished collectible card, and keep a public, growing dex of it all. The full gallery is open for reading; the collection profile is earned through small reasoning puzzles and saved locally in the user's browser. The name is a play on **Pokédex** — but instead of catching creatures, I'm catching knowledge — with a small nod to *o Timão* (the club's nickname, "a Fiel", founded in **1910**).
+The profile is not a server account. Trainer name, collected cards, badges and streak are
+stored in `localStorage` on that device. Clearing site data or changing browsers starts a
+new local collection.
 
-## Why this exists
+## What this project demonstrates
 
-Three goals in one project:
+- a versioned JSON content model;
+- validation and a guided content-entry CLI in Python;
+- deterministic Pillow-based card generation for social images;
+- a framework-free HTML/CSS/JavaScript gallery;
+- local-only progress with no backend account;
+- a generated JavaScript fallback that remains in sync with the JSON source;
+- automated checks and card rebuilding through GitHub Actions.
 
-1. **Learn consistently.** One entry a day, no exceptions. The dex grows; so does the habit.
-2. **Practice real skills.** Python (content + image generation), data modeling (the dex as a JSON database), and frontend (the gallery), all version-controlled with a daily commit streak.
-3. **Share something useful.** Each entry becomes a card I can post on social media — and readers can collect it by solving a small logic challenge.
-4. **Make progress feel personal.** Readers can create a local Trainer Profile, collect cards, earn type badges, and keep their streak on their own device.
+## Project structure
 
-## What's inside
+```text
+fieldex.json          source of truth for all entries
+fieldex_core.py       shared schema validation
+build_data_js.py      generates the offline JavaScript fallback
+generate_card.py      renders PNG cards
+add_entry.py          guided CLI with rollback on generation failure
+fieldex-data.js       generated fallback for file/offline use
+index.html            public gallery and local collection experience
+cards/                generated card images
+tests/                data, HTML and JavaScript checks
+```
 
-| File | What it does |
-|------|--------------|
-| `fieldex.json` | The dex — the database of every captured entry |
-| `generate_card.py` | Renders a Pokédex-style trading card (PNG) for any entry, ready to post |
-| `add_entry.py` | Interactive CLI to add a new entry and auto-generate its card |
-| `index.html` | The web gallery — browse the whole collection, filter by type, view details (GitHub Pages) |
-| `cards/` | All generated card images |
+## Data model
 
-## Featured study: Brazil's 2026 World Cup group
-
-The gallery now includes a dedicated **World Cup** category for Brazil's Group C path in the 2026 World Cup:
-
-- Brazil vs Morocco — East Rutherford, New Jersey, at New York New Jersey Stadium (MetLife Stadium)
-- Brazil vs Haiti — Philadelphia, Pennsylvania, at Philadelphia Stadium (Lincoln Financial Field)
-- Scotland vs Brazil — Miami Gardens, Florida, at Miami Stadium (Hard Rock Stadium)
-
-The feature highlights Morocco, Haiti and Scotland with country context, football history, cultural notes, stadium information, and sourced facts. The site includes a PT/EN switch for the guide and the World Cup cards, making the project useful for both Portuguese- and English-speaking audiences.
-
-## How a "capture" works
-
-Each entry is typed (like a Pokémon type) and has a rarity. The web gallery shows every card by default, but local profile progress only advances after the reader creates a Trainer Profile and answers that card's deterministic logic/math puzzle.
-
-Progress is saved with `localStorage`, so it belongs to that browser/device:
-
-- trainer name, mark and home base
-- collected card IDs and capture dates
-- current streak
-- earned type badges
-
-There is no backend account yet; clearing browser storage or switching devices starts a fresh local profile.
-
-- **Types:** probability · math · logic · history · geography · data · security · corinthians · worldcup · football
-- **Rarity:** common → uncommon → rare → epic → legendary
+Each entry requires a contiguous numeric ID, ISO date, supported category and rarity,
+non-empty title/fact/explanation and a list of tags.
 
 ```json
 {
@@ -63,41 +54,83 @@ There is no backend account yet; clearing browser storage or switching devices s
   "category": "probability",
   "rarity": "rare",
   "title": "The Birthday Paradox",
-  "fact": "In a room of just 23 people, there's a 50% chance two share a birthday.",
-  "why": "We compare every PAIR of people, not each person to one fixed date.",
+  "fact": "In a room of 23 people, a shared birthday is already likely.",
+  "why": "The number of pairs grows much faster than the number of people.",
   "tags": ["statistics", "counterintuitive"]
 }
 ```
 
-## Usage
+Some entries also include visualisation metadata and English translations. The World Cup
+guide in the gallery includes its own visible source links. Older cards do not yet carry a
+per-entry source field; adding citations to the core schema is the main content-quality
+improvement still required.
+
+## Add and generate cards
+
+Create an environment and install the rendering dependencies:
 
 ```bash
-# add a new entry (guided) and auto-generate its card
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+Then use one of the supported commands:
+
+```bash
+# guided entry creation, validation and card generation
 python add_entry.py
 
-# regenerate one card by id
-python generate_card.py 1
+# rebuild the browser fallback after editing JSON directly
+python build_data_js.py
 
-# regenerate every card
+# regenerate one card or every card
+python generate_card.py 42
 python generate_card.py --all
 ```
 
-Then preview the gallery locally:
+If guided generation fails, `add_entry.py` restores the original JSON instead of leaving
+a half-created entry.
+
+## Preview locally
 
 ```bash
 python -m http.server 8000
-# open http://localhost:8000
-Link: willian-yudy-f.github.io
 ```
 
-## Roadmap
+Open `http://localhost:8000/`.
 
-- [ ] 30-day streak
-- [ ] 100 entries
-- [ ] Auto-post cards to social via API
-- [ ] Search + full-text filtering in the gallery
-- [ ] A "random capture" button (your daily review flashcard)
+## Quality checks
+
+```bash
+python -m unittest discover -s tests -v
+node tests/validate-script.mjs
+python build_data_js.py
+git diff --exit-code fieldex-data.js
+```
+
+CI runs these checks on Python 3.11 and 3.13. A separate workflow rebuilds the cards and
+offline data when the JSON or generator changes.
+
+## Current limitations
+
+- Local progress does not sync across devices.
+- Challenge difficulty is not calibrated.
+- Card rendering uses Arial on macOS and DejaVu Sans on Linux, so small typography
+  differences remain possible across platforms.
+- Many older entries still need a structured citation field.
+- “Daily” describes the learning format; it is not a claim that a card has been published
+  without interruption every calendar day.
+
+## Next improvements
+
+- Add `sources` to every entry and display citations in each card detail.
+- Add full-text search across translated content.
+- Add a random review mode for previously collected cards.
+- Publish an export/import option for local progress without creating an account.
 
 ---
 
-*Built with Python and a lot of curiosity. Since 1910.* 🦅
+Built by [Willian Yudy Futema](https://github.com/Willian-Yudy-F) ·
+[Portfolio](https://willian-yudy-f.github.io/) ·
+[LinkedIn](https://www.linkedin.com/in/willian-yudy-futema/)

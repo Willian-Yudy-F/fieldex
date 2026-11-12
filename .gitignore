@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+.DS_Store
 
 # local previews (not part of the dex)
 preview.png
